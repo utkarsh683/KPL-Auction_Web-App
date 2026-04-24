@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -462,6 +461,21 @@
     .btn-sm {
       padding: 5px 10px;
       font-size: 11px
+    }
+
+    /* ── NEW: Gold thousand-bid buttons ── */
+    .btn-thousand {
+      background: rgba(255, 215, 0, .12);
+      color: var(--gold);
+      border: 1px solid rgba(255, 215, 0, .35);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .3px
+    }
+
+    .btn-thousand:hover {
+      background: rgba(255, 215, 0, .22);
+      border-color: var(--gold)
     }
 
     input,
@@ -1420,6 +1434,26 @@
       border-color: rgba(57, 255, 20, .4);
       color: var(--neon)
     }
+
+    /* ── NEW: Thousand bid section divider ── */
+    .bid-section-label {
+      font-size: 9px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      font-weight: 700;
+      margin: 8px 0 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .bid-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
   </style>
 </head>
 
@@ -1569,7 +1603,7 @@
       </div>
     </div>
 
-    <!-- UNSOLD PLAYERS FULL LIST PANEL (hidden by default, shown after auction or on demand) -->
+    <!-- UNSOLD PLAYERS FULL LIST PANEL -->
     <div id="unsold-panel" style="display:none;margin-bottom:16px">
       <div class="card" style="border-color:rgba(255,68,68,.3)">
         <div
@@ -1625,7 +1659,8 @@
         </div>
         <div class="step-box">
           <div class="step-label">Step 2 — Bid Amount (₹ Lakhs)</div>
-          <!-- Main input row with - and + -->
+
+          <!-- Main ±1 / ±5 row -->
           <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
             <button class="btn btn-red" onclick="addBid(-5)"
               style="padding:10px 14px;font-size:16px;font-weight:900;min-width:44px">−5</button>
@@ -1638,15 +1673,27 @@
             <button class="btn btn-neon" onclick="addBid(5)"
               style="padding:10px 14px;font-size:16px;font-weight:900;min-width:44px">+5</button>
           </div>
-          <!-- Quick preset buttons -->
-          <div style="display:flex;gap:6px;flex-wrap:wrap">
+
+         <!-- Lakh presets row -->
+          <div class="bid-section-label">Lakh jumps</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
             <button class="btn btn-outline btn-sm" onclick="addBid(10)">+10L</button>
             <button class="btn btn-outline btn-sm" onclick="addBid(25)">+25L</button>
             <button class="btn btn-outline btn-sm" onclick="addBid(50)">+50L</button>
             <button class="btn btn-outline btn-sm" onclick="addBid(100)">+100L</button>
             <button class="btn btn-outline btn-sm" onclick="resetBidToBase()">⟳ Base</button>
           </div>
+
+          <!-- ── NEW: Thousand presets row ── -->
+          <div class="bid-section-label">Thousand jumps</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="btn btn-thousand btn-sm" onclick="addBid(500)" title="+500 (half-lakh)">+500</button>
+            <button class="btn btn-thousand btn-sm" onclick="addBid(1000)" title="+1000 (1 lakh)">+1000</button>
+            <button class="btn btn-thousand btn-sm" onclick="setBidExact(500)" title="Set bid to exactly 500">= 500</button>
+            <button class="btn btn-thousand btn-sm" onclick="setBidExact(1000)" title="Set bid to exactly 1000">= 1000</button>
+          </div>
         </div>
+
         <div style="display:flex;gap:14px;width:100%;margin-top:6px">
           <button class="btn btn-neon auction-sold-btn" onclick="doSold()">✅ SOLD</button>
           <button class="btn btn-red auction-unsold-btn" onclick="doUnsold()">❌ UNSOLD</button>
@@ -1667,7 +1714,7 @@
       </div>
     </div>
 
-    <!-- BOTTOM: Available Players DROPDOWN + pill tabs -->
+    <!-- BOTTOM: Available Players -->
     <div style="margin-top:16px">
       <div
         style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
@@ -1675,7 +1722,6 @@
           Available Players</div>
         <span id="a-unsold-count" style="font-size:11px;color:var(--neon);font-weight:700"></span>
       </div>
-      <!-- Dropdown selector -->
       <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
         <div style="flex:1;min-width:220px;position:relative">
           <select id="a-player-select" onchange="selAPFromDropdown()"
@@ -1688,7 +1734,6 @@
         <button class="btn btn-outline btn-sm" onclick="prevP()">← Prev</button>
         <button class="btn btn-outline btn-sm" onclick="nextP()">Next →</button>
       </div>
-      <!-- Pill tabs (scrollable row) -->
       <div style="overflow-x:auto;padding-bottom:4px">
         <div id="a-plist" style="display:flex;flex-wrap:nowrap;gap:6px;min-width:max-content"></div>
       </div>
@@ -1837,8 +1882,6 @@
     // ========== STATE ==========
     let teams = JSON.parse(localStorage.getItem('kpl2_teams') || '[]');
     let players = JSON.parse(localStorage.getItem('kpl2_players') || '[]');
-    // imgStore keyed by NUMBER STRING e.g. "1", "2", ... "136"
-    // Value is base64 data URI
     let imgStore = JSON.parse(localStorage.getItem('kpl2_imgs') || '{}');
 
     let curAI = -1;
@@ -1893,21 +1936,14 @@
     document.querySelectorAll('.mo').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('show'); }));
 
     // ========== IMAGE LOGIC ==========
-    // Core: player at players[i] (0-based index) gets image key String(i+1)
-    // e.g. players[0] → imgStore["1"], players[1] → imgStore["2"] ...
-
     function getPhotoByIndex(player) {
-      // Priority 1: player has an explicitly stored photo (base64 or URL)
       if (player.photo && player.photo.length > 5) return player.photo;
-      // Priority 2: use imgIndex stored on player (set during import / auto-assign)
       if (player.imgIndex) {
         const key = String(player.imgIndex);
         if (imgStore[key]) return imgStore[key];
-        // also try with extension
         const extKey = Object.keys(imgStore).find(k => k.split('.')[0] === key);
         if (extKey) return imgStore[extKey];
       }
-      // Priority 3: player's position in players array (1-based)
       const idx = players.indexOf(player) + 1;
       const posKey = String(idx);
       if (imgStore[posKey]) return imgStore[posKey];
@@ -1916,27 +1952,19 @@
       return '';
     }
 
-    // Resolve numeric key (strip extension)
     function resolveImgKey(k) { return k.split('.')[0]; }
 
-    // Auto-assign: player at index i (0-based) gets image i+1
     function autoAssignByIndex() {
       const keys = Object.keys(imgStore);
       if (!keys.length) { toast('No images uploaded yet. Upload images first.', 'error'); return; }
       let assigned = 0;
       players.forEach((p, i) => {
-        const num = i + 1; // 1-based
+        const num = i + 1;
         const key = String(num);
         const hasImg = imgStore[key] || Object.keys(imgStore).find(k => k.split('.')[0] === key);
-        if (hasImg) {
-          p.imgIndex = num;
-          assigned++;
-        }
+        if (hasImg) { p.imgIndex = num; assigned++; }
       });
-      save();
-      renderPlayers();
-      renderImgFolder();
-      updateImgStatusBanner();
+      save(); renderPlayers(); renderImgFolder(); updateImgStatusBanner();
       toast(`✅ Auto-assigned ${assigned} player photos by index (Player 1 → Image 1, etc.)`);
     }
 
@@ -1944,14 +1972,10 @@
       if (!confirm('Clear all uploaded images?')) return;
       imgStore = {};
       players.forEach(p => { p.imgIndex = null; });
-      save();
-      renderImgFolder();
-      renderPlayers();
-      updateImgStatusBanner();
+      save(); renderImgFolder(); renderPlayers(); updateImgStatusBanner();
       toast('Images cleared');
     }
 
-    // Upload images — store by their numeric filename (strip extension)
     function handleImgFolder(e) {
       const files = Array.from(e.target.files);
       if (!files.length) return;
@@ -1960,20 +1984,14 @@
       files.forEach(f => {
         const reader = new FileReader();
         reader.onload = ev => {
-          // Extract just the numeric part of the filename
-          const baseName = f.name.replace(/\.[^.]+$/, ''); // remove extension
+          const baseName = f.name.replace(/\.[^.]+$/, '');
           const num = parseInt(baseName);
-          // Store with numeric key (just the number), e.g. "1", "23", "136"
           const storeKey = isNaN(num) ? baseName : String(num);
           imgStore[storeKey] = ev.target.result;
           stored.push(storeKey);
           processed++;
           if (processed === files.length) {
-            save();
-            // Auto-assign immediately after upload
-            autoAssignByIndex();
-            renderImgFolder();
-            renderPlayers();
+            save(); autoAssignByIndex(); renderImgFolder(); renderPlayers();
             const nums = stored.filter(k => !isNaN(parseInt(k))).map(Number).sort((a, b) => a - b);
             const rangeStr = nums.length ? `${nums[0]}–${nums[nums.length - 1]}` : 'various';
             toast(`✅ ${files.length} images uploaded (${rangeStr}). Auto-assigned!`);
@@ -2004,25 +2022,17 @@
       if (!keys.length) { sec.style.display = 'none'; return; }
       sec.style.display = 'block';
       document.getElementById('img-count').textContent = keys.length;
-
-      // For each image, find which player it belongs to
       const imgToPlayer = {};
-      players.forEach((p, i) => {
-        const num = i + 1;
-        const k = String(num);
-        imgToPlayer[k] = p.name;
-      });
-
+      players.forEach((p, i) => { imgToPlayer[String(i + 1)] = p.name; });
       document.getElementById('img-folder-grid').innerHTML = keys.map(k => {
         const num = resolveImgKey(k);
         const playerName = imgToPlayer[num];
         const hasPlayer = !!playerName;
         return `<div class="img-thumb-wrap">
       <img class="img-thumb ${hasPlayer ? 'img-assigned' : ''}" src="${imgStore[k]}" title="${hasPlayer ? '#' + num + ' → ' + playerName : 'Image ' + num + ' (no player)'}" alt="${k}" onclick="openImgSel(null,'${k.replace(/'/g, "\\'")}')">
-      <div class="img-thumb-label" style="color:${hasPlayer ? 'var(--neon)' : 'var(--muted)'}">${hasPlayer ? '#' + num : '#' + num}</div>
+      <div class="img-thumb-label" style="color:${hasPlayer ? 'var(--neon)' : 'var(--muted)'}">#${num}</div>
     </div>`;
       }).join('');
-
       updateImgStatusBanner();
     }
 
@@ -2046,9 +2056,7 @@
       const p = players.find(x => x.id === imgSelTarget);
       if (!p) return;
       p.photo = imgStore[key];
-      save();
-      closeMd('md-imgsel');
-      renderPlayers();
+      save(); closeMd('md-imgsel'); renderPlayers();
       toast(`Photo assigned to ${p.name} ✓`);
     }
 
@@ -2151,8 +2159,6 @@
           </div>
         </div>
       </div>
-
-      <!-- ALL DATA FIELDS -->
       <div style="padding:0 14px 8px;font-size:11px">
         ${infoRow('📅', 'DOB', p.dob)}
         ${infoRow('🏘', 'Village', p.village)}
@@ -2163,16 +2169,12 @@
         ${p.status === 'sold' ? infoRow('🔨', 'Sold Price', '₹' + p.soldPrice + 'L', 'var(--neon)') : ''}
         ${p.status === 'sold' && tm ? infoRow('🏆', 'Team', tm.name, tm.color || 'var(--blue)') : ''}
       </div>
-
-      <!-- STATS ROW -->
       <div class="pc-stats">
         <div class="pc-stat"><div class="pc-stat-v">${p.matches}</div><div class="pc-stat-l">Mat</div></div>
         <div class="pc-stat"><div class="pc-stat-v" style="color:var(--neon)">${p.runs}</div><div class="pc-stat-l">Runs</div></div>
         <div class="pc-stat"><div class="pc-stat-v" style="color:var(--orange)">${p.wickets}</div><div class="pc-stat-l">Wkts</div></div>
         <div class="pc-stat"><div class="pc-stat-v" style="color:var(--blue)">${p.sr}</div><div class="pc-stat-l">SR</div></div>
       </div>
-
-      <!-- PRICE FOOTER -->
       <div class="pc-foot" style="padding:8px 14px">
         <div>
           <div class="pc-price-lbl">${p.status === 'sold' ? 'Sold For' : 'Base Price'}</div>
@@ -2183,8 +2185,6 @@
           ${tm ? `<div style="font-size:10px;font-weight:700;color:${tm.color || 'var(--blue)'};margin-top:2px">${tm.name}</div>` : ''}
         </div>
       </div>
-
-      <!-- ACTIONS -->
       <div class="pc-actions">
         <button class="btn btn-outline btn-sm" style="flex:1" onclick="editPlayer(${p.id})">✏ Edit</button>
         <button class="btn btn-orange btn-sm" title="Assign photo manually" onclick="imgSelTarget=${p.id};openImgSel(${p.id})">🖼</button>
@@ -2286,9 +2286,7 @@
             rows.forEach((row, rowIdx) => {
               const g = f => (mappedFields[f] ? String(row[mappedFields[f]] || '').trim() : '');
               const name = g('name'); if (!name) return;
-              // Duplicates allowed — same name can appear multiple times
-              // imgIndex = row position (1-based) within excel
-              const imgIndex = players.length + 1; // will be the new player's 1-based index
+              const imgIndex = players.length + 1;
               players.push({
                 id: Date.now() + Math.random(), name,
                 dob: g('dob'), village: g('village'), contact: g('contact'),
@@ -2298,7 +2296,7 @@
                 wickets: parseInt(g('wickets')) || 0, sr: parseFloat(g('sr')) || 0,
                 photo: g('photo') || '',
                 status: 'unsold', soldPrice: 0, teamId: null,
-                imgIndex, // ← assigned = row order in excel
+                imgIndex,
               });
               imported++;
             });
@@ -2317,11 +2315,7 @@
             teams.push({ id: Date.now() + Math.random(), name, budget, remaining: budget, color: '#39FF14' });
           });
         }
-        save();
-        // Auto-assign images after import
-        autoAssignByIndex();
-        renderPlayers();
-        renderImgFolder();
+        save(); autoAssignByIndex(); renderPlayers(); renderImgFolder();
         toast(`✅ Imported ${imported} player${imported !== 1 ? 's' : ''}. Images auto-assigned by row order.`);
         e.target.value = '';
       };
@@ -2376,9 +2370,7 @@
 
     function selAPFromUnsold(idx) {
       selAP(idx);
-      // scroll auction center into view
       document.getElementById('a-photo').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // re-render panel to update active highlight
       if (unsoldPanelOpen) renderUnsoldPanel();
     }
 
@@ -2424,6 +2416,7 @@
       ${tp.length ? `<div style="font-size:9px;line-height:1.7">${tp.map(p => `<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.04)"><span style="color:var(--text);font-weight:600">${p.name}</span><span style="color:${accentColor};font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700">₹${p.soldPrice}</span></div>`).join('')}</div>` : `<div style="font-size:10px;color:var(--muted);font-style:italic">No players bought yet</div>`}
     </div>`;
       }).join('') || '<p style="font-size:11px;color:var(--muted)">No teams</p>';
+
       const sold = players.filter(p => p.status === 'sold').slice(-8).reverse();
       document.getElementById('a-sold').innerHTML = sold.map(p => { const tm = teams.find(t => t.id === p.teamId); return `<div class="si"><div><div class="si-n">${p.name}</div><div style="font-size:10px;color:${tm?.color || 'var(--muted)'};">${tm?.name || '—'}</div></div><div class="si-p">₹${p.soldPrice}</div></div>`; }).join('') || '<p style="font-size:11px;color:var(--muted)">No sales yet</p>';
 
@@ -2431,7 +2424,6 @@
       const countEl = document.getElementById('a-unsold-count');
 
       if (unsold.length === 0) {
-        // Auction complete — auto-show unsold panel
         document.getElementById('a-plist').innerHTML = '<p style="color:var(--neon);font-size:14px">🎉 All players processed!</p>';
         if (countEl) countEl.textContent = '';
         document.getElementById('a-name').textContent = 'Auction Over';
@@ -2441,22 +2433,18 @@
         document.getElementById('a-amt').value = '';
         document.getElementById('a-info').innerHTML = '<div style="text-align:center;padding:20px 0"><div style="font-size:40px">🏆</div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:22px;color:var(--gold);margin-top:8px">Auction Complete!</div></div>';
         curAI = -1;
-        // Show unsold panel automatically
         unsoldPanelOpen = true;
         document.getElementById('unsold-panel').style.display = 'block';
         renderUnsoldPanel();
       } else {
         if (countEl) countEl.textContent = unsold.length + ' unsold';
-        // Bottom player tabs — show all unsold as clickable pills
         document.getElementById('a-plist').innerHTML = unsold.map(p => {
           const idx = players.indexOf(p);
           const isActive = idx === curAI;
           return `<div class="a-ptab ${isActive ? 'active' : ''}" onclick="selAP(${idx})" title="${p.role} · ₹${p.price}L · ${p.village || ''}">${p.name}</div>`;
         }).join('');
-        // Populate dropdown
         const dpSel = document.getElementById('a-player-select');
         if (dpSel) {
-          const prevVal = dpSel.value;
           dpSel.innerHTML = '<option value="">— Select Player to Auction —</option>';
           unsold.forEach(p => {
             const idx = players.indexOf(p);
@@ -2466,14 +2454,14 @@
             if (idx === curAI) opt.selected = true;
             dpSel.appendChild(opt);
           });
-          if (!unsold.find(p => players.indexOf(p) === curAI) && prevVal) dpSel.value = prevVal;
         }
         if (curAI === -1 || (curAI >= 0 && players[curAI].status !== 'unsold')) { curAI = players.indexOf(unsold[0]); updACenter(); } else { updACenter(); }
-        // Re-render unsold panel if open
         if (unsoldPanelOpen) renderUnsoldPanel();
       }
     }
+
     function selAP(idx) { if (players[idx].status !== 'unsold') { toast("This player is already sold", "error"); return; } curAI = idx; updACenter(); renderAuction(); if (unsoldPanelOpen) renderUnsoldPanel(); }
+
     function updACenter() {
       const p = players[curAI]; if (!p || p.status !== 'unsold') return;
       document.getElementById('a-name').textContent = p.name;
@@ -2511,8 +2499,20 @@
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;color:var(--gold);font-weight:900;line-height:1">₹${p.price}L</div>
     </div>`;
     }
+
     function updBidSug() { if (curAI >= 0 && players[curAI] && players[curAI].status === 'unsold') { if (!document.getElementById('a-amt').value) document.getElementById('a-amt').value = players[curAI].price; } }
-    function addBid(n) { const el = document.getElementById('a-amt'); el.value = (parseFloat(el.value) || 0) + n; }
+
+    // ── BID HELPERS ──
+    function addBid(n) {
+      const el = document.getElementById('a-amt');
+      el.value = (parseFloat(el.value) || 0) + n;
+    }
+
+    // NEW: set bid to an exact value
+    function setBidExact(val) {
+      document.getElementById('a-amt').value = val;
+    }
+
     function doSold() {
       if (curAI < 0) return toast('Select a player first', 'error');
       const p = players[curAI]; if (p.status !== 'unsold') return toast('Player already processed', 'error');
@@ -2547,17 +2547,13 @@
     function shuffleAuction() {
       const unsold = players.filter(p => p.status === 'unsold');
       if (unsold.length < 2) { toast('Need at least 2 unsold players to shuffle', 'error'); return; }
-      // Fisher-Yates shuffle on the unsold subset, then re-order players array
       for (let i = unsold.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[unsold[i], unsold[j]] = [unsold[j], unsold[i]]; }
       const sold = players.filter(p => p.status !== 'unsold');
       players = [];
-      // Rebuild: keep sold players in their original spots but put shuffled unsold at end
       sold.forEach(p => players.push(p));
       unsold.forEach(p => players.push(p));
       curAI = players.indexOf(unsold[0]);
-      save();
-      renderAuction();
-      toast(`🔀 Shuffled ${unsold.length} unsold players randomly!`);
+      save(); renderAuction(); toast(`🔀 Shuffled ${unsold.length} unsold players randomly!`);
     }
     function advanceToNextUnsold() {
       const unsold = players.filter(p => p.status === 'unsold');
@@ -2584,7 +2580,6 @@
     function delAllTeams() { if (!confirm('Delete ALL teams?')) return; teams = []; players.forEach(p => { p.teamId = null; p.status = 'unsold'; p.soldPrice = 0; }); save(); renderPage(curPage()); toast('All teams deleted'); }
     function delAll() { if (!confirm('Delete EVERYTHING?')) return; teams = []; players = []; imgStore = {}; save(); renderPage(curPage()); toast('All data deleted'); }
 
-    // ── Lightweight refresh of just the right panel (team tracker) ──
     function refreshTeamsPanel() {
       const sel = document.getElementById('a-team');
       const selTid = sel.value;
@@ -2634,56 +2629,26 @@
       sunset: { label: 'Sunset', cls: 'theme-sunset' },
     };
     let curTheme = localStorage.getItem('kpl_theme') || 'dark';
-
     function applyTheme(t) {
       const body = document.body;
       Object.values(THEMES).forEach(th => { if (th.cls) body.classList.remove(th.cls); });
       if (THEMES[t].cls) body.classList.add(THEMES[t].cls);
       document.getElementById('theme-label').textContent = THEMES[t].label;
-      // mark active
       document.querySelectorAll('.theme-opt').forEach((el, i) => {
         const keys = Object.keys(THEMES);
         el.classList.toggle('active-theme', keys[i] === t);
       });
     }
-    function setTheme(t, label, color) {
-      curTheme = t;
-      localStorage.setItem('kpl_theme', t);
-      applyTheme(t);
-      closeThemeDD();
-      toast('🎨 Theme: ' + label);
-    }
-    function toggleThemeDD() {
-      document.getElementById('theme-dd').classList.toggle('open');
-    }
-    function closeThemeDD() {
-      document.getElementById('theme-dd').classList.remove('open');
-    }
-    document.addEventListener('click', e => {
-      const sw = document.getElementById('theme-switcher');
-      if (sw && !sw.contains(e.target)) closeThemeDD();
-    });
+    function setTheme(t, label, color) { curTheme = t; localStorage.setItem('kpl_theme', t); applyTheme(t); closeThemeDD(); toast('🎨 Theme: ' + label); }
+    function toggleThemeDD() { document.getElementById('theme-dd').classList.toggle('open'); }
+    function closeThemeDD() { document.getElementById('theme-dd').classList.remove('open'); }
+    document.addEventListener('click', e => { const sw = document.getElementById('theme-switcher'); if (sw && !sw.contains(e.target)) closeThemeDD(); });
     applyTheme(curTheme);
 
     // ========== DROPDOWN PLAYER SELECTOR ==========
-    function selAPFromDropdown() {
-      const sel = document.getElementById('a-player-select');
-      const idx = parseInt(sel.value);
-      if (isNaN(idx)) return;
-      selAP(idx);
-    }
-    function loadSelectedPlayer() {
-      const sel = document.getElementById('a-player-select');
-      const idx = parseInt(sel.value);
-      if (isNaN(idx)) { toast('Select a player from the dropdown first', 'error'); return; }
-      selAP(idx);
-    }
-    function resetBidToBase() {
-      if (curAI >= 0 && players[curAI]) {
-        document.getElementById('a-amt').value = players[curAI].price || 0;
-      }
-    }
-
+    function selAPFromDropdown() { const sel = document.getElementById('a-player-select'); const idx = parseInt(sel.value); if (isNaN(idx)) return; selAP(idx); }
+    function loadSelectedPlayer() { const sel = document.getElementById('a-player-select'); const idx = parseInt(sel.value); if (isNaN(idx)) { toast('Select a player from the dropdown first', 'error'); return; } selAP(idx); }
+    function resetBidToBase() { if (curAI >= 0 && players[curAI]) { document.getElementById('a-amt').value = players[curAI].price || 0; } }
   </script>
 </body>
 
