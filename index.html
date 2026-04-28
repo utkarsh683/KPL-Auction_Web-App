@@ -171,8 +171,56 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .font-slider::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--g1);cursor:pointer}
 .slider-label{font-size:10px;color:var(--muted);white-space:nowrap;font-weight:700}
 
-/* ═══ TEAM TRACKER ═══ */
+/* ═══ TEAM TRACKER — SCROLL ENHANCED ═══ */
+#panel-tracker{display:flex;flex-direction:column}
+#panel-tracker > div.panel-header{flex-shrink:0}
+.tracker-body-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;position:relative}
+#a-teams-panel{overflow-y:auto;overflow-x:hidden;flex:1;scroll-behavior:smooth;min-height:0;padding:10px}
+/* Custom scrollbar for tracker */
+#a-teams-panel::-webkit-scrollbar{width:4px}
+#a-teams-panel::-webkit-scrollbar-track{background:transparent}
+#a-teams-panel::-webkit-scrollbar-thumb{background:var(--g2);border-radius:3px}
+#a-teams-panel::-webkit-scrollbar-thumb:hover{background:var(--g1)}
+
+/* Scroll controls footer */
+.tracker-scroll-footer{flex-shrink:0;background:var(--accent);border-top:2px solid var(--border);padding:6px 10px;display:flex;align-items:center;gap:6px;user-select:none}
+.tracker-scroll-btn-group{display:flex;gap:4px;flex-shrink:0}
+.tracker-scroll-btn{width:28px;height:28px;border-radius:7px;border:1.5px solid rgba(27,107,58,.3);background:var(--g1);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;font-weight:900;transition:all .18s;padding:0;line-height:1;font-family:'Barlow Condensed',sans-serif}
+.tracker-scroll-btn:hover{background:var(--g2);transform:scale(1.1);border-color:var(--g1)}
+.tracker-scroll-btn:active{transform:scale(.95)}
+.tracker-scroll-btn.btn-up{background:var(--muted)}
+.tracker-scroll-btn.btn-up:hover{background:var(--g1)}
+.tracker-scroll-btn.btn-gold{background:var(--gold)}
+.tracker-scroll-btn.btn-gold:hover{background:var(--gold2)}
+.tracker-scroll-btn.btn-done{background:#43A047}
+
+/* Scroll progress bar (clickable) */
+.tracker-progress-wrap{flex:1;cursor:pointer;padding:4px 0;display:flex;flex-direction:column;gap:2px}
+.tracker-progress-bar{height:6px;background:rgba(27,107,58,.15);border-radius:3px;overflow:hidden;border:1px solid var(--border)}
+.tracker-progress-fill{height:100%;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:3px;transition:width .12s;width:0%}
+.tracker-progress-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);font-weight:900;text-align:center;letter-spacing:.4px}
+
+/* Scroll position dots */
+.tracker-scroll-dots{display:flex;gap:3px;align-items:center;flex-shrink:0}
+.tracker-dot{width:5px;height:5px;border-radius:50%;background:var(--border);transition:all .2s;cursor:pointer}
+.tracker-dot.active{background:var(--g1);transform:scale(1.3)}
+
+/* Floating scroll-down arrow inside panel */
+.tracker-float-arrow{position:absolute;bottom:8px;right:8px;width:32px;height:32px;border-radius:50%;background:var(--g1);color:#fff;border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;box-shadow:0 2px 10px rgba(0,0,0,.18);transition:all .2s;z-index:10;opacity:0;pointer-events:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;line-height:1}
+.tracker-float-arrow.visible{opacity:1;pointer-events:auto}
+.tracker-float-arrow:hover{background:var(--g2);transform:scale(1.12)}
+.tracker-float-arrow.at-bottom{background:var(--muted);transform:rotate(180deg)}
+.tracker-float-arrow.at-bottom:hover{background:var(--g1);transform:rotate(180deg) scale(1.12)}
+
+/* Recently sold section */
+.tracker-sold-section{flex-shrink:0;border-top:2px solid var(--border);padding:8px 10px 10px}
+.tracker-sold-scroll{max-height:160px;overflow-y:auto;overflow-x:hidden}
+.tracker-sold-scroll::-webkit-scrollbar{width:3px}
+.tracker-sold-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* ═══ TEAM TRACKER CARDS ═══ */
 .team-tracker-card{border-radius:10px;padding:14px;margin-bottom:14px;border:2px solid var(--border);background:#fff;transition:all .2s}
+.team-tracker-card:last-child{margin-bottom:4px}
 .team-tracker-card.selected{border-color:var(--g2);background:var(--accent);box-shadow:0 0 0 3px rgba(27,107,58,.1)}
 .team-tracker-card.full-team{border-color:var(--red)!important;background:#FFF5F5}
 .tracker-team-name{font-family:'Barlow Condensed',sans-serif;font-weight:900}
@@ -407,7 +455,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   <div id="unsold-panel" style="display:none" class="mb-3"><div class="kpl-card"><div class="kpl-card-header" style="background:linear-gradient(135deg,#C62828,#E53935)"><i class="bi bi-x-circle-fill"></i> UNSOLD PLAYERS <span id="unsold-count-badge" class="ms-2 fw-bold" style="font-size:22px">0</span><button class="btn btn-sm btn-light ms-auto" onclick="toggleUnsoldPanel()">✕ Close</button></div><div class="p-3"><small class="text-muted">Click any player to load into auction</small><div class="row g-2 mt-1" id="unsold-full-grid"></div></div></div></div>
 
   <div id="auction-main-grid">
-    <!-- LEFT -->
+    <!-- LEFT: Player Info Panel -->
     <div class="kpl-card p-0 resizable-panel" id="panel-playerinfo" style="overflow:hidden;min-width:200px;min-height:300px">
       <div style="padding:12px 14px 10px;border-bottom:1px solid var(--border);user-select:none">
         <div class="text-uppercase fw-bold mb-1" style="font-size:10px;color:var(--muted);letter-spacing:.6px">📋 Player Info</div>
@@ -420,13 +468,12 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
       </div>
       <div id="a-info" style="padding:10px;overflow-y:auto;font-size:14px"><p class="text-muted small text-center py-4">Select a player to begin</p></div>
       <div class="resize-handle-e" id="rh-pi-e"></div>
-      <div class="resize-handle-s" id="rh-pi-s"></div>        
+      <div class="resize-handle-s" id="rh-pi-s"></div>
       <div class="resize-handle-se" id="rh-pi-se"></div>
     </div>
 
-    <!-- CENTER -->
+    <!-- CENTER: Auction Control -->
     <div class="auction-center">
-      <!-- HD PHOTO with zoom hint -->
       <div class="a-photo-box" id="a-photo" onclick="openAuctionPhotoLightbox()">
         <span>🏏</span>
         <div class="a-photo-zoom-hint">🔍 Click to zoom</div>
@@ -475,23 +522,54 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
       </div>
     </div>
 
-    <!-- RIGHT -->
+    <!-- RIGHT: Team Spend Tracker — with side scroll & scroll-down button -->
     <div class="kpl-card p-0 resizable-panel" id="panel-tracker" style="overflow:hidden;min-width:220px;min-height:300px">
-      <div style="padding:12px 14px 10px;border-bottom:1px solid var(--border);user-select:none">
-        <div class="text-uppercase fw-bold mb-1" style="font-size:11px;color:var(--muted);letter-spacing:.6px">💰 Team Spend Tracker</div>
+
+      <!-- Header (fixed, does not scroll) -->
+      <div class="panel-header" style="padding:12px 14px 10px;border-bottom:1px solid var(--border);user-select:none;flex-shrink:0">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <div class="text-uppercase fw-bold" style="font-size:11px;color:var(--muted);letter-spacing:.6px">💰 Team Spend Tracker</div>
+          <span id="tracker-team-count" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:900;color:var(--g1)"></span>
+        </div>
         <div class="font-slider-wrap">
           <span class="slider-label" style="font-size:11px">A</span>
           <input type="range" class="font-slider" min="10" max="22" value="15" id="tracker-font-slider" oninput="setTrackerFontSize(this.value)">
           <span class="slider-label" style="font-size:16px">A</span>
         </div>
-        <div style="font-size:9px;color:var(--muted);text-align:right">↔ drag left edge to resize</div>
+        <div style="font-size:9px;color:var(--muted);text-align:right">↔ drag left edge · scroll panel below</div>
       </div>
-      <div id="a-teams-panel" style="padding:10px;overflow-y:auto"></div>
-      <div style="padding:0 10px 10px">
-        <hr style="border-color:var(--border)">
+
+      <!-- Scrollable team list body -->
+      <div class="tracker-body-wrap">
+        <div id="a-teams-panel">
+          <!-- team cards rendered here -->
+        </div>
+        <!-- Floating scroll-down arrow (appears when not at bottom) -->
+        <div class="tracker-float-arrow" id="tracker-float-arrow" onclick="trackerScrollDown()" title="Scroll down">↓</div>
+      </div>
+
+      <!-- Scroll Controls Footer (always visible) -->
+      <div class="tracker-scroll-footer" id="tracker-scroll-footer">
+        <div class="tracker-scroll-btn-group">
+          <button class="tracker-scroll-btn btn-up" onclick="trackerScrollTop()" title="Scroll to top">↑</button>
+          <button class="tracker-scroll-btn" onclick="trackerScrollDown()" id="tracker-btn-down" title="Scroll down one screen">↓</button>
+          <button class="tracker-scroll-btn btn-gold" onclick="trackerScrollBottom()" title="Jump to bottom">⤓</button>
+        </div>
+        <div class="tracker-progress-wrap" onclick="trackerScrollByClick(event)" title="Click to jump to position">
+          <div class="tracker-progress-bar">
+            <div class="tracker-progress-fill" id="tracker-progress-fill"></div>
+          </div>
+          <div class="tracker-progress-label" id="tracker-progress-label">0 / 0 teams</div>
+        </div>
+        <div class="tracker-scroll-dots" id="tracker-dots"></div>
+      </div>
+
+      <!-- Recently Sold (fixed at bottom, has its own inner scroll) -->
+      <div class="tracker-sold-section">
         <div class="text-uppercase fw-bold mb-2" style="font-size:11px;color:var(--muted);letter-spacing:.6px">🔨 Recently Sold</div>
-        <div id="a-sold"></div>
+        <div class="tracker-sold-scroll" id="a-sold"></div>
       </div>
+
       <div class="resize-handle-e" id="rh-tr-w" style="left:0;right:auto;cursor:ew-resize"></div>
       <div class="resize-handle-s" id="rh-tr-s"></div>
       <div class="resize-handle-se" id="rh-tr-se"></div>
@@ -655,7 +733,7 @@ const AUTO_COLORS=['#E53935','#D81B60','#8E24AA','#5E35B1','#3949AB','#1E88E5','
 
 let teams=[];
 let players=[];
-let imgStore={}; // in-memory cache, synced with IndexedDB
+let imgStore={};
 let logoStore={};
 let heroBg='';
 let loginBgData='';
@@ -681,7 +759,6 @@ function loadState(){
   infoFontSize=parseInt(localStorage.getItem('kpl_info_font')||'14');
   curAI=parseInt(localStorage.getItem('kpl_cur_ai')||'-1');
 
-  // Defaults
   if(!teams.length) teams=[
     {id:1,name:'Mumbai Tigers',owner:'Rajesh Patel',budget:50000,remaining:50000,color:'#E53935'},
     {id:2,name:'Delhi Warriors',owner:'Suresh Shah',budget:50000,remaining:50000,color:'#1E88E5'},
@@ -694,7 +771,6 @@ function loadState(){
   ];
 }
 
-// ═══ SAVE TO STORAGE (debounced, with indicator) ═══
 let _saveTimer=null;
 let _saveIndTimer=null;
 function showSaveIndicator(){
@@ -714,34 +790,24 @@ const save=()=>{
   },300);
 };
 
-// Save images to IndexedDB (async, non-blocking)
 async function saveImg(key,data){imgStore[key]=data;await dbSet('images',key,data);}
 async function saveLogo(key,data){logoStore[key]=data;await dbSet('logos',key,data);}
 async function saveHeroBg(data){heroBg=data;try{localStorage.setItem('kpl4_herobg',data);}catch(e){await dbSet('bgs','hero',data);localStorage.removeItem('kpl4_herobg');localStorage.setItem('kpl4_herobg_idb','1');}showSaveIndicator();}
 async function saveLoginBg(data){loginBgData=data;try{localStorage.setItem('kpl4_loginbg',data);}catch(e){await dbSet('bgs','login',data);localStorage.removeItem('kpl4_loginbg');localStorage.setItem('kpl4_loginbg_idb','1');}showSaveIndicator();}
 
-// ═══ INIT (load everything including images from IDB) ═══
 async function initApp(){
   await openDB();
   loadState();
-
-  // Load images from IDB
   imgStore=await dbGetAll('images');
   logoStore=await dbGetAll('logos');
-
-  // Load BGs from IDB if needed
   if(localStorage.getItem('kpl4_herobg_idb')==='1'){heroBg=await dbGet('bgs','hero')||'';}
   if(localStorage.getItem('kpl4_loginbg_idb')==='1'){loginBgData=await dbGet('bgs','login')||'';}
-
-  // Restore curAI validity
   if(curAI>=0&&(!players[curAI]||players[curAI].status==='sold'))curAI=-1;
-
   buildSwatches('#1B6B3A');
   applyHeroBg();
   applyLoginBg();
   if(loginBgData){document.getElementById('login-bg-clear-btn').style.display='block';document.getElementById('login-bg-hint').classList.add('hidden');}
   renderImgFolder();
-
   setTimeout(()=>{
     makeResizablePanel('panel-playerinfo',{eHandleId:'rh-pi-e',sHandleId:'rh-pi-s',seHandleId:'rh-pi-se',minW:180,minH:250});
     makeResizablePanel('panel-tracker',{wHandleId:'rh-tr-w',sHandleId:'rh-tr-s',seHandleId:'rh-tr-se',minW:220,minH:250});
@@ -754,8 +820,7 @@ function toast(msg,type=''){const t=document.getElementById('toast');t.textConte
 function openLightbox(src,caption=''){
   if(!src||src.length<5)return;
   const img=document.getElementById('lightbox-img');
-  img.src='';
-  img.style.opacity='0';
+  img.src='';img.style.opacity='0';
   document.getElementById('lightbox-caption').textContent=caption;
   document.getElementById('lightbox').classList.add('show');
   document.body.style.overflow='hidden';
@@ -763,7 +828,7 @@ function openLightbox(src,caption=''){
   img.src=src;
 }
 function closeLightbox(e){
-  if(e&&e.target===document.getElementById('lightbox-img'))return; // don't close clicking image
+  if(e&&e.target===document.getElementById('lightbox-img'))return;
   document.getElementById('lightbox').classList.remove('show');
   document.body.style.overflow='';
 }
@@ -775,8 +840,7 @@ function openPhotoLightboxPM(){if(pmPhotoData&&pmPhotoData.length>5)openLightbox
 function setLoginBg(e){
   const f=e.target.files[0];if(!f)return;
   resizeAndRead_wh(f,1400,900,async data=>{
-    await saveLoginBg(data);
-    applyLoginBg();
+    await saveLoginBg(data);applyLoginBg();
     document.getElementById('login-bg-clear-btn').style.display='block';
     document.getElementById('login-bg-hint').classList.add('hidden');
     toast('✅ Background set!');
@@ -827,7 +891,6 @@ function finishLogin(){
   const iSlider=document.getElementById('info-font-slider');if(iSlider)iSlider.value=infoFontSize;
   toast(`Welcome, ${currentUser.name}! 🏏`);
   renderDash();renderImgFolder();
-  // Restore last auction state
   if(curAI>=0&&players[curAI]&&players[curAI].status==='unsold'){
     const page=localStorage.getItem('kpl4_last_page')||'dashboard';
     goPage(page);
@@ -891,7 +954,7 @@ function resolveImgKey(k){return k.split('.')[0];}
 function autoAssignByIndex(){const keys=Object.keys(imgStore);if(!keys.length){toast('No images uploaded yet','error');return;}let assigned=0;players.forEach((p,i)=>{const num=i+1,k=String(num);const has=imgStore[k]||Object.keys(imgStore).find(x=>x.split('.')[0]===k);if(has){p.imgIndex=num;assigned++;}});save();renderPlayers();renderImgFolder();toast(`✅ Auto-assigned ${assigned} photos by index`);}
 function clearAllImages(){if(!confirm('Clear all uploaded images?'))return;dbClear('images');imgStore={};players.forEach(p=>{p.imgIndex=null;});save();renderImgFolder();renderPlayers();toast('Images cleared');}
 
-// ═══ BATCH IMAGE UPLOAD (stores in IndexedDB) ═══
+// ═══ BATCH IMAGE UPLOAD ═══
 function handleImgFolder(e){
   const files=Array.from(e.target.files);if(!files.length)return;
   const statusEl=document.getElementById('img-batch-status');const textEl=document.getElementById('img-batch-text');const fillEl=document.getElementById('img-batch-fill');
@@ -911,6 +974,108 @@ function renderImgFolder(){
 function openImgSel(pid){if(pid!==null)imgSelTarget=pid;const keys=Object.keys(imgStore).sort((a,b)=>parseInt(a)-parseInt(b)||a.localeCompare(b));if(!keys.length){toast('Upload images first','error');return;}document.getElementById('imgsel-grid').innerHTML=keys.map(k=>{const num=resolveImgKey(k),pidx=parseInt(num);const pf=(!isNaN(pidx)&&pidx>=1&&pidx<=players.length)?players[pidx-1]:null;return`<div class="col-3"><div class="img-thumb-wrap"><img class="img-thumb" src="${imgStore[k]}" onclick="assignImg('${k.replace(/'/g,"\\'")}')" style="cursor:pointer"><div class="img-thumb-label">#${num}${pf?' · '+pf.name.split(' ')[0]:''}</div></div></div>`;}).join('');openMd('md-imgsel');}
 function assignImg(key){const p=players.find(x=>x.id===imgSelTarget);if(!p)return;p.photo=imgStore[key];save();closeMd('md-imgsel');renderPlayers();toast(`Photo assigned to ${p.name} ✓`);}
 
+// ═══════════════════════════════════════════════
+// TRACKER SCROLL CONTROLS — NEW FEATURE
+// ═══════════════════════════════════════════════
+let _trackerScrollBound=false;
+
+function initTrackerScroll(){
+  const panel=document.getElementById('a-teams-panel');
+  if(!panel)return;
+  if(!_trackerScrollBound){
+    panel.addEventListener('scroll',onTrackerScroll,{passive:true});
+    _trackerScrollBound=true;
+  }
+  onTrackerScroll();
+}
+
+function onTrackerScroll(){
+  const panel=document.getElementById('a-teams-panel');
+  if(!panel)return;
+  const max=Math.max(0,panel.scrollHeight-panel.clientHeight);
+  const pct=max>0?panel.scrollTop/max:0;
+  const pctRound=Math.round(pct*100);
+
+  // Progress bar
+  const fill=document.getElementById('tracker-progress-fill');
+  if(fill)fill.style.width=pctRound+'%';
+
+  // Progress label
+  const label=document.getElementById('tracker-progress-label');
+  if(label){
+    const totalTeams=teams.length;
+    const visibleIdx=Math.round(pct*Math.max(0,totalTeams-1))+1;
+    label.textContent=totalTeams>0?`${Math.min(visibleIdx,totalTeams)} / ${totalTeams} teams`:'0 teams';
+  }
+
+  // Down button changes to ✓ when at bottom
+  const downBtn=document.getElementById('tracker-btn-down');
+  if(downBtn){
+    if(pctRound>=98){downBtn.textContent='✓';downBtn.classList.add('btn-done');}
+    else{downBtn.textContent='↓';downBtn.classList.remove('btn-done');}
+  }
+
+  // Floating arrow: show when not at bottom, hide when at bottom
+  const floatArrow=document.getElementById('tracker-float-arrow');
+  if(floatArrow){
+    if(max>10){
+      floatArrow.classList.add('visible');
+      if(pctRound>=98){floatArrow.textContent='↑';floatArrow.classList.add('at-bottom');}
+      else{floatArrow.textContent='↓';floatArrow.classList.remove('at-bottom');}
+    }else{
+      floatArrow.classList.remove('visible');
+    }
+  }
+
+  // Dots
+  renderTrackerDots(pctRound,totalTeams);
+}
+
+function renderTrackerDots(pctRound,totalTeams){
+  const dotsEl=document.getElementById('tracker-dots');
+  if(!dotsEl)return;
+  const dots=Math.min(totalTeams,8);
+  if(dots<=1){dotsEl.innerHTML='';return;}
+  const activeDot=Math.round((pctRound/100)*(dots-1));
+  dotsEl.innerHTML=Array.from({length:dots},(_,i)=>`<div class="tracker-dot ${i===activeDot?'active':''}" onclick="trackerScrollToDot(${i},${dots})" title="Jump to section ${i+1}"></div>`).join('');
+}
+
+function trackerScrollTop(){
+  const p=document.getElementById('a-teams-panel');
+  if(p)p.scrollTo({top:0,behavior:'smooth'});
+}
+function trackerScrollBottom(){
+  const p=document.getElementById('a-teams-panel');
+  if(p)p.scrollTo({top:p.scrollHeight,behavior:'smooth'});
+}
+function trackerScrollDown(){
+  const p=document.getElementById('a-teams-panel');
+  if(!p)return;
+  const max=p.scrollHeight-p.clientHeight;
+  if(p.scrollTop>=max-5)p.scrollTo({top:0,behavior:'smooth'}); // cycle back to top
+  else p.scrollBy({top:Math.round(p.clientHeight*0.8),behavior:'smooth'});
+}
+function trackerScrollByClick(e){
+  const p=document.getElementById('a-teams-panel');if(!p)return;
+  const bar=e.currentTarget;const rect=bar.getBoundingClientRect();
+  const pct=(e.clientX-rect.left)/rect.width;
+  p.scrollTo({top:pct*(p.scrollHeight-p.clientHeight),behavior:'smooth'});
+}
+function trackerScrollToDot(dotIdx,totalDots){
+  const p=document.getElementById('a-teams-panel');if(!p)return;
+  const pct=totalDots>1?dotIdx/(totalDots-1):0;
+  p.scrollTo({top:pct*(p.scrollHeight-p.clientHeight),behavior:'smooth'});
+}
+// Float arrow click toggles up/down
+document.addEventListener('DOMContentLoaded',()=>{
+  const fa=document.getElementById('tracker-float-arrow');
+  if(fa)fa.onclick=()=>{
+    const p=document.getElementById('a-teams-panel');if(!p)return;
+    if(fa.classList.contains('at-bottom'))trackerScrollTop();
+    else trackerScrollDown();
+  };
+});
+
 // ═══ AUCTION LIVE SEARCH ═══
 function onAuctionSearch(input){
   const q=input.value.trim();
@@ -923,8 +1088,7 @@ function onAuctionSearch(input){
     const numMatch=(!isNaN(qNum)&&(i+1)===qNum);
     const villageMatch=p.village&&p.village.toLowerCase().includes(qLower);
     const roleMatch=p.role&&p.role.toLowerCase().includes(qLower);
-    const unsoldOnly=p.status==='unsold';
-    return (nameMatch||numMatch||villageMatch||roleMatch)&&unsoldOnly;
+    return (nameMatch||numMatch||villageMatch||roleMatch)&&p.status==='unsold';
   });
   searchResultIdx=-1;renderSearchResults(q);
 }
@@ -1000,9 +1164,8 @@ function renderPlayers(f){
   document.getElementById('cnt-unsold').textContent=`(${players.filter(p=>p.status==='unsold').length})`;
   const ir=(icon,label,val,c='')=>val?`<div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #f0f0f0"><span class="small text-muted">${icon} ${label}</span><span class="small fw-bold" style="${c?'color:'+c:''}">${val}</span></div>`:'';
   document.getElementById('players-grid').innerHTML=list.map((p,li)=>{const tm=teams.find(t=>t.id===p.teamId);const ph=getPhotoByIndex(p);const idx=players.indexOf(p)+1;const hasImg=!!ph;const photoEl=ph?`<img src="${ph}" alt="${p.name}" onerror="this.parentElement.innerHTML='🏏'">`:'🏏';
-  return`<div class="col-md-6 col-lg-4 col-xl-3"><div class="player-card h-100"><div class="d-flex gap-2 align-items-start p-3 pb-2"><div class="player-photo" style="cursor:${hasImg?'zoom-in':'default'}" ${hasImg?`onclick="openLightbox('${ph.replace(/'/g,'').substring(0,50)}...','${p.name}')"`:''}>${photoEl}</div><div class="flex-fill" style="min-width:0"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div class="d-flex gap-1 flex-wrap mt-1"><span class="kpl-badge ${roleClass[p.role]||'b-bat'}">${p.role}</span><span class="kpl-badge" style="background:#F5F5F5;color:#616161">${p.batting}</span><span class="kpl-badge ${p.status==='sold'?'b-sold':'b-unsold'}">${p.status==='sold'?'✅ SOLD':'❌'}</span></div></div></div><div class="px-3 pb-1">${ir('📅','DOB',p.dob)}${ir('🏘','Village',p.village)}${ir('💰','Base Price','₹'+p.price,'var(--gold)')}${p.status==='sold'?ir('🔨','Sold','₹'+p.soldPrice,'var(--g1)'):''}${p.status==='sold'&&tm?`<div class="d-flex justify-content-between align-items-center py-1"><span class="small text-muted">🏆 Team</span><span class="small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</span></div>`:''}</div><div class="d-flex border-top border-bottom text-center" style="border-color:var(--border)!important"><div class="flex-fill py-2"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800">${p.matches}</div><div class="small text-muted" style="font-size:9px">MAT</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--g1)">${p.runs}</div><div class="small text-muted" style="font-size:9px">RUNS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#E65100">${p.wickets}</div><div class="small text-muted" style="font-size:9px">WKTS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--blue)">${p.sr}</div><div class="small text-muted" style="font-size:9px">SR</div></div></div><div class="d-flex justify-content-between align-items-center px-3 py-2"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:${p.status==='sold'?'var(--g1)':'var(--gold)'}">₹${p.status==='sold'?p.soldPrice:p.price}</div></div>${tm?`<div class="text-end small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</div>`:''}</div><div class="d-flex gap-2 px-3 pb-3"><button class="btn btn-sm btn-kpl btn-kpl-outline flex-fill" onclick="editPlayer(${p.id})"><i class="bi bi-pencil me-1"></i>Edit</button><button class="btn btn-sm btn-kpl btn-kpl-gold" title="Assign photo" onclick="openImgSel(${p.id})"><i class="bi bi-image"></i></button><button class="btn btn-sm btn-kpl btn-kpl-red flex-fill" onclick="askDel('player',${p.id},\`${p.name}\`)"><i class="bi bi-trash3 me-1"></i>Del</button></div></div></div>`;
+  return`<div class="col-md-6 col-lg-4 col-xl-3"><div class="player-card h-100"><div class="d-flex gap-2 align-items-start p-3 pb-2"><div class="player-photo" style="cursor:${hasImg?'zoom-in':'default'}">${photoEl}</div><div class="flex-fill" style="min-width:0"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div class="d-flex gap-1 flex-wrap mt-1"><span class="kpl-badge ${roleClass[p.role]||'b-bat'}">${p.role}</span><span class="kpl-badge" style="background:#F5F5F5;color:#616161">${p.batting}</span><span class="kpl-badge ${p.status==='sold'?'b-sold':'b-unsold'}">${p.status==='sold'?'✅ SOLD':'❌'}</span></div></div></div><div class="px-3 pb-1">${ir('📅','DOB',p.dob)}${ir('🏘','Village',p.village)}${ir('💰','Base Price','₹'+p.price,'var(--gold)')}${p.status==='sold'?ir('🔨','Sold','₹'+p.soldPrice,'var(--g1)'):''}${p.status==='sold'&&tm?`<div class="d-flex justify-content-between align-items-center py-1"><span class="small text-muted">🏆 Team</span><span class="small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</span></div>`:''}</div><div class="d-flex border-top border-bottom text-center" style="border-color:var(--border)!important"><div class="flex-fill py-2"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800">${p.matches}</div><div class="small text-muted" style="font-size:9px">MAT</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--g1)">${p.runs}</div><div class="small text-muted" style="font-size:9px">RUNS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#E65100">${p.wickets}</div><div class="small text-muted" style="font-size:9px">WKTS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--blue)">${p.sr}</div><div class="small text-muted" style="font-size:9px">SR</div></div></div><div class="d-flex justify-content-between align-items-center px-3 py-2"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:${p.status==='sold'?'var(--g1)':'var(--gold)'}">₹${p.status==='sold'?p.soldPrice:p.price}</div></div>${tm?`<div class="text-end small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</div>`:''}</div><div class="d-flex gap-2 px-3 pb-3"><button class="btn btn-sm btn-kpl btn-kpl-outline flex-fill" onclick="editPlayer(${p.id})"><i class="bi bi-pencil me-1"></i>Edit</button><button class="btn btn-sm btn-kpl btn-kpl-gold" title="Assign photo" onclick="openImgSel(${p.id})"><i class="bi bi-image"></i></button><button class="btn btn-sm btn-kpl btn-kpl-red flex-fill" onclick="askDel('player',${p.id},\`${p.name}\`)"><i class="bi bi-trash3 me-1"></i>Del</button></div></div></div>`;
   }).join('')||`<div class="col-12 text-center py-5 text-muted">No players found.</div>`;
-  // Fix photo click events properly
   setTimeout(()=>{
     document.querySelectorAll('#players-grid .player-photo').forEach((ph,i)=>{
       const p=list[i];if(!p)return;const src=getPhotoByIndex(p);
@@ -1067,7 +1230,10 @@ function renderAuction(){
   teams.forEach(t=>{const full=isTeamFull(t.id);const opt=document.createElement('option');opt.value=t.id;opt.textContent=`${full?'[FULL] ':''}${t.name}${t.owner?' ('+t.owner+')':''}  |  Left: ₹${t.remaining}  |  ${teamPlayerCount(t.id)}/${MAX_TEAM}`;if(full)opt.style.color='#C62828';if(String(t.id)===String(curTid))opt.selected=true;sel.appendChild(opt);});
   const selTid=sel.value;updateTeamFullWarn(selTid);
 
-  // TEAM TRACKER
+  // Update team count in header
+  const tcEl=document.getElementById('tracker-team-count');if(tcEl)tcEl.textContent=`${teams.length} teams`;
+
+  // TEAM TRACKER (scrollable panel)
   const fs=trackerFontSize;
   const trackerPanel=document.getElementById('a-teams-panel');
   trackerPanel.innerHTML=teams.map(t=>{
@@ -1094,13 +1260,17 @@ function renderAuction(){
     </div>
     ${tp.length?`<div>${tp.map(p=>`<div class="tracker-player-row" style="font-size:${fs}px"><span class="fw-bold">${p.name}</span><span class="tracker-player-price" style="color:${t.color||'var(--g1)'};font-size:${Math.round(fs*1.1)}px">₹${p.soldPrice}</span></div>`).join('')}</div>`:`<div class="small text-muted" style="font-style:italic;font-size:${Math.round(fs*0.9)}px">No players yet</div>`}
   </div>`;
-  }).join('')||'<p class="small text-muted">No teams</p>';
+  }).join('')||'<p class="small text-muted p-3">No teams yet</p>';
 
   const tSlider=document.getElementById('tracker-font-slider');if(tSlider)tSlider.value=trackerFontSize;
   const iSlider=document.getElementById('info-font-slider');if(iSlider)iSlider.value=infoFontSize;
 
+  // Recently sold
   const sold=players.filter(p=>p.status==='sold').slice(-8).reverse();
   document.getElementById('a-sold').innerHTML=sold.map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<div class="si-row"><div><div class="fw-bold" style="font-size:12px">${p.name}</div><div class="d-flex align-items-center gap-1 small text-muted">${tm?teamColorBlock(tm,true,12):''}${tm?.name||'—'}</div></div><div class="si-price">₹${p.soldPrice}</div></div>`;}).join('')||'<p class="small text-muted">No sales yet</p>';
+
+  // Init scroll controls after render
+  setTimeout(initTrackerScroll,150);
 
   const unsold=players.filter(p=>p.status==='unsold');const countEl=document.getElementById('a-unsold-count');
   if(unsold.length===0){
@@ -1130,11 +1300,8 @@ function updACenter(){
   document.getElementById('a-amt').value=basePrice;
   const ph=getPhotoByIndex(p);
   const photoBox=document.getElementById('a-photo');
-  if(ph){
-    photoBox.innerHTML=`<img src="${ph}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span>🏏</span>'"><div class="a-photo-zoom-hint">🔍 Click to zoom</div>`;
-  }else{
-    photoBox.innerHTML=`<span>🏏</span><div class="a-photo-zoom-hint">🔍 Click to zoom</div>`;
-  }
+  if(ph){photoBox.innerHTML=`<img src="${ph}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span>🏏</span>'"><div class="a-photo-zoom-hint">🔍 Click to zoom</div>`;}
+  else{photoBox.innerHTML=`<span>🏏</span><div class="a-photo-zoom-hint">🔍 Click to zoom</div>`;}
   const fs=infoFontSize;
   const ir=(icon,label,val,c='')=>val?`<div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #f0f0f0"><span style="color:var(--muted);font-size:${fs}px">${icon} ${label}</span><span style="font-weight:700;font-size:${fs}px;${c?'color:'+c:''}">${val}</span></div>`:'';
   const pIdx=players.indexOf(p)+1;
@@ -1184,7 +1351,7 @@ function makeResizablePanel(panelId,opts={}){
   function makeResizer(handle,getDeltas){
     if(!handle)return;let startX,startY,startW,startH;
     const onStart=(cx,cy)=>{startX=cx;startY=cy;startW=panel.offsetWidth;startH=panel.offsetHeight;handle.classList.add('dragging');document.body.style.userSelect='none';document.body.style.cursor=handle.style.cursor||'se-resize';};
-    const onMove=(cx,cy)=>{const{dw,dh}=getDeltas(cx-startX,cy-startY);if(dw!==undefined){const nw=Math.max(opts.minW||180,startW+dw);panel.style.width=nw+'px';panel.style.minWidth='0';}if(dh!==undefined){const nh=Math.max(opts.minH||200,startH+dh);panel.style.height=nh+'px';panel.style.maxHeight=nh+'px';}};
+    const onMove=(cx,cy)=>{const{dw,dh}=getDeltas(cx-startX,cy-startY);if(dw!==undefined){const nw=Math.max(opts.minW||180,startW+dw);panel.style.width=nw+'px';panel.style.minWidth='0';}if(dh!==undefined){const nh=Math.max(opts.minH||200,startH+dh);panel.style.height=nh+'px';panel.style.maxHeight=nh+'px';}setTimeout(initTrackerScroll,50);};
     const onEnd=()=>{handle.classList.remove('dragging');document.body.style.userSelect='';document.body.style.cursor='';};
     handle.addEventListener('mousedown',e=>{e.preventDefault();onStart(e.clientX,e.clientY);const mm=e2=>onMove(e2.clientX,e2.clientY);const mu=()=>{onEnd();document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};document.addEventListener('mousemove',mm);document.addEventListener('mouseup',mu);});
     handle.addEventListener('touchstart',e=>{const t=e.touches[0];onStart(t.clientX,t.clientY);const tm=e2=>{e2.preventDefault();const t2=e2.touches[0];onMove(t2.clientX,t2.clientY);};const tu=()=>{onEnd();document.removeEventListener('touchmove',tm);document.removeEventListener('touchend',tu);};document.addEventListener('touchmove',tm,{passive:false});document.addEventListener('touchend',tu);},{passive:true});
@@ -1210,7 +1377,7 @@ function delAll(){if(!confirm('Delete EVERYTHING?'))return;teams=[];players=[];d
 // BOOT
 // ══════════════
 initApp().then(()=>{
-  console.log('KPL Auction 2026 ready — IndexedDB storage active');
+  console.log('KPL Auction 2026 ready — Tracker scroll controls active');
 });
 </script>
 </body>
