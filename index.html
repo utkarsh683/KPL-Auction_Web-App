@@ -14,7 +14,7 @@
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);font-size:14px;min-height:100vh}
 h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 
-/* ═══ LOGIN OVERLAY ═══ */
+/* LOGIN */
 #login-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden}
 #login-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1B6B3A 0%,#2E8B57 55%,#1B6B3A 100%);background-size:cover;background-position:center;transition:all .5s}
 #login-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,107,58,.82) 0%,rgba(0,0,0,.55) 50%,rgba(201,149,42,.25) 100%)}
@@ -30,12 +30,11 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .login-sub{font-size:12px;color:var(--muted);text-align:center;margin-bottom:20px;letter-spacing:1px;text-transform:uppercase}
 .login-avatar-hint{font-size:11px;color:var(--muted);text-align:center;margin-bottom:6px}
 .login-btn{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border:none;border-radius:12px;padding:13px;width:100%;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:1px;cursor:pointer;margin-top:8px;box-shadow:0 4px 16px rgba(27,107,58,.3);transition:all .2s}
-.login-btn:hover{background:linear-gradient(135deg,#145226,var(--g1));transform:translateY(-1px);box-shadow:0 6px 22px rgba(27,107,58,.4)}
+.login-btn:hover{background:linear-gradient(135deg,#145226,var(--g1));transform:translateY(-1px)}
 .login-skip{font-size:12px;color:var(--muted);text-align:center;margin-top:10px;cursor:pointer;text-decoration:underline}
-#login-bg-clear-btn{position:absolute;top:16px;right:18px;z-index:5;background:rgba(192,57,43,.75);border:none;color:#fff;border-radius:8px;padding:5px 12px;font-size:11px;font-weight:800;cursor:pointer;display:none;font-family:'Nunito',sans-serif;transition:all .2s}
-#login-bg-clear-btn:hover{background:#C0392B}
+#login-bg-clear-btn{position:absolute;top:16px;right:18px;z-index:5;background:rgba(192,57,43,.75);border:none;color:#fff;border-radius:8px;padding:5px 12px;font-size:11px;font-weight:800;cursor:pointer;display:none;font-family:'Nunito',sans-serif}
 
-/* ═══ NAV ═══ */
+/* NAV */
 .kpl-nav{background:linear-gradient(135deg,#1B6B3A 0%,#2E8B57 55%,#1B6B3A 100%);border-bottom:3px solid var(--gold2);position:sticky;top:0;z-index:500;box-shadow:0 3px 20px rgba(0,0,0,.18)}
 .kpl-brand{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:2px;padding:10px 20px;white-space:nowrap;display:flex;align-items:center;gap:8px}
 .kpl-brand .gold{color:var(--gold2)}
@@ -47,7 +46,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .user-avatar-nav{width:34px;height:34px;border-radius:50%;background:var(--light);border:2px solid var(--gold2);display:flex;align-items:center;justify-content:center;font-size:14px;overflow:hidden;cursor:pointer;flex-shrink:0}
 .user-avatar-nav img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 
-/* ═══ PAGES ═══ */
+/* PAGES */
 .kpl-page{display:none;padding:20px;max-width:1400px;margin:0 auto}
 .kpl-page.active{display:block}
 
@@ -65,7 +64,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .hero-upload-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1.5px dashed rgba(255,255,255,.4);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.5px;padding:6px 16px;border-radius:30px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
 .hero-upload-btn:hover{background:rgba(255,255,255,.22);border-color:#fff}
 .hero-upload-btn input{position:absolute;inset:0;opacity:0;cursor:pointer}
-.hero-clear-btn{display:none;background:rgba(255,68,68,.2);border:1.5px solid rgba(255,68,68,.5);color:#fff;font-size:11px;font-weight:800;padding:6px 14px;border-radius:30px;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif}
+.hero-clear-btn{display:none;background:rgba(255,68,68,.2);border:1.5px solid rgba(255,68,68,.5);color:#fff;font-size:11px;font-weight:800;padding:6px 14px;border-radius:30px;cursor:pointer;font-family:'Nunito',sans-serif}
 
 /* STAT CARDS */
 .kpl-stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(27,107,58,.07)}
@@ -111,31 +110,36 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .b-bat{background:#E3F2FD;color:#1565C0}.b-bowl{background:#FFF3E0;color:#E65100}.b-all{background:#FFF8E1;color:#F57F17}.b-wk{background:#F3E5F5;color:#7B1FA2}
 .b-full{background:#FFEBEE;color:#C62828;border:1px solid #EF9A9A;font-weight:900}
 
-/* ═══ AUCTION SEARCH BAR ═══ */
+/* AUCTION SEARCH */
 .auction-search-wrap{position:relative;margin-bottom:10px}
 .auction-search-input{width:100%;padding:10px 16px 10px 42px;border:2px solid var(--border);border-radius:12px;font-size:14px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--text);background:#fff;outline:none;transition:all .2s}
 .auction-search-input:focus{border-color:var(--g1);box-shadow:0 0 0 3px rgba(27,107,58,.12)}
 .auction-search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none}
 .auction-search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:2px 6px;border-radius:6px;display:none}
 .auction-search-clear:hover{color:var(--red);background:#FFEBEE}
-.auction-search-results{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:2px solid var(--border);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.14);z-index:300;max-height:320px;overflow-y:auto;display:none}
+.auction-search-results{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:2px solid var(--border);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.14);z-index:300;max-height:340px;overflow-y:auto;display:none}
 .auction-search-results.show{display:block}
 .search-result-item{display:flex;align-items:center;gap:10px;padding:9px 14px;cursor:pointer;transition:background .15s;border-bottom:1px solid #f5f5f5}
 .search-result-item:last-child{border-bottom:none}
 .search-result-item:hover{background:var(--accent)}
 .search-result-item.active-result{background:var(--accent);border-left:3px solid var(--g1)}
+.search-result-item.sri-sold-item{background:#FFF8F8}
+.search-result-item.sri-sold-item:hover{background:#FFECEC}
 .sri-photo{width:36px;height:44px;border-radius:6px;background:var(--light);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:1px solid var(--border)}
 .sri-photo img{width:100%;height:100%;object-fit:cover}
 .sri-num{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;color:var(--muted);min-width:24px;text-align:center}
 .sri-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:var(--text)}
 .sri-meta{font-size:10px;color:var(--muted);font-weight:700}
-.sri-price{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:var(--g1);margin-left:auto}
+.sri-price{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:var(--g1);margin-left:auto;text-align:right}
+.sri-status-tag{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.4px;padding:1px 6px;border-radius:10px}
+.sri-status-sold{background:#E8F5E9;color:#2E7D32;border:1px solid #A5D6A7}
+.sri-status-unsold{background:#FFEBEE;color:#C62828;border:1px solid #FFCDD2}
 .search-no-results{padding:20px;text-align:center;color:var(--muted);font-size:13px;font-weight:700}
 
-/* ═══ AUCTION ═══ */
+/* AUCTION CENTER */
 .auction-center{background:#fff;border:2px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:0 4px 20px rgba(27,107,58,.08)}
 
-/* HD PHOTO BOX */
+/* PHOTO BOX */
 .a-photo-box{width:160px;height:200px;border-radius:12px;background:var(--light);border:3px solid var(--g2);display:flex;align-items:center;justify-content:center;font-size:52px;overflow:hidden;box-shadow:0 0 0 6px rgba(27,107,58,.09);cursor:zoom-in;position:relative;transition:all .2s}
 .a-photo-box:hover{transform:scale(1.03);box-shadow:0 0 0 8px rgba(27,107,58,.15),0 8px 32px rgba(0,0,0,.2)}
 .a-photo-box img{width:100%;height:100%;object-fit:cover;border-radius:10px}
@@ -156,7 +160,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .budget-fill{height:100%;border-radius:4px;transition:width .5s}
 .full-warning{background:#FFEBEE;border:1.5px solid #EF9A9A;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;color:var(--red);display:flex;align-items:center;gap:6px}
 
-/* ═══ RESIZABLE PANELS ═══ */
+/* RESIZABLE PANELS */
 .resizable-panel{position:relative;overflow:hidden;min-width:180px}
 .resize-handle-e{position:absolute;top:0;right:0;width:6px;height:100%;cursor:ew-resize;z-index:10;background:transparent;transition:background .2s}
 .resize-handle-e:hover,.resize-handle-e.dragging{background:rgba(27,107,58,.3)}
@@ -165,60 +169,44 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .resize-handle-se{position:absolute;bottom:0;right:0;width:20px;height:20px;cursor:se-resize;z-index:11;background:linear-gradient(135deg,transparent 40%,rgba(27,107,58,.5) 40%);border-radius:0 0 14px 0}
 .resize-handle-se:hover{background:linear-gradient(135deg,transparent 40%,var(--g2) 40%)}
 
-/* Font size slider */
+/* Font slider */
 .font-slider-wrap{display:flex;align-items:center;gap:6px;padding:4px 0 6px;border-bottom:1px solid var(--border);margin-bottom:6px}
 .font-slider{-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--border);outline:none;flex:1;cursor:pointer}
 .font-slider::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--g1);cursor:pointer}
 .slider-label{font-size:10px;color:var(--muted);white-space:nowrap;font-weight:700}
 
-/* ═══ TEAM TRACKER — SCROLL ENHANCED ═══ */
+/* TRACKER */
 #panel-tracker{display:flex;flex-direction:column}
 #panel-tracker > div.panel-header{flex-shrink:0}
 .tracker-body-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;position:relative}
 #a-teams-panel{overflow-y:auto;overflow-x:hidden;flex:1;scroll-behavior:smooth;min-height:0;padding:10px}
-/* Custom scrollbar for tracker */
 #a-teams-panel::-webkit-scrollbar{width:4px}
 #a-teams-panel::-webkit-scrollbar-track{background:transparent}
 #a-teams-panel::-webkit-scrollbar-thumb{background:var(--g2);border-radius:3px}
-#a-teams-panel::-webkit-scrollbar-thumb:hover{background:var(--g1)}
-
-/* Scroll controls footer */
 .tracker-scroll-footer{flex-shrink:0;background:var(--accent);border-top:2px solid var(--border);padding:6px 10px;display:flex;align-items:center;gap:6px;user-select:none}
 .tracker-scroll-btn-group{display:flex;gap:4px;flex-shrink:0}
 .tracker-scroll-btn{width:28px;height:28px;border-radius:7px;border:1.5px solid rgba(27,107,58,.3);background:var(--g1);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;font-weight:900;transition:all .18s;padding:0;line-height:1;font-family:'Barlow Condensed',sans-serif}
-.tracker-scroll-btn:hover{background:var(--g2);transform:scale(1.1);border-color:var(--g1)}
-.tracker-scroll-btn:active{transform:scale(.95)}
-.tracker-scroll-btn.btn-up{background:var(--muted)}
-.tracker-scroll-btn.btn-up:hover{background:var(--g1)}
-.tracker-scroll-btn.btn-gold{background:var(--gold)}
-.tracker-scroll-btn.btn-gold:hover{background:var(--gold2)}
+.tracker-scroll-btn:hover{background:var(--g2);transform:scale(1.1)}
+.tracker-scroll-btn.btn-up{background:var(--muted)}.tracker-scroll-btn.btn-up:hover{background:var(--g1)}
+.tracker-scroll-btn.btn-gold{background:var(--gold)}.tracker-scroll-btn.btn-gold:hover{background:var(--gold2)}
 .tracker-scroll-btn.btn-done{background:#43A047}
-
-/* Scroll progress bar (clickable) */
 .tracker-progress-wrap{flex:1;cursor:pointer;padding:4px 0;display:flex;flex-direction:column;gap:2px}
 .tracker-progress-bar{height:6px;background:rgba(27,107,58,.15);border-radius:3px;overflow:hidden;border:1px solid var(--border)}
 .tracker-progress-fill{height:100%;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:3px;transition:width .12s;width:0%}
 .tracker-progress-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);font-weight:900;text-align:center;letter-spacing:.4px}
-
-/* Scroll position dots */
 .tracker-scroll-dots{display:flex;gap:3px;align-items:center;flex-shrink:0}
 .tracker-dot{width:5px;height:5px;border-radius:50%;background:var(--border);transition:all .2s;cursor:pointer}
 .tracker-dot.active{background:var(--g1);transform:scale(1.3)}
-
-/* Floating scroll-down arrow inside panel */
 .tracker-float-arrow{position:absolute;bottom:8px;right:8px;width:32px;height:32px;border-radius:50%;background:var(--g1);color:#fff;border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;box-shadow:0 2px 10px rgba(0,0,0,.18);transition:all .2s;z-index:10;opacity:0;pointer-events:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;line-height:1}
 .tracker-float-arrow.visible{opacity:1;pointer-events:auto}
 .tracker-float-arrow:hover{background:var(--g2);transform:scale(1.12)}
 .tracker-float-arrow.at-bottom{background:var(--muted);transform:rotate(180deg)}
-.tracker-float-arrow.at-bottom:hover{background:var(--g1);transform:rotate(180deg) scale(1.12)}
-
-/* Recently sold section */
 .tracker-sold-section{flex-shrink:0;border-top:2px solid var(--border);padding:8px 10px 10px}
 .tracker-sold-scroll{max-height:160px;overflow-y:auto;overflow-x:hidden}
 .tracker-sold-scroll::-webkit-scrollbar{width:3px}
 .tracker-sold-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
-/* ═══ TEAM TRACKER CARDS ═══ */
+/* TEAM TRACKER CARDS */
 .team-tracker-card{border-radius:10px;padding:14px;margin-bottom:14px;border:2px solid var(--border);background:#fff;transition:all .2s}
 .team-tracker-card:last-child{margin-bottom:4px}
 .team-tracker-card.selected{border-color:var(--g2);background:var(--accent);box-shadow:0 0 0 3px rgba(27,107,58,.1)}
@@ -239,7 +227,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .upload-progress-fill{height:100%;background:var(--g2);border-radius:3px;width:0;transition:width .2s}
 .batch-status{background:#E8F5E9;border:1px solid #A5D6A7;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;color:var(--g1);margin-bottom:8px;display:none}
 
-/* ═══ HD LIGHTBOX ═══ */
+/* LIGHTBOX */
 #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out;animation:lbIn .25s ease}
 @keyframes lbIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
 #lightbox.show{display:flex}
@@ -247,7 +235,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 #lightbox-img{max-width:92vw;max-height:85vh;border-radius:14px;object-fit:contain;box-shadow:0 30px 100px rgba(0,0,0,.7);animation:imgIn .3s cubic-bezier(.34,1.56,.64,1)}
 @keyframes imgIn{from{transform:scale(.88)}to{transform:scale(1)}}
 #lightbox-close{position:fixed;top:18px;right:22px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.35);color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;transition:all .2s;z-index:99999;backdrop-filter:blur(8px)}
-#lightbox-close:hover{background:rgba(192,57,43,.7);border-color:rgba(192,57,43,.8);transform:scale(1.1)}
+#lightbox-close:hover{background:rgba(192,57,43,.7);transform:scale(1.1)}
 #lightbox-caption{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);color:#fff;padding:10px 24px;border-radius:30px;font-size:14px;font-weight:700;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);white-space:nowrap;max-width:80vw;overflow:hidden;text-overflow:ellipsis}
 #lightbox-hint{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.5);color:rgba(255,255,255,.7);padding:6px 18px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;pointer-events:none}
 
@@ -279,6 +267,36 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .up-card.active-up{border-color:var(--g1);background:var(--accent);box-shadow:0 0 0 3px rgba(27,107,58,.12)}
 .team-import-row{display:flex;align-items:center;gap:12px;padding:10px;background:#fff;border-radius:10px;margin-bottom:8px;border:1px solid var(--border)}
 
+/* SOLD PLAYER LIST TABLE */
+.sold-table{width:100%;border-collapse:collapse;font-size:13px}
+.sold-table th{background:var(--g1);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:.4px;padding:10px 12px;text-align:left;position:sticky;top:0;white-space:nowrap}
+.sold-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.sold-table tr:hover td{background:var(--accent)}
+.sold-table tr:nth-child(even) td{background:#F8FCF9}
+.sold-table tr:nth-child(even):hover td{background:var(--accent)}
+.sold-table-wrap{max-height:420px;overflow-y:auto;border-radius:10px;border:1px solid var(--border)}
+.sold-table-wrap::-webkit-scrollbar{width:5px}
+.sold-table-wrap::-webkit-scrollbar-thumb{background:var(--g2);border-radius:3px}
+
+/* EDIT SOLD PRICE INLINE */
+.edit-sold-price-wrap{display:flex;align-items:center;gap:4px}
+.edit-sold-price-input{width:80px;padding:3px 6px;border:1.5px solid var(--gold2);border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:var(--g1);text-align:center;outline:none}
+.edit-sold-price-btn{background:var(--g1);color:#fff;border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .18s}
+.edit-sold-price-btn:hover{background:var(--g2)}
+.edit-sold-price-cancel{background:#fff;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif}
+
+/* SOLD PRICE EDIT IN PLAYER CARD */
+.sold-edit-row{display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:1px solid #f0f0f0}
+.sold-price-display{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:var(--g1)}
+.pencil-edit-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 5px;border-radius:5px;transition:all .15s}
+.pencil-edit-btn:hover{color:var(--gold);background:rgba(201,149,42,.1)}
+
+/* BACKUP SECTION */
+.backup-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:20px;box-shadow:0 2px 8px rgba(27,107,58,.05)}
+.backup-drop-zone{border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all .2s;position:relative;background:var(--accent)}
+.backup-drop-zone:hover{border-color:var(--g2);background:#E8F5E9}
+.backup-drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+
 /* Auction grid */
 #auction-main-grid{display:grid;grid-template-columns:260px 1fr 300px;gap:12px}
 @media(max-width:900px){#auction-main-grid{grid-template-columns:1fr}}
@@ -291,25 +309,20 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 </head>
 <body>
 
-<!-- ═══ SAVE INDICATOR ═══ -->
 <div id="save-indicator">💾 Auto-saved</div>
 
-<!-- ═══ HD LIGHTBOX ═══ -->
+<!-- LIGHTBOX -->
 <div id="lightbox" onclick="closeLightbox(event)">
   <div id="lightbox-close" onclick="closeLightbox(event)"><i class="bi bi-x-lg"></i></div>
   <div id="lightbox-hint">🔍 Click anywhere to close · ESC to exit</div>
-  <div id="lightbox-img-wrap">
-    <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
-  </div>
+  <div id="lightbox-img-wrap"><img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()"></div>
   <div id="lightbox-caption"></div>
 </div>
 
-<!-- ═══ LOGIN OVERLAY ═══ -->
+<!-- LOGIN -->
 <div id="login-overlay">
   <div id="login-bg">
-    <div id="login-bg-dropzone" title="Click anywhere on background to change it">
-      <input type="file" accept="image/*" onchange="setLoginBg(event)" id="login-bg-file-input">
-    </div>
+    <div id="login-bg-dropzone" title="Click to change background"><input type="file" accept="image/*" onchange="setLoginBg(event)" id="login-bg-file-input"></div>
   </div>
   <button id="login-bg-clear-btn" onclick="clearLoginBg()"><i class="bi bi-x-circle me-1"></i>Remove BG</button>
   <div id="login-bg-hint">🖼 Click background to change image</div>
@@ -323,16 +336,14 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
     <div class="login-sub">Karmadi Patidar Premier League</div>
     <div class="mb-2"><label class="form-label">Your Name</label><input id="login-name" class="form-control" placeholder="Enter your name..."></div>
     <div class="mb-3"><label class="form-label">Role</label>
-      <select id="login-role" class="form-select">
-        <option>Auctioneer</option><option>Team Owner</option><option>Observer</option><option>Admin</option>
-      </select>
+      <select id="login-role" class="form-select"><option>Auctioneer</option><option>Team Owner</option><option>Observer</option><option>Admin</option></select>
     </div>
     <button class="login-btn" onclick="doLogin()">🚀 ENTER AUCTION</button>
     <div class="login-skip" onclick="skipLogin()">Skip & continue as guest</div>
   </div>
 </div>
 
-<!-- ═══ NAV ═══ -->
+<!-- NAV -->
 <nav class="kpl-nav">
   <div class="d-flex align-items-center flex-wrap justify-content-between">
     <div class="d-flex align-items-center">
@@ -358,7 +369,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 
 <div class="kpl-toast" id="toast"></div>
 
-<!-- ═══ DASHBOARD ═══ -->
+<!-- DASHBOARD -->
 <div id="pg-dashboard" class="kpl-page active">
   <div class="kpl-hero" id="hero-banner">
     <div class="kpl-hero-bg" id="hero-bg-el"></div>
@@ -381,7 +392,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   </div>
 </div>
 
-<!-- ═══ TEAMS ═══ -->
+<!-- TEAMS -->
 <div id="pg-teams" class="kpl-page">
   <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
     <h2 class="mb-0" style="color:var(--g1)"><i class="bi bi-shield-fill me-2"></i>Teams Management</h2>
@@ -396,7 +407,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   <div class="row g-3" id="teams-grid"></div>
 </div>
 
-<!-- ═══ PLAYERS ═══ -->
+<!-- PLAYERS -->
 <div id="pg-players" class="kpl-page">
   <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
     <h2 class="mb-0" style="color:var(--g1)"><i class="bi bi-people-fill me-2"></i>Players Database</h2>
@@ -430,7 +441,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   <div class="row g-3" id="players-grid"></div>
 </div>
 
-<!-- ═══ AUCTION ═══ -->
+<!-- AUCTION -->
 <div id="pg-auction" class="kpl-page">
   <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
     <h2 class="mb-0" style="color:var(--g1)"><span class="live-dot me-2"></span>Live Auction</h2>
@@ -442,11 +453,11 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
     </div>
   </div>
 
-  <!-- LIVE SEARCH BAR -->
+  <!-- LIVE SEARCH BAR — shows ALL players with status -->
   <div class="mb-3" style="position:relative;z-index:200">
     <div class="auction-search-wrap">
       <i class="bi bi-search auction-search-icon"></i>
-      <input type="text" id="auction-search" class="auction-search-input" placeholder="Search player by name or number (e.g. 'Rahul' or '12')..." autocomplete="off" oninput="onAuctionSearch(this)" onkeydown="onAuctionSearchKey(event)" onfocus="showSearchResults()">
+      <input type="text" id="auction-search" class="auction-search-input" placeholder="Search any player by name or number — sold & unsold shown..." autocomplete="off" oninput="onAuctionSearch(this)" onkeydown="onAuctionSearchKey(event)" onfocus="showSearchResults()">
       <button class="auction-search-clear" id="auction-search-clear" onclick="clearAuctionSearch()"><i class="bi bi-x-circle-fill"></i></button>
       <div class="auction-search-results" id="auction-search-results"></div>
     </div>
@@ -455,7 +466,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   <div id="unsold-panel" style="display:none" class="mb-3"><div class="kpl-card"><div class="kpl-card-header" style="background:linear-gradient(135deg,#C62828,#E53935)"><i class="bi bi-x-circle-fill"></i> UNSOLD PLAYERS <span id="unsold-count-badge" class="ms-2 fw-bold" style="font-size:22px">0</span><button class="btn btn-sm btn-light ms-auto" onclick="toggleUnsoldPanel()">✕ Close</button></div><div class="p-3"><small class="text-muted">Click any player to load into auction</small><div class="row g-2 mt-1" id="unsold-full-grid"></div></div></div></div>
 
   <div id="auction-main-grid">
-    <!-- LEFT: Player Info Panel -->
+    <!-- LEFT: Player Info -->
     <div class="kpl-card p-0 resizable-panel" id="panel-playerinfo" style="overflow:hidden;min-width:200px;min-height:300px">
       <div style="padding:12px 14px 10px;border-bottom:1px solid var(--border);user-select:none">
         <div class="text-uppercase fw-bold mb-1" style="font-size:10px;color:var(--muted);letter-spacing:.6px">📋 Player Info</div>
@@ -522,10 +533,8 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
       </div>
     </div>
 
-    <!-- RIGHT: Team Spend Tracker — with side scroll & scroll-down button -->
+    <!-- RIGHT: Team Spend Tracker -->
     <div class="kpl-card p-0 resizable-panel" id="panel-tracker" style="overflow:hidden;min-width:220px;min-height:300px">
-
-      <!-- Header (fixed, does not scroll) -->
       <div class="panel-header" style="padding:12px 14px 10px;border-bottom:1px solid var(--border);user-select:none;flex-shrink:0">
         <div class="d-flex justify-content-between align-items-center mb-1">
           <div class="text-uppercase fw-bold" style="font-size:11px;color:var(--muted);letter-spacing:.6px">💰 Team Spend Tracker</div>
@@ -538,38 +547,26 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
         </div>
         <div style="font-size:9px;color:var(--muted);text-align:right">↔ drag left edge · scroll panel below</div>
       </div>
-
-      <!-- Scrollable team list body -->
       <div class="tracker-body-wrap">
-        <div id="a-teams-panel">
-          <!-- team cards rendered here -->
-        </div>
-        <!-- Floating scroll-down arrow (appears when not at bottom) -->
-        <div class="tracker-float-arrow" id="tracker-float-arrow" onclick="trackerScrollDown()" title="Scroll down">↓</div>
+        <div id="a-teams-panel"></div>
+        <div class="tracker-float-arrow" id="tracker-float-arrow" title="Scroll down">↓</div>
       </div>
-
-      <!-- Scroll Controls Footer (always visible) -->
       <div class="tracker-scroll-footer" id="tracker-scroll-footer">
         <div class="tracker-scroll-btn-group">
-          <button class="tracker-scroll-btn btn-up" onclick="trackerScrollTop()" title="Scroll to top">↑</button>
-          <button class="tracker-scroll-btn" onclick="trackerScrollDown()" id="tracker-btn-down" title="Scroll down one screen">↓</button>
-          <button class="tracker-scroll-btn btn-gold" onclick="trackerScrollBottom()" title="Jump to bottom">⤓</button>
+          <button class="tracker-scroll-btn btn-up" onclick="trackerScrollTop()" title="Top">↑</button>
+          <button class="tracker-scroll-btn" onclick="trackerScrollDown()" id="tracker-btn-down" title="Down">↓</button>
+          <button class="tracker-scroll-btn btn-gold" onclick="trackerScrollBottom()" title="Bottom">⤓</button>
         </div>
-        <div class="tracker-progress-wrap" onclick="trackerScrollByClick(event)" title="Click to jump to position">
-          <div class="tracker-progress-bar">
-            <div class="tracker-progress-fill" id="tracker-progress-fill"></div>
-          </div>
+        <div class="tracker-progress-wrap" onclick="trackerScrollByClick(event)">
+          <div class="tracker-progress-bar"><div class="tracker-progress-fill" id="tracker-progress-fill"></div></div>
           <div class="tracker-progress-label" id="tracker-progress-label">0 / 0 teams</div>
         </div>
         <div class="tracker-scroll-dots" id="tracker-dots"></div>
       </div>
-
-      <!-- Recently Sold (fixed at bottom, has its own inner scroll) -->
       <div class="tracker-sold-section">
         <div class="text-uppercase fw-bold mb-2" style="font-size:11px;color:var(--muted);letter-spacing:.6px">🔨 Recently Sold</div>
         <div class="tracker-sold-scroll" id="a-sold"></div>
       </div>
-
       <div class="resize-handle-e" id="rh-tr-w" style="left:0;right:auto;cursor:ew-resize"></div>
       <div class="resize-handle-s" id="rh-tr-s"></div>
       <div class="resize-handle-se" id="rh-tr-se"></div>
@@ -591,34 +588,86 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   </div>
 </div>
 
-<!-- ═══ EXPORT ═══ -->
+<!-- EXPORT -->
 <div id="pg-export" class="kpl-page">
   <h2 class="mb-3" style="color:var(--g1)"><i class="bi bi-download me-2"></i>Export & Reports</h2>
   <div class="row g-3 mb-4">
-    <div class="col-md-6"><div class="kpl-card h-100"><div class="kpl-card-header"><i class="bi bi-file-earmark-excel-fill"></i> Excel Downloads</div><div class="p-3 d-flex flex-column gap-2">
-      <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlAllPlayers()"><i class="bi bi-download me-2"></i>All Players Data</button>
-      <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlTeamwise()"><i class="bi bi-download me-2"></i>Team-wise Auction</button>
-      <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlTeamsXls()"><i class="bi bi-download me-2"></i>Teams Summary</button>
-      <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlTemplate()"><i class="bi bi-download me-2"></i>Player Template</button>
-      <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlTeamTemplate()"><i class="bi bi-download me-2"></i>Teams Template</button>
-    </div></div></div>
-    <div class="col-md-6"><div class="kpl-card h-100"><div class="kpl-card-header" style="background:linear-gradient(135deg,#C62828,#E53935)"><i class="bi bi-trash3-fill"></i> Bulk Actions</div><div class="p-3 d-flex flex-column gap-2">
-      <button class="btn btn-kpl btn-kpl-gold w-100" onclick="resetAuction()"><i class="bi bi-arrow-clockwise me-2"></i>Reset Auction</button>
-      <button class="btn btn-kpl btn-kpl-red w-100" onclick="delAllPlayers()"><i class="bi bi-trash3 me-2"></i>Delete All Players</button>
-      <button class="btn btn-kpl btn-kpl-red w-100" onclick="delAllTeams()"><i class="bi bi-trash3 me-2"></i>Delete All Teams</button>
-      <button class="btn w-100 fw-bold" style="background:#C62828;color:#fff" onclick="delAll()"><i class="bi bi-bomb me-2"></i>Delete Everything</button>
-    </div></div></div>
+    <div class="col-md-6">
+      <div class="kpl-card h-100">
+        <div class="kpl-card-header"><i class="bi bi-file-earmark-excel-fill"></i> Excel Downloads</div>
+        <div class="p-3 d-flex flex-column gap-2">
+          <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlAllPlayers()"><i class="bi bi-download me-2"></i>All Players Data</button>
+          <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlTeamwise()"><i class="bi bi-download me-2"></i>Team-wise Auction (with Contact)</button>
+          <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlSoldPlayersList()"><i class="bi bi-download me-2"></i>✅ Sold Players List (Price + Contact)</button>
+          <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlTeamsXls()"><i class="bi bi-download me-2"></i>Teams Summary</button>
+          <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlTemplate()"><i class="bi bi-download me-2"></i>Player Template</button>
+          <button class="btn btn-kpl btn-kpl-outline w-100" onclick="dlTeamTemplate()"><i class="bi bi-download me-2"></i>Teams Template</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="kpl-card h-100">
+        <div class="kpl-card-header" style="background:linear-gradient(135deg,#1565C0,#1976D2)"><i class="bi bi-cloud-arrow-up-fill"></i> Data Backup & Restore</div>
+        <div class="p-3 d-flex flex-column gap-3">
+          <div>
+            <div class="fw-bold mb-1" style="font-size:12px;color:var(--g1)">💾 Export Backup (JSON)</div>
+            <div class="small text-muted mb-2">Download full data backup — teams, players, auction state. Restore anytime.</div>
+            <button class="btn btn-kpl btn-kpl-blue w-100" onclick="exportBackup()"><i class="bi bi-cloud-download me-2"></i>Download Backup (.json)</button>
+          </div>
+          <div>
+            <div class="fw-bold mb-1" style="font-size:12px;color:var(--g1)">📂 Restore from Backup</div>
+            <div class="small text-muted mb-2">Upload a previously saved backup file to restore all data.</div>
+            <div class="backup-drop-zone">
+              <input type="file" accept=".json" onchange="importBackup(event)">
+              <div><i class="bi bi-upload" style="font-size:24px;color:var(--g1)"></i></div>
+              <div class="fw-bold mt-1" style="font-size:13px;color:var(--g1)">Click or drop backup .json file</div>
+              <div class="small text-muted">Restores all teams, players & auction progress</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <h5 style="color:var(--g1)" class="mb-3">Auction Summary</h5>
-  <div id="ppt-preview"></div>
+
+  <!-- SOLD PLAYERS LIST -->
+  <div class="kpl-card mb-4">
+    <div class="kpl-card-header" style="background:linear-gradient(135deg,#2E7D32,#388E3C)">
+      <i class="bi bi-trophy-fill"></i> Sold Players List
+      <span id="sold-list-count" class="ms-2" style="font-size:14px;font-weight:700;opacity:.8"></span>
+      <button class="btn btn-sm ms-auto" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);font-size:11px;font-weight:800" onclick="dlSoldPlayersList()"><i class="bi bi-download me-1"></i>Download Excel</button>
+    </div>
+    <div class="p-3">
+      <div id="sold-players-table-wrap"></div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="kpl-card h-100">
+        <div class="kpl-card-header" style="background:linear-gradient(135deg,#C62828,#E53935)"><i class="bi bi-trash3-fill"></i> Bulk Actions</div>
+        <div class="p-3 d-flex flex-column gap-2">
+          <button class="btn btn-kpl btn-kpl-gold w-100" onclick="resetAuction()"><i class="bi bi-arrow-clockwise me-2"></i>Reset Auction</button>
+          <button class="btn btn-kpl btn-kpl-red w-100" onclick="delAllPlayers()"><i class="bi bi-trash3 me-2"></i>Delete All Players</button>
+          <button class="btn btn-kpl btn-kpl-red w-100" onclick="delAllTeams()"><i class="bi bi-trash3 me-2"></i>Delete All Teams</button>
+          <button class="btn w-100 fw-bold" style="background:#C62828;color:#fff" onclick="delAll()"><i class="bi bi-bomb me-2"></i>Delete Everything</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="kpl-card h-100">
+        <div class="kpl-card-header"><i class="bi bi-bar-chart-fill"></i> Auction Summary</div>
+        <div class="p-3" id="ppt-preview"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- ═══ MODALS ═══ -->
+<!-- MODALS -->
 <div class="kpl-modal" id="md-team" style="position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px">
-  <div class="kpl-modal-box" style="background:#fff;border-radius:18px;padding:24px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)">
+  <div style="background:#fff;border-radius:18px;padding:24px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)">
     <h3 id="tm-title" style="font-family:'Barlow Condensed',sans-serif;font-size:24px;margin-bottom:18px;color:var(--g1)"><i class="bi bi-shield-plus me-2"></i>Add Team</h3>
     <input type="hidden" id="tm-id">
-    <div class="mb-3"><label class="form-label">Team Logo</label><div class="d-flex gap-3 align-items-center"><div class="logo-circle-wrap" style="position:relative;width:80px;height:80px;flex-shrink:0"><div class="logo-circle" id="tm-logo-preview" style="width:80px;height:80px;border-radius:50%;border:3px dashed var(--border);background:var(--light);display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;cursor:pointer"><span id="tm-logo-emoji" style="font-size:30px;pointer-events:none">🛡️</span></div><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleTeamLogo(event)"></div><div class="flex-fill"><div class="small text-muted mb-1">Upload team logo. Click shield to replace.</div><input id="tm-logo-url" class="form-control" placeholder="Or paste logo URL..." style="font-size:12px" oninput="previewTeamLogoURL(this.value)"><button class="btn btn-sm btn-kpl btn-kpl-red mt-1" id="tm-logo-clear" style="display:none;font-size:11px" onclick="clearTmLogo()">✕ Remove Logo</button></div></div></div>
+    <div class="mb-3"><label class="form-label">Team Logo</label><div class="d-flex gap-3 align-items-center"><div class="logo-circle-wrap" style="position:relative;width:80px;height:80px;flex-shrink:0"><div class="logo-circle" id="tm-logo-preview" style="width:80px;height:80px;border-radius:50%;border:3px dashed var(--border);background:var(--light);display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;cursor:pointer"><span id="tm-logo-emoji" style="font-size:30px;pointer-events:none">🛡️</span></div><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleTeamLogo(event)"></div><div class="flex-fill"><div class="small text-muted mb-1">Upload team logo.</div><input id="tm-logo-url" class="form-control" placeholder="Or paste logo URL..." style="font-size:12px" oninput="previewTeamLogoURL(this.value)"><button class="btn btn-sm btn-kpl btn-kpl-red mt-1" id="tm-logo-clear" style="display:none;font-size:11px" onclick="clearTmLogo()">✕ Remove Logo</button></div></div></div>
     <div class="row g-2 mb-3"><div class="col-md-6"><label class="form-label">Team Name *</label><input id="tm-name" class="form-control" placeholder="e.g. Mumbai Tigers"></div><div class="col-md-6"><label class="form-label">Owner Name</label><input id="tm-owner" class="form-control" placeholder="e.g. Rajesh Patel"></div></div>
     <div class="row g-2 mb-2"><div class="col-md-6"><label class="form-label">Budget (₹)</label><input id="tm-budget" type="number" class="form-control" value="50000"></div><div class="col-md-6"><label class="form-label">Team Color</label><input id="tm-color" type="color" class="form-control form-control-color w-100" value="#1B6B3A" style="height:42px" oninput="syncSwatches(this.value)"></div></div>
     <div class="mb-3"><label class="form-label">Quick Color Picks</label><div class="color-swatch-row" id="tm-swatches"></div></div>
@@ -627,7 +676,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 </div>
 
 <div class="kpl-modal" id="md-player" style="position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px">
-  <div class="kpl-modal-box" style="background:#fff;border-radius:18px;padding:24px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)">
+  <div style="background:#fff;border-radius:18px;padding:24px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)">
     <h3 id="pm-title" style="font-family:'Barlow Condensed',sans-serif;font-size:24px;margin-bottom:18px;color:var(--g1)"><i class="bi bi-person-plus me-2"></i>Add Player</h3>
     <input type="hidden" id="pm-id">
     <div class="mb-3"><label class="form-label">Passport Photo</label><div class="d-flex gap-3 align-items-start"><div id="pm-photo-preview" class="player-photo" style="width:72px;height:90px;font-size:28px;flex-shrink:0;cursor:pointer" onclick="openPhotoLightboxPM()">📷</div><div class="flex-fill"><label style="border:2px dashed var(--border);border-radius:10px;padding:12px;text-align:center;cursor:pointer;display:block;position:relative;min-height:70px;display:flex;align-items:center;justify-content:center"><input type="file" accept="image/*" onchange="handlePMPhoto(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%"><span class="small text-muted"><i class="bi bi-cloud-upload me-1"></i>Click to upload photo</span></label><input id="pm-photo-url" class="form-control mt-1" placeholder="Or paste image URL..." style="font-size:12px" oninput="previewURL(this.value)"></div></div></div>
@@ -680,6 +729,29 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   </div>
 </div>
 
+<!-- EDIT SOLD PRICE MODAL -->
+<div class="kpl-modal" id="md-edit-price" style="position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:1050;display:none;align-items:center;justify-content:center;padding:16px">
+  <div style="background:#fff;border-radius:18px;padding:28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)">
+    <div style="font-size:38px;margin-bottom:6px">✏️</div>
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:24px;margin-bottom:4px;color:var(--g1)">Edit Sold Price</h3>
+    <div class="small text-muted mb-3" id="ep-player-name">Player Name</div>
+    <div class="p-3 rounded mb-3" style="background:var(--accent);border:1px solid var(--border)">
+      <div class="small text-muted mb-1">Current Sold Price</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:var(--gold)" id="ep-current">₹500</div>
+      <div class="small text-muted mt-1" id="ep-team-name"></div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-bold" style="font-size:12px;color:var(--g1)">New Sold Price (₹)</label>
+      <input type="number" id="ep-new-price" class="form-control text-center" style="font-size:24px;font-weight:900;font-family:'Barlow Condensed',sans-serif;border:2px solid var(--gold2)" min="0" placeholder="Enter new amount">
+      <div class="small text-muted mt-1" id="ep-budget-info"></div>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-kpl btn-kpl-green flex-fill" style="padding:12px;font-size:15px" onclick="execEditPrice()">✅ Save New Price</button>
+      <button class="btn btn-kpl btn-kpl-outline flex-fill" onclick="closeMd('md-edit-price')">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <div class="kpl-modal" id="md-imgsel" style="position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px">
   <div style="background:#fff;border-radius:18px;padding:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)">
     <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:24px;margin-bottom:8px;color:var(--g1)">Select Photo from Folder</h3>
@@ -692,7 +764,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 <div class="kpl-modal" id="md-team-xls" style="position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px">
   <div style="background:#fff;border-radius:18px;padding:24px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)">
     <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:24px;margin-bottom:8px;color:var(--g1)"><i class="bi bi-file-earmark-excel-fill me-2"></i>Teams Excel Preview</h3>
-    <p class="small text-muted mb-3">Review the teams found. Click Import to add them.</p>
+    <p class="small text-muted mb-3">Review teams found. Click Import to add.</p>
     <div id="team-xls-preview"></div>
     <div class="d-flex gap-2 mt-3"><button class="btn btn-kpl btn-kpl-green flex-fill" onclick="confirmTeamImport()">✅ Import All Teams</button><button class="btn btn-kpl btn-kpl-outline" onclick="closeMd('md-team-xls')">Cancel</button></div>
   </div>
@@ -700,112 +772,70 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// ══════════════════════════════════════════════════════════════════
-// PERSISTENT STORAGE — IndexedDB for images, localStorage for data
-// ══════════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════
+// INDEXEDDB + STATE
+// ══════════════════════════════════════════
 const DB_NAME='kpl2026db',DB_VER=2;
 let db=null;
+function openDB(){return new Promise((res,rej)=>{const req=indexedDB.open(DB_NAME,DB_VER);req.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains('images'))d.createObjectStore('images');if(!d.objectStoreNames.contains('logos'))d.createObjectStore('logos');if(!d.objectStoreNames.contains('bgs'))d.createObjectStore('bgs');};req.onsuccess=e=>{db=e.target.result;res(db);};req.onerror=e=>rej(e);});}
+function dbSet(s,k,v){return new Promise((r,j)=>{if(!db){r();return;}const tx=db.transaction(s,'readwrite');tx.objectStore(s).put(v,k);tx.oncomplete=r;tx.onerror=j;});}
+function dbGet(s,k){return new Promise((r,j)=>{if(!db){r(null);return;}const tx=db.transaction(s,'readonly');const req=tx.objectStore(s).get(k);req.onsuccess=()=>r(req.result||null);req.onerror=j;});}
+function dbGetAll(s){return new Promise((r,j)=>{if(!db){r({});return;}const tx=db.transaction(s,'readonly');const req=tx.objectStore(s).getAllKeys();req.onsuccess=()=>{const keys=req.result;const out={};let p=keys.length;if(!p){r(out);return;}keys.forEach(k=>{const r2=tx.objectStore(s).get(k);r2.onsuccess=()=>{out[k]=r2.result;p--;if(!p)r(out);};});};req.onerror=j;});}
+function dbDel(s,k){return new Promise((r,j)=>{if(!db){r();return;}const tx=db.transaction(s,'readwrite');tx.objectStore(s).delete(k);tx.oncomplete=r;tx.onerror=j;});}
+function dbClear(s){return new Promise((r,j)=>{if(!db){r();return;}const tx=db.transaction(s,'readwrite');tx.objectStore(s).clear();tx.oncomplete=r;tx.onerror=j;});}
 
-function openDB(){
-  return new Promise((res,rej)=>{
-    const req=indexedDB.open(DB_NAME,DB_VER);
-    req.onupgradeneeded=e=>{
-      const d=e.target.result;
-      if(!d.objectStoreNames.contains('images'))d.createObjectStore('images');
-      if(!d.objectStoreNames.contains('logos'))d.createObjectStore('logos');
-      if(!d.objectStoreNames.contains('bgs'))d.createObjectStore('bgs');
-    };
-    req.onsuccess=e=>{db=e.target.result;res(db);};
-    req.onerror=e=>rej(e);
-  });
-}
-function dbSet(store,key,val){return new Promise((res,rej)=>{if(!db){res();return;}const tx=db.transaction(store,'readwrite');tx.objectStore(store).put(val,key);tx.oncomplete=res;tx.onerror=rej;});}
-function dbGet(store,key){return new Promise((res,rej)=>{if(!db){res(null);return;}const tx=db.transaction(store,'readonly');const req=tx.objectStore(store).get(key);req.onsuccess=()=>res(req.result||null);req.onerror=rej;});}
-function dbGetAll(store){return new Promise((res,rej)=>{if(!db){res({});return;}const tx=db.transaction(store,'readonly');const req=tx.objectStore(store).getAllKeys();req.onsuccess=()=>{const keys=req.result;const out={};let pending=keys.length;if(!pending){res(out);return;}keys.forEach(k=>{const r2=tx.objectStore(store).get(k);r2.onsuccess=()=>{out[k]=r2.result;pending--;if(!pending)res(out);};});};req.onerror=rej;});}
-function dbDel(store,key){return new Promise((res,rej)=>{if(!db){res();return;}const tx=db.transaction(store,'readwrite');tx.objectStore(store).delete(key);tx.oncomplete=res;tx.onerror=rej;});}
-function dbClear(store){return new Promise((res,rej)=>{if(!db){res();return;}const tx=db.transaction(store,'readwrite');tx.objectStore(store).clear();tx.oncomplete=res;tx.onerror=rej;});}
-
-// ══════════════════════════════════
-// STATE
-// ══════════════════════════════════
 const MAX_TEAM=15,DEFAULT_BASE_PRICE=500;
 const AUTO_COLORS=['#E53935','#D81B60','#8E24AA','#5E35B1','#3949AB','#1E88E5','#039BE5','#00ACC1','#00897B','#43A047','#7CB342','#C0CA33','#FDD835','#FFB300','#FB8C00','#F4511E','#6D4C41','#546E7A','#1B6B3A','#C0392B','#1565C0','#6A1B9A','#E65100','#2E7D32'];
 
-let teams=[];
-let players=[];
-let imgStore={};
-let logoStore={};
-let heroBg='';
-let loginBgData='';
-let pendingTeamsImport=[];
-let curAI=-1,delTarget=null,delType=null,imgSelTarget=null,unsoldPanelOpen=false,tmLogoData='';
+let teams=[],players=[],imgStore={},logoStore={};
+let heroBg='',loginBgData='',pendingTeamsImport=[];
+let curAI=-1,delTarget=null,delType=null,imgSelTarget=null;
+let unsoldPanelOpen=false,tmLogoData='';
 let currentUser={name:'',role:'',photo:''};
 let loginPhotoData='';
-let trackerFontSize=14;
-let infoFontSize=14;
-let searchResultIdx=-1;
-let searchResults=[];
+let trackerFontSize=15,infoFontSize=14;
+let searchResultIdx=-1,searchResults=[];
+// For edit sold price modal
+let editPricePlayerId=null;
 
-// ═══ LOAD FROM STORAGE ═══
-function lsGet(key,def){try{const v=localStorage.getItem(key);return v?JSON.parse(v):def;}catch(e){return def;}}
-function lsSet(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch(e){console.warn('localStorage full for',key);}}
+function lsGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){console.warn('ls full',k);}}
 
 function loadState(){
-  teams=lsGet('kpl4_teams',[]);
-  players=lsGet('kpl4_players',[]);
+  teams=lsGet('kpl4_teams',[]);players=lsGet('kpl4_players',[]);
   heroBg=localStorage.getItem('kpl4_herobg')||'';
   loginBgData=localStorage.getItem('kpl4_loginbg')||'';
   trackerFontSize=parseInt(localStorage.getItem('kpl_tracker_font')||'15');
   infoFontSize=parseInt(localStorage.getItem('kpl_info_font')||'14');
   curAI=parseInt(localStorage.getItem('kpl_cur_ai')||'-1');
-
-  if(!teams.length) teams=[
+  if(!teams.length)teams=[
     {id:1,name:'Mumbai Tigers',owner:'Rajesh Patel',budget:50000,remaining:50000,color:'#E53935'},
     {id:2,name:'Delhi Warriors',owner:'Suresh Shah',budget:50000,remaining:50000,color:'#1E88E5'},
     {id:3,name:'Chennai Kings',owner:'Amit Desai',budget:50000,remaining:50000,color:'#FFB300'},
   ];
-  if(!players.length) players=[
+  if(!players.length)players=[
     {id:1,name:'Rahul Sharma',dob:'15/05/1995',village:'Karamsad',contact:'9876543210',role:'Batsman',batting:'Right',tshirt:'L',price:500,matches:45,runs:1250,wickets:0,sr:138.5,photo:'',status:'unsold',soldPrice:0,teamId:null,imgIndex:1},
     {id:2,name:'Amit Patel',dob:'22/03/1998',village:'Tralsa',contact:'9812345678',role:'Bowler',batting:'Right',tshirt:'M',price:500,matches:38,runs:180,wickets:62,sr:110.2,photo:'',status:'unsold',soldPrice:0,teamId:null,imgIndex:2},
     {id:3,name:'Vijay Desai',dob:'08/11/1993',village:'Anand',contact:'9898765432',role:'All-rounder',batting:'Left',tshirt:'XL',price:500,matches:60,runs:980,wickets:35,sr:142.0,photo:'',status:'unsold',soldPrice:0,teamId:null,imgIndex:3},
   ];
 }
 
-let _saveTimer=null;
-let _saveIndTimer=null;
-function showSaveIndicator(){
-  const el=document.getElementById('save-indicator');
-  if(!el)return;
-  el.classList.add('show');
-  clearTimeout(_saveIndTimer);
-  _saveIndTimer=setTimeout(()=>el.classList.remove('show'),1800);
-}
-const save=()=>{
-  clearTimeout(_saveTimer);
-  _saveTimer=setTimeout(()=>{
-    lsSet('kpl4_teams',teams);
-    lsSet('kpl4_players',players);
-    localStorage.setItem('kpl_cur_ai',curAI);
-    showSaveIndicator();
-  },300);
-};
+let _saveTimer=null,_saveIndTimer=null;
+function showSaveIndicator(){const el=document.getElementById('save-indicator');if(!el)return;el.classList.add('show');clearTimeout(_saveIndTimer);_saveIndTimer=setTimeout(()=>el.classList.remove('show'),1800);}
+const save=()=>{clearTimeout(_saveTimer);_saveTimer=setTimeout(()=>{lsSet('kpl4_teams',teams);lsSet('kpl4_players',players);localStorage.setItem('kpl_cur_ai',curAI);showSaveIndicator();},300);};
 
-async function saveImg(key,data){imgStore[key]=data;await dbSet('images',key,data);}
-async function saveLogo(key,data){logoStore[key]=data;await dbSet('logos',key,data);}
-async function saveHeroBg(data){heroBg=data;try{localStorage.setItem('kpl4_herobg',data);}catch(e){await dbSet('bgs','hero',data);localStorage.removeItem('kpl4_herobg');localStorage.setItem('kpl4_herobg_idb','1');}showSaveIndicator();}
-async function saveLoginBg(data){loginBgData=data;try{localStorage.setItem('kpl4_loginbg',data);}catch(e){await dbSet('bgs','login',data);localStorage.removeItem('kpl4_loginbg');localStorage.setItem('kpl4_loginbg_idb','1');}showSaveIndicator();}
+async function saveImg(k,d){imgStore[k]=d;await dbSet('images',k,d);}
+async function saveLogo(k,d){logoStore[k]=d;await dbSet('logos',k,d);}
+async function saveHeroBg(d){heroBg=d;try{localStorage.setItem('kpl4_herobg',d);}catch(e){await dbSet('bgs','hero',d);localStorage.removeItem('kpl4_herobg');localStorage.setItem('kpl4_herobg_idb','1');}showSaveIndicator();}
+async function saveLoginBg(d){loginBgData=d;try{localStorage.setItem('kpl4_loginbg',d);}catch(e){await dbSet('bgs','login',d);localStorage.removeItem('kpl4_loginbg');localStorage.setItem('kpl4_loginbg_idb','1');}showSaveIndicator();}
 
 async function initApp(){
-  await openDB();
-  loadState();
-  imgStore=await dbGetAll('images');
-  logoStore=await dbGetAll('logos');
-  if(localStorage.getItem('kpl4_herobg_idb')==='1'){heroBg=await dbGet('bgs','hero')||'';}
-  if(localStorage.getItem('kpl4_loginbg_idb')==='1'){loginBgData=await dbGet('bgs','login')||'';}
+  await openDB();loadState();
+  imgStore=await dbGetAll('images');logoStore=await dbGetAll('logos');
+  if(localStorage.getItem('kpl4_herobg_idb')==='1')heroBg=await dbGet('bgs','hero')||'';
+  if(localStorage.getItem('kpl4_loginbg_idb')==='1')loginBgData=await dbGet('bgs','login')||'';
   if(curAI>=0&&(!players[curAI]||players[curAI].status==='sold'))curAI=-1;
-  buildSwatches('#1B6B3A');
-  applyHeroBg();
-  applyLoginBg();
+  buildSwatches('#1B6B3A');applyHeroBg();applyLoginBg();
   if(loginBgData){document.getElementById('login-bg-clear-btn').style.display='block';document.getElementById('login-bg-hint').classList.add('hidden');}
   renderImgFolder();
   setTimeout(()=>{
@@ -816,110 +846,59 @@ async function initApp(){
 
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='kpl-toast show'+(type?' '+type:'');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3500);}
 
-// ═══ HD LIGHTBOX ═══
-function openLightbox(src,caption=''){
-  if(!src||src.length<5)return;
-  const img=document.getElementById('lightbox-img');
-  img.src='';img.style.opacity='0';
-  document.getElementById('lightbox-caption').textContent=caption;
-  document.getElementById('lightbox').classList.add('show');
-  document.body.style.overflow='hidden';
-  img.onload=()=>{img.style.transition='opacity .25s';img.style.opacity='1';};
-  img.src=src;
-}
-function closeLightbox(e){
-  if(e&&e.target===document.getElementById('lightbox-img'))return;
-  document.getElementById('lightbox').classList.remove('show');
-  document.body.style.overflow='';
-}
+// LIGHTBOX
+function openLightbox(src,caption=''){if(!src||src.length<5)return;const img=document.getElementById('lightbox-img');img.src='';img.style.opacity='0';document.getElementById('lightbox-caption').textContent=caption;document.getElementById('lightbox').classList.add('show');document.body.style.overflow='hidden';img.onload=()=>{img.style.transition='opacity .25s';img.style.opacity='1';};img.src=src;}
+function closeLightbox(e){if(e&&e.target===document.getElementById('lightbox-img'))return;document.getElementById('lightbox').classList.remove('show');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lightbox').classList.remove('show');document.body.style.overflow='';hideSearchResults();}});
 function openAuctionPhotoLightbox(){if(curAI<0)return;const p=players[curAI];if(!p)return;const ph=getPhotoByIndex(p);if(ph)openLightbox(ph,p.name);else toast('No photo for this player','warn');}
 function openPhotoLightboxPM(){if(pmPhotoData&&pmPhotoData.length>5)openLightbox(pmPhotoData,'Player Photo');}
 
-// ═══ LOGIN ═══
-function setLoginBg(e){
-  const f=e.target.files[0];if(!f)return;
-  resizeAndRead_wh(f,1400,900,async data=>{
-    await saveLoginBg(data);applyLoginBg();
-    document.getElementById('login-bg-clear-btn').style.display='block';
-    document.getElementById('login-bg-hint').classList.add('hidden');
-    toast('✅ Background set!');
-  });e.target.value='';
-}
-function clearLoginBg(){
-  loginBgData='';localStorage.removeItem('kpl4_loginbg');localStorage.removeItem('kpl4_loginbg_idb');
-  dbDel('bgs','login');applyLoginBg();
-  document.getElementById('login-bg-clear-btn').style.display='none';
-  document.getElementById('login-bg-hint').classList.remove('hidden');
-}
-function applyLoginBg(){
-  const el=document.getElementById('login-bg');
-  if(loginBgData){el.style.backgroundImage=`url(${loginBgData})`;el.style.backgroundSize='cover';el.style.backgroundPosition='center';}
-  else{el.style.backgroundImage='none';el.style.background='linear-gradient(135deg,#1B6B3A 0%,#2E8B57 55%,#1B6B3A 100%)';}
-}
-function handleLoginPhoto(e){
-  const f=e.target.files[0];if(!f)return;
-  resizeAndRead(f,100,data=>{
-    loginPhotoData=data;
-    const ring=document.getElementById('login-logo-ring');
-    ring.innerHTML=`<img src="${data}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleLoginPhoto(event)">`;
-  });e.target.value='';
-}
-function doLogin(){
-  const name=document.getElementById('login-name').value.trim();
-  const role=document.getElementById('login-role').value;
-  if(!name){toast('Please enter your name','error');return;}
-  currentUser={name,role,photo:loginPhotoData};finishLogin();
-}
+// LOGIN
+function setLoginBg(e){const f=e.target.files[0];if(!f)return;resizeAndRead_wh(f,1400,900,async data=>{await saveLoginBg(data);applyLoginBg();document.getElementById('login-bg-clear-btn').style.display='block';document.getElementById('login-bg-hint').classList.add('hidden');toast('✅ Background set!');});e.target.value='';}
+function clearLoginBg(){loginBgData='';localStorage.removeItem('kpl4_loginbg');localStorage.removeItem('kpl4_loginbg_idb');dbDel('bgs','login');applyLoginBg();document.getElementById('login-bg-clear-btn').style.display='none';document.getElementById('login-bg-hint').classList.remove('hidden');}
+function applyLoginBg(){const el=document.getElementById('login-bg');if(loginBgData){el.style.backgroundImage=`url(${loginBgData})`;el.style.backgroundSize='cover';el.style.backgroundPosition='center';}else{el.style.backgroundImage='none';el.style.background='linear-gradient(135deg,#1B6B3A 0%,#2E8B57 55%,#1B6B3A 100%)';}}
+function handleLoginPhoto(e){const f=e.target.files[0];if(!f)return;resizeAndRead(f,100,data=>{loginPhotoData=data;const ring=document.getElementById('login-logo-ring');ring.innerHTML=`<img src="${data}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleLoginPhoto(event)">`;});e.target.value='';}
+function doLogin(){const name=document.getElementById('login-name').value.trim();const role=document.getElementById('login-role').value;if(!name){toast('Please enter your name','error');return;}currentUser={name,role,photo:loginPhotoData};finishLogin();}
 function skipLogin(){currentUser={name:'Guest',role:'Observer',photo:''};finishLogin();}
-function doLogout(){
-  currentUser={name:'',role:'',photo:''};loginPhotoData='';
-  document.getElementById('nav-user').setAttribute('style','display:none!important');
-  document.getElementById('login-name').value='';
-  document.getElementById('login-overlay').style.display='flex';
-  applyLoginBg();toast('Logged out. See you! 👋');
-}
+function doLogout(){currentUser={name:'',role:'',photo:''};loginPhotoData='';document.getElementById('nav-user').setAttribute('style','display:none!important');document.getElementById('login-name').value='';document.getElementById('login-overlay').style.display='flex';applyLoginBg();toast('Logged out 👋');}
 function finishLogin(){
   document.getElementById('login-overlay').style.display='none';
   const navUser=document.getElementById('nav-user');navUser.removeAttribute('style');navUser.style.display='flex';
   document.getElementById('nav-name').textContent=currentUser.name;
   document.getElementById('nav-role-badge').textContent=currentUser.role;
   const navAv=document.getElementById('nav-avatar');
-  if(currentUser.photo){navAv.innerHTML=`<img src="${currentUser.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;}
-  else{navAv.textContent=currentUser.name.charAt(0).toUpperCase();}
+  if(currentUser.photo)navAv.innerHTML=`<img src="${currentUser.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  else navAv.textContent=currentUser.name.charAt(0).toUpperCase();
   const tSlider=document.getElementById('tracker-font-slider');if(tSlider)tSlider.value=trackerFontSize;
   const iSlider=document.getElementById('info-font-slider');if(iSlider)iSlider.value=infoFontSize;
   toast(`Welcome, ${currentUser.name}! 🏏`);
   renderDash();renderImgFolder();
-  if(curAI>=0&&players[curAI]&&players[curAI].status==='unsold'){
-    const page=localStorage.getItem('kpl4_last_page')||'dashboard';
-    goPage(page);
-  }
+  const page=localStorage.getItem('kpl4_last_page')||'dashboard';goPage(page);
 }
 
-// ═══ IMAGE RESIZE ═══
-function resizeAndRead(file,maxDim,cb){const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{URL.revokeObjectURL(url);let w=img.width,h=img.height;if(w>maxDim||h>maxDim){const scale=Math.min(maxDim/w,maxDim/h);w=Math.round(w*scale);h=Math.round(h*scale);}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);cb(c.toDataURL('image/jpeg',.78));};img.onerror=()=>{const r=new FileReader();r.onload=ev=>cb(ev.target.result);r.readAsDataURL(file);};img.src=url;}
-function resizeAndRead_wh(file,mw,mh,cb){const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{URL.revokeObjectURL(url);let w=img.width,h=img.height;const scale=Math.min(mw/w,mh/h,1);w=Math.round(w*scale);h=Math.round(h*scale);const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);cb(c.toDataURL('image/jpeg',.82));};img.onerror=()=>{const r=new FileReader();r.onload=ev=>cb(ev.target.result);r.readAsDataURL(file);};img.src=url;}
+// IMAGE RESIZE
+function resizeAndRead(file,maxDim,cb){const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{URL.revokeObjectURL(url);let w=img.width,h=img.height;if(w>maxDim||h>maxDim){const s=Math.min(maxDim/w,maxDim/h);w=Math.round(w*s);h=Math.round(h*s);}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);cb(c.toDataURL('image/jpeg',.78));};img.onerror=()=>{const r=new FileReader();r.onload=ev=>cb(ev.target.result);r.readAsDataURL(file);};img.src=url;}
+function resizeAndRead_wh(file,mw,mh,cb){const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{URL.revokeObjectURL(url);let w=img.width,h=img.height;const s=Math.min(mw/w,mh/h,1);w=Math.round(w*s);h=Math.round(h*s);const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);cb(c.toDataURL('image/jpeg',.82));};img.onerror=()=>{const r=new FileReader();r.onload=ev=>cb(ev.target.result);r.readAsDataURL(file);};img.src=url;}
 function safePrice(val){const n=parseFloat(String(val||'').replace(/[^0-9.]/g,''));return(!isNaN(n)&&n>0)?n:DEFAULT_BASE_PRICE;}
 
-// ═══ HERO BG ═══
+// HERO BG
 function setHeroBg(e){const file=e.target.files[0];if(!file)return;resizeAndRead_wh(file,1200,800,async data=>{await saveHeroBg(data);applyHeroBg();toast('✅ Background updated!');});e.target.value='';}
 function applyHeroBg(){const bgEl=document.getElementById('hero-bg-el');const clearBtn=document.getElementById('hero-clear-btn');if(heroBg){bgEl.style.backgroundImage=`url(${heroBg})`;bgEl.style.backgroundSize='cover';bgEl.style.backgroundPosition='center';if(clearBtn)clearBtn.style.display='inline-block';}else{bgEl.style.backgroundImage="url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1400&q=80&fit=crop')";bgEl.style.backgroundSize='cover';bgEl.style.backgroundPosition='center';if(clearBtn)clearBtn.style.display='none';}}
 function clearHeroBg(){heroBg='';localStorage.removeItem('kpl4_herobg');localStorage.removeItem('kpl4_herobg_idb');dbDel('bgs','hero');applyHeroBg();toast('Background removed');}
 
-// ═══ SWATCHES ═══
-function buildSwatches(currentColor){const container=document.getElementById('tm-swatches');if(!container)return;container.innerHTML=AUTO_COLORS.map(c=>{const picked=c.toLowerCase()===(currentColor||'').toLowerCase();return`<div class="color-swatch ${picked?'picked':''}" style="background:${c}" title="${c}" onclick="pickSwatch('${c}')"></div>`;}).join('');}
-function pickSwatch(color){document.getElementById('tm-color').value=color;buildSwatches(color);}
-function syncSwatches(color){buildSwatches(color);}
+// SWATCHES
+function buildSwatches(cur){const c=document.getElementById('tm-swatches');if(!c)return;c.innerHTML=AUTO_COLORS.map(col=>`<div class="color-swatch ${col.toLowerCase()===(cur||'').toLowerCase()?'picked':''}" style="background:${col}" title="${col}" onclick="pickSwatch('${col}')"></div>`).join('');}
+function pickSwatch(c){document.getElementById('tm-color').value=c;buildSwatches(c);}
+function syncSwatches(c){buildSwatches(c);}
 
-// ═══ TEAM LOGO ═══
+// TEAM LOGO
 function handleTeamLogo(e){const f=e.target.files[0];if(!f)return;resizeAndRead_wh(f,120,120,data=>{tmLogoData=data;const prev=document.getElementById('tm-logo-preview');prev.innerHTML=`<img src="${data}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleTeamLogo(event)">`;const clr=document.getElementById('tm-logo-clear');if(clr)clr.style.display='inline-block';});e.target.value='';}
 function previewTeamLogoURL(url){if(!url)return;tmLogoData=url;const prev=document.getElementById('tm-logo-preview');prev.innerHTML=`<img src="${url}" onerror="this.parentElement.innerHTML='🛡️'" style="width:100%;height:100%;object-fit:cover;border-radius:50%"><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleTeamLogo(event)">`;const clr=document.getElementById('tm-logo-clear');if(clr)clr.style.display='inline-block';}
-function clearTmLogo(){tmLogoData='';const prev=document.getElementById('tm-logo-preview');prev.innerHTML=`<span id="tm-logo-emoji" style="font-size:30px;pointer-events:none">🛡️</span><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleTeamLogo(event)">`;const clr=document.getElementById('tm-logo-clear');if(clr)clr.style.display='none';}
+function clearTmLogo(){tmLogoData='';const prev=document.getElementById('tm-logo-preview');prev.innerHTML=`<span style="font-size:30px;pointer-events:none">🛡️</span><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleTeamLogo(event)">`;const clr=document.getElementById('tm-logo-clear');if(clr)clr.style.display='none';}
 function getTeamLogo(tid){return logoStore[String(tid)]||'';}
 function teamColorBlock(t,withLogo=false,size=36){const logo=getTeamLogo(t.id);if(logo)return`<div style="width:${size}px;height:${size}px;border-radius:50%;overflow:hidden;background:${t.color||'#1B6B3A'};border:2px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><img src="${logo}" style="width:100%;height:100%;object-fit:cover"></div>`;return`<div style="width:${size}px;height:${size}px;border-radius:50%;background:${t.color||'#1B6B3A'};border:2px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:${Math.round(size*.45)}px">🛡️</div>`;}
 
-// ═══ NAV ═══
+// NAV
 function goPage(p){
   document.querySelectorAll('.kpl-page').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.kpl-navtab').forEach(x=>x.classList.remove('active'));
@@ -933,35 +912,28 @@ function curPage(){for(const p of['dashboard','teams','players','auction','expor
 function renderPage(p){({dashboard:renderDash,teams:renderTeams,players:()=>renderPlayers(),auction:renderAuction,export:renderExport})[p]?.();}
 function openMd(id){document.getElementById(id).style.display='flex';}
 function closeMd(id){document.getElementById(id).style.display='none';}
-document.querySelectorAll('.kpl-modal,[id^="md-"]').forEach(m=>m.addEventListener('click',e=>{if(e.target===m){m.style.display='none';}}));
+document.querySelectorAll('[id^="md-"]').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.style.display='none';}));
 function teamPlayerCount(tid){return players.filter(p=>p.teamId===tid).length;}
 function isTeamFull(tid){return teamPlayerCount(tid)>=MAX_TEAM;}
 
-// ═══ FONT SIZE ═══
+// FONT SIZE
 function setTrackerFontSize(v){trackerFontSize=parseInt(v);localStorage.setItem('kpl_tracker_font',trackerFontSize);const panel=document.getElementById('a-teams-panel');if(panel)panel.style.fontSize=trackerFontSize+'px';document.querySelectorAll('.tracker-team-name').forEach(el=>el.style.fontSize=(trackerFontSize*1.5)+'px');document.querySelectorAll('.tracker-stat-val').forEach(el=>el.style.fontSize=(trackerFontSize*1.3)+'px');document.querySelectorAll('.tracker-player-row').forEach(el=>el.style.fontSize=trackerFontSize+'px');}
 function setInfoFontSize(v){infoFontSize=parseInt(v);localStorage.setItem('kpl_info_font',infoFontSize);const panel=document.getElementById('a-info');if(panel)panel.style.fontSize=infoFontSize+'px';}
 
-// ═══ IMAGE LOGIC ═══
-function getPhotoByIndex(player){
-  if(player.photo&&player.photo.length>5)return player.photo;
-  if(player.imgIndex){const k=String(player.imgIndex);if(imgStore[k])return imgStore[k];const ek=Object.keys(imgStore).find(x=>x.split('.')[0]===k);if(ek)return imgStore[ek];}
-  const idx=players.indexOf(player)+1,pk=String(idx);
-  if(imgStore[pk])return imgStore[pk];
-  const pek=Object.keys(imgStore).find(x=>x.split('.')[0]===pk);
-  if(pek)return imgStore[pek];return'';
-}
+// IMAGE LOGIC
+function getPhotoByIndex(player){if(player.photo&&player.photo.length>5)return player.photo;if(player.imgIndex){const k=String(player.imgIndex);if(imgStore[k])return imgStore[k];const ek=Object.keys(imgStore).find(x=>x.split('.')[0]===k);if(ek)return imgStore[ek];}const idx=players.indexOf(player)+1,pk=String(idx);if(imgStore[pk])return imgStore[pk];const pek=Object.keys(imgStore).find(x=>x.split('.')[0]===pk);if(pek)return imgStore[pek];return'';}
 function resolveImgKey(k){return k.split('.')[0];}
 function autoAssignByIndex(){const keys=Object.keys(imgStore);if(!keys.length){toast('No images uploaded yet','error');return;}let assigned=0;players.forEach((p,i)=>{const num=i+1,k=String(num);const has=imgStore[k]||Object.keys(imgStore).find(x=>x.split('.')[0]===k);if(has){p.imgIndex=num;assigned++;}});save();renderPlayers();renderImgFolder();toast(`✅ Auto-assigned ${assigned} photos by index`);}
 function clearAllImages(){if(!confirm('Clear all uploaded images?'))return;dbClear('images');imgStore={};players.forEach(p=>{p.imgIndex=null;});save();renderImgFolder();renderPlayers();toast('Images cleared');}
 
-// ═══ BATCH IMAGE UPLOAD ═══
+// BATCH IMAGE UPLOAD
 function handleImgFolder(e){
   const files=Array.from(e.target.files);if(!files.length)return;
-  const statusEl=document.getElementById('img-batch-status');const textEl=document.getElementById('img-batch-text');const fillEl=document.getElementById('img-batch-fill');
+  const statusEl=document.getElementById('img-batch-status'),textEl=document.getElementById('img-batch-text'),fillEl=document.getElementById('img-batch-fill');
   statusEl.style.display='block';textEl.textContent=`⏳ Uploading 0 / ${files.length} images...`;fillEl.style.width='0%';
   let processed=0;
-  function processFile(f){return new Promise(resolve=>{const base=f.name.replace(/\.[^.]+$/,'');const num=parseInt(base);const sk=isNaN(num)?base:String(num);resizeAndRead_wh(f,320,420,async data=>{await saveImg(sk,data);processed++;const pct=Math.round((processed/files.length)*100);fillEl.style.width=pct+'%';textEl.textContent=`✅ Uploaded ${processed} / ${files.length} images...`;resolve();});});}
-  async function runBatch(){for(let i=0;i<files.length;i+=4){const batch=files.slice(i,i+4);await Promise.all(batch.map(processFile));await new Promise(r=>setTimeout(r,0));}autoAssignByIndex();renderImgFolder();renderPlayers();textEl.textContent=`🎉 All ${files.length} images uploaded & saved!`;fillEl.style.width='100%';setTimeout(()=>{statusEl.style.display='none';},2500);toast(`✅ ${files.length} images uploaded & saved permanently!`);}
+  function processFile(f){return new Promise(resolve=>{const base=f.name.replace(/\.[^.]+$/,'');const num=parseInt(base);const sk=isNaN(num)?base:String(num);resizeAndRead_wh(f,320,420,async data=>{await saveImg(sk,data);processed++;fillEl.style.width=Math.round((processed/files.length)*100)+'%';textEl.textContent=`✅ Uploaded ${processed} / ${files.length} images...`;resolve();});});}
+  async function runBatch(){for(let i=0;i<files.length;i+=4){const batch=files.slice(i,i+4);await Promise.all(batch.map(processFile));await new Promise(r=>setTimeout(r,0));}autoAssignByIndex();renderImgFolder();renderPlayers();textEl.textContent=`🎉 All ${files.length} images uploaded!`;fillEl.style.width='100%';setTimeout(()=>{statusEl.style.display='none';},2500);toast(`✅ ${files.length} images uploaded!`);}
   runBatch();e.target.value='';
 }
 function renderImgFolder(){
@@ -969,156 +941,130 @@ function renderImgFolder(){
   const sec=document.getElementById('img-folder-section');if(!keys.length){sec.style.display='none';return;}
   sec.style.display='block';document.getElementById('img-count').textContent=keys.length;
   const itp={};players.forEach((p,i)=>{itp[String(i+1)]=p.name;});
-  document.getElementById('img-folder-grid').innerHTML=keys.map((k,ki)=>{const num=resolveImgKey(k),pname=itp[num],has=!!pname;return`<div class="col-3 col-md-2"><div class="img-thumb-wrap"><img class="img-thumb ${has?'img-assigned':''}" src="${imgStore[k]}" title="${has?'#'+num+' → '+pname:'Image '+num}" onclick="openLightbox('${imgStore[k].replace(/'/g,'')}','Image #${num}')"><div class="img-thumb-label" style="color:${has?'#69f0ae':'#fff'}">#${num}</div></div></div>`;}).join('');
+  document.getElementById('img-folder-grid').innerHTML=keys.map(k=>{const num=resolveImgKey(k),pname=itp[num],has=!!pname;return`<div class="col-3 col-md-2"><div class="img-thumb-wrap"><img class="img-thumb ${has?'img-assigned':''}" src="${imgStore[k]}" title="${has?'#'+num+' → '+pname:'Image '+num}" onclick="openLightbox('${imgStore[k].replace(/'/g,'')}','Image #${num}')"><div class="img-thumb-label" style="color:${has?'#69f0ae':'#fff'}">#${num}</div></div></div>`;}).join('');
 }
 function openImgSel(pid){if(pid!==null)imgSelTarget=pid;const keys=Object.keys(imgStore).sort((a,b)=>parseInt(a)-parseInt(b)||a.localeCompare(b));if(!keys.length){toast('Upload images first','error');return;}document.getElementById('imgsel-grid').innerHTML=keys.map(k=>{const num=resolveImgKey(k),pidx=parseInt(num);const pf=(!isNaN(pidx)&&pidx>=1&&pidx<=players.length)?players[pidx-1]:null;return`<div class="col-3"><div class="img-thumb-wrap"><img class="img-thumb" src="${imgStore[k]}" onclick="assignImg('${k.replace(/'/g,"\\'")}')" style="cursor:pointer"><div class="img-thumb-label">#${num}${pf?' · '+pf.name.split(' ')[0]:''}</div></div></div>`;}).join('');openMd('md-imgsel');}
 function assignImg(key){const p=players.find(x=>x.id===imgSelTarget);if(!p)return;p.photo=imgStore[key];save();closeMd('md-imgsel');renderPlayers();toast(`Photo assigned to ${p.name} ✓`);}
 
-// ═══════════════════════════════════════════════
-// TRACKER SCROLL CONTROLS — NEW FEATURE
-// ═══════════════════════════════════════════════
+// ══════════════════════════════════
+// TRACKER SCROLL
+// ══════════════════════════════════
 let _trackerScrollBound=false;
+function initTrackerScroll(){const panel=document.getElementById('a-teams-panel');if(!panel)return;if(!_trackerScrollBound){panel.addEventListener('scroll',onTrackerScroll,{passive:true});_trackerScrollBound=true;}onTrackerScroll();}
+function onTrackerScroll(){const panel=document.getElementById('a-teams-panel');if(!panel)return;const max=Math.max(0,panel.scrollHeight-panel.clientHeight);const pct=max>0?panel.scrollTop/max:0;const pctR=Math.round(pct*100);const fill=document.getElementById('tracker-progress-fill');if(fill)fill.style.width=pctR+'%';const label=document.getElementById('tracker-progress-label');if(label){const tot=teams.length;const vi=Math.round(pct*Math.max(0,tot-1))+1;label.textContent=tot>0?`${Math.min(vi,tot)} / ${tot} teams`:'0 teams';}const downBtn=document.getElementById('tracker-btn-down');if(downBtn){if(pctR>=98){downBtn.textContent='✓';downBtn.classList.add('btn-done');}else{downBtn.textContent='↓';downBtn.classList.remove('btn-done');}}const fa=document.getElementById('tracker-float-arrow');if(fa){if(max>10){fa.classList.add('visible');if(pctR>=98){fa.textContent='↑';fa.classList.add('at-bottom');}else{fa.textContent='↓';fa.classList.remove('at-bottom');}}else fa.classList.remove('visible');}renderTrackerDots(pctR,teams.length);}
+function renderTrackerDots(pctR,tot){const dotsEl=document.getElementById('tracker-dots');if(!dotsEl)return;const dots=Math.min(tot,8);if(dots<=1){dotsEl.innerHTML='';return;}const active=Math.round((pctR/100)*(dots-1));dotsEl.innerHTML=Array.from({length:dots},(_,i)=>`<div class="tracker-dot ${i===active?'active':''}" onclick="trackerScrollToDot(${i},${dots})"></div>`).join('');}
+function trackerScrollTop(){const p=document.getElementById('a-teams-panel');if(p)p.scrollTo({top:0,behavior:'smooth'});}
+function trackerScrollBottom(){const p=document.getElementById('a-teams-panel');if(p)p.scrollTo({top:p.scrollHeight,behavior:'smooth'});}
+function trackerScrollDown(){const p=document.getElementById('a-teams-panel');if(!p)return;const max=p.scrollHeight-p.clientHeight;if(p.scrollTop>=max-5)p.scrollTo({top:0,behavior:'smooth'});else p.scrollBy({top:Math.round(p.clientHeight*.8),behavior:'smooth'});}
+function trackerScrollByClick(e){const p=document.getElementById('a-teams-panel');if(!p)return;const bar=e.currentTarget;const rect=bar.getBoundingClientRect();const pct=(e.clientX-rect.left)/rect.width;p.scrollTo({top:pct*(p.scrollHeight-p.clientHeight),behavior:'smooth'});}
+function trackerScrollToDot(di,tot){const p=document.getElementById('a-teams-panel');if(!p)return;const pct=tot>1?di/(tot-1):0;p.scrollTo({top:pct*(p.scrollHeight-p.clientHeight),behavior:'smooth'});}
+document.addEventListener('DOMContentLoaded',()=>{const fa=document.getElementById('tracker-float-arrow');if(fa)fa.onclick=()=>{if(fa.classList.contains('at-bottom'))trackerScrollTop();else trackerScrollDown();};});
 
-function initTrackerScroll(){
-  const panel=document.getElementById('a-teams-panel');
-  if(!panel)return;
-  if(!_trackerScrollBound){
-    panel.addEventListener('scroll',onTrackerScroll,{passive:true});
-    _trackerScrollBound=true;
-  }
-  onTrackerScroll();
-}
-
-function onTrackerScroll(){
-  const panel=document.getElementById('a-teams-panel');
-  if(!panel)return;
-  const max=Math.max(0,panel.scrollHeight-panel.clientHeight);
-  const pct=max>0?panel.scrollTop/max:0;
-  const pctRound=Math.round(pct*100);
-
-  // Progress bar
-  const fill=document.getElementById('tracker-progress-fill');
-  if(fill)fill.style.width=pctRound+'%';
-
-  // Progress label
-  const label=document.getElementById('tracker-progress-label');
-  if(label){
-    const totalTeams=teams.length;
-    const visibleIdx=Math.round(pct*Math.max(0,totalTeams-1))+1;
-    label.textContent=totalTeams>0?`${Math.min(visibleIdx,totalTeams)} / ${totalTeams} teams`:'0 teams';
-  }
-
-  // Down button changes to ✓ when at bottom
-  const downBtn=document.getElementById('tracker-btn-down');
-  if(downBtn){
-    if(pctRound>=98){downBtn.textContent='✓';downBtn.classList.add('btn-done');}
-    else{downBtn.textContent='↓';downBtn.classList.remove('btn-done');}
-  }
-
-  // Floating arrow: show when not at bottom, hide when at bottom
-  const floatArrow=document.getElementById('tracker-float-arrow');
-  if(floatArrow){
-    if(max>10){
-      floatArrow.classList.add('visible');
-      if(pctRound>=98){floatArrow.textContent='↑';floatArrow.classList.add('at-bottom');}
-      else{floatArrow.textContent='↓';floatArrow.classList.remove('at-bottom');}
-    }else{
-      floatArrow.classList.remove('visible');
-    }
-  }
-
-  // Dots
-  renderTrackerDots(pctRound,totalTeams);
-}
-
-function renderTrackerDots(pctRound,totalTeams){
-  const dotsEl=document.getElementById('tracker-dots');
-  if(!dotsEl)return;
-  const dots=Math.min(totalTeams,8);
-  if(dots<=1){dotsEl.innerHTML='';return;}
-  const activeDot=Math.round((pctRound/100)*(dots-1));
-  dotsEl.innerHTML=Array.from({length:dots},(_,i)=>`<div class="tracker-dot ${i===activeDot?'active':''}" onclick="trackerScrollToDot(${i},${dots})" title="Jump to section ${i+1}"></div>`).join('');
-}
-
-function trackerScrollTop(){
-  const p=document.getElementById('a-teams-panel');
-  if(p)p.scrollTo({top:0,behavior:'smooth'});
-}
-function trackerScrollBottom(){
-  const p=document.getElementById('a-teams-panel');
-  if(p)p.scrollTo({top:p.scrollHeight,behavior:'smooth'});
-}
-function trackerScrollDown(){
-  const p=document.getElementById('a-teams-panel');
-  if(!p)return;
-  const max=p.scrollHeight-p.clientHeight;
-  if(p.scrollTop>=max-5)p.scrollTo({top:0,behavior:'smooth'}); // cycle back to top
-  else p.scrollBy({top:Math.round(p.clientHeight*0.8),behavior:'smooth'});
-}
-function trackerScrollByClick(e){
-  const p=document.getElementById('a-teams-panel');if(!p)return;
-  const bar=e.currentTarget;const rect=bar.getBoundingClientRect();
-  const pct=(e.clientX-rect.left)/rect.width;
-  p.scrollTo({top:pct*(p.scrollHeight-p.clientHeight),behavior:'smooth'});
-}
-function trackerScrollToDot(dotIdx,totalDots){
-  const p=document.getElementById('a-teams-panel');if(!p)return;
-  const pct=totalDots>1?dotIdx/(totalDots-1):0;
-  p.scrollTo({top:pct*(p.scrollHeight-p.clientHeight),behavior:'smooth'});
-}
-// Float arrow click toggles up/down
-document.addEventListener('DOMContentLoaded',()=>{
-  const fa=document.getElementById('tracker-float-arrow');
-  if(fa)fa.onclick=()=>{
-    const p=document.getElementById('a-teams-panel');if(!p)return;
-    if(fa.classList.contains('at-bottom'))trackerScrollTop();
-    else trackerScrollDown();
-  };
-});
-
-// ═══ AUCTION LIVE SEARCH ═══
+// ══════════════════════════════════
+// AUCTION LIVE SEARCH — ALL players (sold + unsold)
+// ══════════════════════════════════
 function onAuctionSearch(input){
   const q=input.value.trim();
   const clearBtn=document.getElementById('auction-search-clear');
   clearBtn.style.display=q?'block':'none';
   if(!q){hideSearchResults();return;}
   const qLower=q.toLowerCase();const qNum=parseInt(q);
+  // Search ALL players (sold + unsold)
   searchResults=players.map((p,i)=>({p,i})).filter(({p,i})=>{
     const nameMatch=p.name.toLowerCase().includes(qLower);
     const numMatch=(!isNaN(qNum)&&(i+1)===qNum);
     const villageMatch=p.village&&p.village.toLowerCase().includes(qLower);
     const roleMatch=p.role&&p.role.toLowerCase().includes(qLower);
-    return (nameMatch||numMatch||villageMatch||roleMatch)&&p.status==='unsold';
+    return nameMatch||numMatch||villageMatch||roleMatch;
   });
   searchResultIdx=-1;renderSearchResults(q);
 }
 function renderSearchResults(q){
   const resultsEl=document.getElementById('auction-search-results');
-  if(!searchResults.length){resultsEl.innerHTML=`<div class="search-no-results">😕 No unsold players matching "${q}"</div>`;resultsEl.classList.add('show');return;}
-  resultsEl.innerHTML=searchResults.slice(0,12).map(({p,i},ri)=>{
-    const ph=getPhotoByIndex(p);const isActive=i===curAI;
-    return`<div class="search-result-item ${isActive?'active-result':''}" data-ri="${ri}" onclick="pickSearchResult(${ri})">
+  if(!searchResults.length){resultsEl.innerHTML=`<div class="search-no-results">😕 No players matching "${q}"</div>`;resultsEl.classList.add('show');return;}
+  resultsEl.innerHTML=searchResults.slice(0,15).map(({p,i},ri)=>{
+    const ph=getPhotoByIndex(p);const isActive=i===curAI;const isSold=p.status==='sold';
+    const tm=isSold?teams.find(t=>t.id===p.teamId):null;
+    return`<div class="search-result-item ${isActive?'active-result':''} ${isSold?'sri-sold-item':''}" data-ri="${ri}" onclick="pickSearchResult(${ri})">
       <span class="sri-num">#${i+1}</span>
       <div class="sri-photo">${ph?`<img src="${ph}" onerror="this.parentElement.textContent='🏏'">`:'🏏'}</div>
       <div class="flex-fill" style="min-width:0">
         <div class="sri-name">${highlightMatch(p.name,q)}</div>
-        <div class="sri-meta">${p.role}${p.village?' · '+p.village:''}</div>
+        <div class="d-flex align-items-center gap-1 flex-wrap mt-1">
+          <span class="sri-status-tag ${isSold?'sri-status-sold':'sri-status-unsold'}">${isSold?'✅ SOLD':'❌ UNSOLD'}</span>
+          <span class="sri-meta">${p.role}${p.village?' · '+p.village:''}</span>
+        </div>
+        ${isSold&&tm?`<div class="sri-meta mt-1" style="color:${tm.color||'var(--g1)'}">🏆 ${tm.name}${tm.owner?' · '+tm.owner:''}</div>`:''}
       </div>
-      <div class="sri-price">₹${p.price}</div>
+      <div class="sri-price">
+        <div>₹${isSold?p.soldPrice:p.price}</div>
+        ${isSold?`<div style="font-size:9px;color:var(--muted);font-weight:700">${isSold?'SOLD':'BASE'}</div>`:''}
+        ${isSold?`<button class="btn btn-sm btn-kpl btn-kpl-gold mt-1" style="font-size:9px;padding:2px 7px" onclick="event.stopPropagation();openEditPrice(${p.id})">✏️ Edit</button>`:''}
+      </div>
     </div>`;
   }).join('');
   resultsEl.classList.add('show');
 }
 function highlightMatch(text,q){if(!q)return text;const idx=text.toLowerCase().indexOf(q.toLowerCase());if(idx<0)return text;return text.slice(0,idx)+`<span style="background:var(--gold2);color:#000;border-radius:2px;padding:0 2px">${text.slice(idx,idx+q.length)}</span>`+text.slice(idx+q.length);}
-function pickSearchResult(ri){const item=searchResults[ri];if(!item)return;const{p,i}=item;selAP(i);clearAuctionSearch();setTimeout(()=>document.getElementById('a-photo').scrollIntoView({behavior:'smooth',block:'center'}),100);toast(`▶ Loaded: ${p.name}`);}
-function onAuctionSearchKey(e){const results=document.getElementById('auction-search-results');const items=results.querySelectorAll('.search-result-item');if(!items.length)return;if(e.key==='ArrowDown'){e.preventDefault();searchResultIdx=Math.min(searchResultIdx+1,items.length-1);highlightSearchItem(items);}else if(e.key==='ArrowUp'){e.preventDefault();searchResultIdx=Math.max(searchResultIdx-1,0);highlightSearchItem(items);}else if(e.key==='Enter'){e.preventDefault();if(searchResultIdx>=0)pickSearchResult(searchResultIdx);else if(searchResults.length)pickSearchResult(0);}else if(e.key==='Escape'){clearAuctionSearch();}}
+function pickSearchResult(ri){
+  const item=searchResults[ri];if(!item)return;const{p,i}=item;
+  if(p.status==='sold'){
+    // If sold, show info but don't try to load for auction — offer edit price
+    clearAuctionSearch();
+    toast(`${p.name} is already SOLD for ₹${p.soldPrice}`,'warn');
+    return;
+  }
+  selAP(i);clearAuctionSearch();setTimeout(()=>document.getElementById('a-photo').scrollIntoView({behavior:'smooth',block:'center'}),100);toast(`▶ Loaded: ${p.name}`);
+}
+function onAuctionSearchKey(e){const results=document.getElementById('auction-search-results');const items=results.querySelectorAll('.search-result-item');if(!items.length)return;if(e.key==='ArrowDown'){e.preventDefault();searchResultIdx=Math.min(searchResultIdx+1,items.length-1);highlightSearchItem(items);}else if(e.key==='ArrowUp'){e.preventDefault();searchResultIdx=Math.max(searchResultIdx-1,0);highlightSearchItem(items);}else if(e.key==='Enter'){e.preventDefault();if(searchResultIdx>=0)pickSearchResult(searchResultIdx);else if(searchResults.length)pickSearchResult(0);}else if(e.key==='Escape')clearAuctionSearch();}
 function highlightSearchItem(items){items.forEach((el,i)=>el.classList.toggle('active-result',i===searchResultIdx));if(searchResultIdx>=0)items[searchResultIdx].scrollIntoView({block:'nearest'});}
 function showSearchResults(){const q=document.getElementById('auction-search').value.trim();if(q)onAuctionSearch(document.getElementById('auction-search'));}
 function hideSearchResults(){document.getElementById('auction-search-results').classList.remove('show');}
 function clearAuctionSearch(){const input=document.getElementById('auction-search');input.value='';document.getElementById('auction-search-clear').style.display='none';hideSearchResults();searchResults=[];}
 document.addEventListener('click',e=>{if(!e.target.closest('.auction-search-wrap'))hideSearchResults();});
 
-// ═══ DASHBOARD ═══
+// ══════════════════════════════════
+// EDIT SOLD PRICE (post-sale edit)
+// ══════════════════════════════════
+function openEditPrice(pid){
+  const p=players.find(x=>x.id===pid);if(!p||p.status!=='sold')return;
+  const tm=teams.find(t=>t.id===p.teamId);
+  editPricePlayerId=pid;
+  document.getElementById('ep-player-name').textContent=`Player: ${p.name}`;
+  document.getElementById('ep-current').textContent=`₹${p.soldPrice}`;
+  document.getElementById('ep-team-name').textContent=tm?`Team: ${tm.name}${tm.owner?' · '+tm.owner:''}`:' ';
+  document.getElementById('ep-new-price').value=p.soldPrice;
+  if(tm){
+    document.getElementById('ep-budget-info').textContent=`Team remaining budget: ₹${tm.remaining} (will be adjusted automatically)`;
+  }else{
+    document.getElementById('ep-budget-info').textContent='';
+  }
+  openMd('md-edit-price');
+}
+function execEditPrice(){
+  const newAmt=parseFloat(document.getElementById('ep-new-price').value);
+  if(isNaN(newAmt)||newAmt<0){toast('Enter a valid amount','error');return;}
+  const p=players.find(x=>x.id===editPricePlayerId);if(!p)return;
+  const tm=teams.find(t=>t.id===p.teamId);
+  const oldAmt=p.soldPrice||0;
+  const diff=newAmt-oldAmt;
+  // Adjust team budget
+  if(tm){
+    // Refund old, charge new
+    tm.remaining=tm.remaining-diff;
+    if(tm.remaining<0)tm.remaining=0;
+  }
+  p.soldPrice=newAmt;
+  save();closeMd('md-edit-price');
+  toast(`✅ ${p.name}'s sold price updated to ₹${newAmt}`);
+  // Re-render current page
+  renderPage(curPage());
+  if(document.getElementById('pg-auction').classList.contains('active'))renderAuction();
+}
+
+// ══════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════
 function renderDash(){
   applyHeroBg();
   const sold=players.filter(p=>p.status==='sold');const totalSpent=sold.reduce((a,b)=>a+(b.soldPrice||0),0);const highest=sold.length?sold.reduce((a,b)=>a.soldPrice>b.soldPrice?a:b):null;
@@ -1133,7 +1079,7 @@ function renderDash(){
   document.getElementById('d-sold').innerHTML=sold.slice(-6).reverse().map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<div class="si-row"><div><div class="fw-bold">${p.name}</div><div class="d-flex align-items-center gap-1 small text-muted">${tm?teamColorBlock(tm,true,14):''}${tm?.name||'—'}</div></div><div class="si-price">₹${p.soldPrice}</div></div>`;}).join('')||'<p class="text-muted small">No sales yet</p>';
 }
 
-// ═══ TEAMS ═══
+// TEAMS
 function renderTeams(){
   document.getElementById('teams-grid').innerHTML=teams.map(t=>{
     const tp=players.filter(p=>p.teamId===t.id);const pct=Math.round(((t.budget-t.remaining)/t.budget)*100);const cnt=tp.length,full=cnt>=MAX_TEAM;const logo=getTeamLogo(t.id);
@@ -1146,12 +1092,12 @@ function editTeam(id){const t=teams.find(x=>x.id===id);if(!t)return;document.get
 function askDel(type,id,name){delType=type;delTarget=id;document.getElementById('del-title').textContent=`Delete ${type==='team'?'Team':'Player'}?`;document.getElementById('del-msg').textContent=`"${name}" will be permanently deleted.`;openMd('md-del');}
 function execDel(){if(delType==='team'){players.forEach(p=>{if(p.teamId===delTarget){p.teamId=null;p.status='unsold';p.soldPrice=0;}});teams=teams.filter(x=>x.id!==delTarget);dbDel('logos',String(delTarget));delete logoStore[String(delTarget)];}else{players=players.filter(x=>x.id!==delTarget);}save();closeMd('md-del');renderPage(curPage());toast('Deleted ✓');}
 
-// ═══ TEAMS EXCEL ═══
-function handleTeamsXls(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const wb=XLSX.read(ev.target.result,{type:'binary'});const norm=s=>String(s||'').toLowerCase().replace(/[\s_\-().*/]/g,'');const TCOL={name:['teamname','name','team'],owner:['ownername','owner','captain','manager'],budget:['budget','totalbudget','teambudget'],color:['color','colour','teamcolor','hex']};const findCol=(keys,field)=>{for(const a of TCOL[field]||[])for(const k of keys)if(norm(k)===a)return k;return null;};const pSheet=wb.Sheets['Teams']||wb.Sheets[wb.SheetNames[0]];if(!pSheet){toast('No Teams sheet found','error');return;}const rows=XLSX.utils.sheet_to_json(pSheet,{raw:false,defval:''});if(!rows.length){toast('Excel sheet is empty','error');return;}const keys=Object.keys(rows[0]);const mapped={};Object.keys(TCOL).forEach(f=>{mapped[f]=findCol(keys,f);});const g=(row,f)=>mapped[f]?String(row[mapped[f]]||'').trim():'';pendingTeamsImport=rows.map(row=>({name:g(row,'name'),owner:g(row,'owner'),budget:parseInt(g(row,'budget'))||50000,color:g(row,'color')||AUTO_COLORS[Math.floor(Math.random()*AUTO_COLORS.length)]})).filter(t=>t.name);if(!pendingTeamsImport.length){toast('No valid teams found','error');return;}const chips=Object.keys(TCOL).map(f=>({field:f,mapped:!!mapped[f],col:mapped[f]}));document.getElementById('team-col-chips').innerHTML=chips.map(c=>`<span class="col-chip ${c.mapped?'mapped':''}">${c.mapped?'✓ ':''} ${c.field}${c.mapped?' ← '+c.col:' (not found)'}</span>`).join('');document.getElementById('team-xls-preview').innerHTML=`<div class="fw-bold mb-2" style="color:var(--g1);font-size:13px">Found ${pendingTeamsImport.length} teams:</div><div style="max-height:320px;overflow-y:auto">${pendingTeamsImport.map(t=>`<div class="team-import-row"><div style="width:6px;height:48px;border-radius:3px;background:${t.color};flex-shrink:0"></div><div style="width:36px;height:36px;border-radius:50%;background:${t.color};display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🛡️</div><div class="flex-fill"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:${t.color}">${t.name}</div>${t.owner?`<div class="small text-muted">${t.owner}</div>`:''}</div><div class="text-end"><div class="fw-bold" style="color:var(--g1)">₹${t.budget}</div></div></div>`).join('')}</div>`;openMd('md-team-xls');e.target.value='';};reader.readAsBinaryString(file);}
-function confirmTeamImport(){let added=0,skipped=0;pendingTeamsImport.forEach(t=>{if(teams.find(x=>x.name.toLowerCase()===t.name.toLowerCase())){skipped++;return;}teams.push({id:Date.now()+Math.random(),name:t.name,owner:t.owner||'',budget:t.budget,remaining:t.budget,color:t.color||'#1B6B3A'});added++;});save();closeMd('md-team-xls');document.getElementById('team-xls-info').style.display='block';setTimeout(()=>{document.getElementById('team-import-fill').style.width='100%';},100);renderTeams();toast(`✅ Imported ${added} teams${skipped?' ('+skipped+' duplicates skipped)':''}`);pendingTeamsImport=[];}
+// TEAMS EXCEL
+function handleTeamsXls(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const wb=XLSX.read(ev.target.result,{type:'binary'});const norm=s=>String(s||'').toLowerCase().replace(/[\s_\-().*/]/g,'');const TCOL={name:['teamname','name','team'],owner:['ownername','owner','captain','manager'],budget:['budget','totalbudget','teambudget'],color:['color','colour','teamcolor','hex']};const findCol=(keys,f)=>{for(const a of TCOL[f]||[])for(const k of keys)if(norm(k)===a)return k;return null;};const pSheet=wb.Sheets['Teams']||wb.Sheets[wb.SheetNames[0]];if(!pSheet){toast('No Teams sheet found','error');return;}const rows=XLSX.utils.sheet_to_json(pSheet,{raw:false,defval:''});if(!rows.length){toast('Excel sheet is empty','error');return;}const keys=Object.keys(rows[0]);const mapped={};Object.keys(TCOL).forEach(f=>{mapped[f]=findCol(keys,f);});const g=(row,f)=>mapped[f]?String(row[mapped[f]]||'').trim():'';pendingTeamsImport=rows.map(row=>({name:g(row,'name'),owner:g(row,'owner'),budget:parseInt(g(row,'budget'))||50000,color:g(row,'color')||AUTO_COLORS[Math.floor(Math.random()*AUTO_COLORS.length)]})).filter(t=>t.name);if(!pendingTeamsImport.length){toast('No valid teams found','error');return;}const chips=Object.keys(TCOL).map(f=>({field:f,mapped:!!mapped[f],col:mapped[f]}));document.getElementById('team-col-chips').innerHTML=chips.map(c=>`<span class="col-chip ${c.mapped?'mapped':''}">${c.mapped?'✓ ':''} ${c.field}${c.mapped?' ← '+c.col:' (not found)'}</span>`).join('');document.getElementById('team-xls-preview').innerHTML=`<div class="fw-bold mb-2" style="color:var(--g1);font-size:13px">Found ${pendingTeamsImport.length} teams:</div><div style="max-height:320px;overflow-y:auto">${pendingTeamsImport.map(t=>`<div class="team-import-row"><div style="width:6px;height:48px;border-radius:3px;background:${t.color};flex-shrink:0"></div><div style="width:36px;height:36px;border-radius:50%;background:${t.color};display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🛡️</div><div class="flex-fill"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:${t.color}">${t.name}</div>${t.owner?`<div class="small text-muted">${t.owner}</div>`:''}</div><div class="text-end"><div class="fw-bold" style="color:var(--g1)">₹${t.budget}</div></div></div>`).join('')}</div>`;openMd('md-team-xls');e.target.value='';};reader.readAsBinaryString(file);}
+function confirmTeamImport(){let added=0,skipped=0;pendingTeamsImport.forEach(t=>{if(teams.find(x=>x.name.toLowerCase()===t.name.toLowerCase())){skipped++;return;}teams.push({id:Date.now()+Math.random(),name:t.name,owner:t.owner||'',budget:t.budget,remaining:t.budget,color:t.color||'#1B6B3A'});added++;});save();closeMd('md-team-xls');document.getElementById('team-xls-info').style.display='block';setTimeout(()=>{document.getElementById('team-import-fill').style.width='100%';},100);renderTeams();toast(`✅ Imported ${added} teams${skipped?' ('+skipped+' duplicates)':''}`);pendingTeamsImport=[];}
 function dlTeamTemplate(){const wb=XLSX.utils.book_new();const rows=[['Team Name','Owner Name','Budget','Color (hex)'],['Mumbai Tigers','Rajesh Patel','50000','#E53935'],['Delhi Warriors','Suresh Shah','50000','#1E88E5'],['Chennai Kings','Amit Desai','50000','#FFB300']];XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'Teams');XLSX.writeFile(wb,'KPL_Teams_Template.xlsx');toast('Teams template downloaded ✓');}
 
-// ═══ PLAYERS ═══
+// PLAYERS
 let pFilt='all';
 const roleClass={Batsman:'b-bat',Bowler:'b-bowl','All-rounder':'b-all','Wicket-keeper':'b-wk'};
 function renderPlayers(f){
@@ -1164,58 +1110,22 @@ function renderPlayers(f){
   document.getElementById('cnt-unsold').textContent=`(${players.filter(p=>p.status==='unsold').length})`;
   const ir=(icon,label,val,c='')=>val?`<div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #f0f0f0"><span class="small text-muted">${icon} ${label}</span><span class="small fw-bold" style="${c?'color:'+c:''}">${val}</span></div>`:'';
   document.getElementById('players-grid').innerHTML=list.map((p,li)=>{const tm=teams.find(t=>t.id===p.teamId);const ph=getPhotoByIndex(p);const idx=players.indexOf(p)+1;const hasImg=!!ph;const photoEl=ph?`<img src="${ph}" alt="${p.name}" onerror="this.parentElement.innerHTML='🏏'">`:'🏏';
-  return`<div class="col-md-6 col-lg-4 col-xl-3"><div class="player-card h-100"><div class="d-flex gap-2 align-items-start p-3 pb-2"><div class="player-photo" style="cursor:${hasImg?'zoom-in':'default'}">${photoEl}</div><div class="flex-fill" style="min-width:0"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div class="d-flex gap-1 flex-wrap mt-1"><span class="kpl-badge ${roleClass[p.role]||'b-bat'}">${p.role}</span><span class="kpl-badge" style="background:#F5F5F5;color:#616161">${p.batting}</span><span class="kpl-badge ${p.status==='sold'?'b-sold':'b-unsold'}">${p.status==='sold'?'✅ SOLD':'❌'}</span></div></div></div><div class="px-3 pb-1">${ir('📅','DOB',p.dob)}${ir('🏘','Village',p.village)}${ir('💰','Base Price','₹'+p.price,'var(--gold)')}${p.status==='sold'?ir('🔨','Sold','₹'+p.soldPrice,'var(--g1)'):''}${p.status==='sold'&&tm?`<div class="d-flex justify-content-between align-items-center py-1"><span class="small text-muted">🏆 Team</span><span class="small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</span></div>`:''}</div><div class="d-flex border-top border-bottom text-center" style="border-color:var(--border)!important"><div class="flex-fill py-2"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800">${p.matches}</div><div class="small text-muted" style="font-size:9px">MAT</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--g1)">${p.runs}</div><div class="small text-muted" style="font-size:9px">RUNS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#E65100">${p.wickets}</div><div class="small text-muted" style="font-size:9px">WKTS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--blue)">${p.sr}</div><div class="small text-muted" style="font-size:9px">SR</div></div></div><div class="d-flex justify-content-between align-items-center px-3 py-2"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:${p.status==='sold'?'var(--g1)':'var(--gold)'}">₹${p.status==='sold'?p.soldPrice:p.price}</div></div>${tm?`<div class="text-end small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</div>`:''}</div><div class="d-flex gap-2 px-3 pb-3"><button class="btn btn-sm btn-kpl btn-kpl-outline flex-fill" onclick="editPlayer(${p.id})"><i class="bi bi-pencil me-1"></i>Edit</button><button class="btn btn-sm btn-kpl btn-kpl-gold" title="Assign photo" onclick="openImgSel(${p.id})"><i class="bi bi-image"></i></button><button class="btn btn-sm btn-kpl btn-kpl-red flex-fill" onclick="askDel('player',${p.id},\`${p.name}\`)"><i class="bi bi-trash3 me-1"></i>Del</button></div></div></div>`;
+  return`<div class="col-md-6 col-lg-4 col-xl-3"><div class="player-card h-100"><div class="d-flex gap-2 align-items-start p-3 pb-2"><div class="player-photo" style="cursor:${hasImg?'zoom-in':'default'}">${photoEl}</div><div class="flex-fill" style="min-width:0"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div class="d-flex gap-1 flex-wrap mt-1"><span class="kpl-badge ${roleClass[p.role]||'b-bat'}">${p.role}</span><span class="kpl-badge" style="background:#F5F5F5;color:#616161">${p.batting}</span><span class="kpl-badge ${p.status==='sold'?'b-sold':'b-unsold'}">${p.status==='sold'?'✅ SOLD':'❌'}</span></div></div></div><div class="px-3 pb-1">${ir('📅','DOB',p.dob)}${ir('🏘','Village',p.village)}${ir('📞','Contact',p.contact)}${ir('💰','Base Price','₹'+p.price,'var(--gold)')}${p.status==='sold'?`<div class="sold-edit-row"><span class="small text-muted me-1">🔨 Sold:</span><span class="sold-price-display">₹${p.soldPrice}</span><button class="pencil-edit-btn ms-1" onclick="openEditPrice(${p.id})" title="Edit sold price"><i class="bi bi-pencil-fill"></i></button></div>`:''} ${p.status==='sold'&&tm?`<div class="d-flex justify-content-between align-items-center py-1"><span class="small text-muted">🏆 Team</span><span class="small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</span></div>`:''}</div><div class="d-flex border-top border-bottom text-center" style="border-color:var(--border)!important"><div class="flex-fill py-2"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800">${p.matches}</div><div class="small text-muted" style="font-size:9px">MAT</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--g1)">${p.runs}</div><div class="small text-muted" style="font-size:9px">RUNS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#E65100">${p.wickets}</div><div class="small text-muted" style="font-size:9px">WKTS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--blue)">${p.sr}</div><div class="small text-muted" style="font-size:9px">SR</div></div></div><div class="d-flex justify-content-between align-items-center px-3 py-2"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:${p.status==='sold'?'var(--g1)':'var(--gold)'}">₹${p.status==='sold'?p.soldPrice:p.price}</div></div>${tm?`<div class="text-end small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</div>`:''}</div><div class="d-flex gap-2 px-3 pb-3"><button class="btn btn-sm btn-kpl btn-kpl-outline flex-fill" onclick="editPlayer(${p.id})"><i class="bi bi-pencil me-1"></i>Edit</button><button class="btn btn-sm btn-kpl btn-kpl-gold" title="Assign photo" onclick="openImgSel(${p.id})"><i class="bi bi-image"></i></button><button class="btn btn-sm btn-kpl btn-kpl-red flex-fill" onclick="askDel('player',${p.id},\`${p.name}\`)"><i class="bi bi-trash3 me-1"></i>Del</button></div></div></div>`;
   }).join('')||`<div class="col-12 text-center py-5 text-muted">No players found.</div>`;
-  setTimeout(()=>{
-    document.querySelectorAll('#players-grid .player-photo').forEach((ph,i)=>{
-      const p=list[i];if(!p)return;const src=getPhotoByIndex(p);
-      if(src){ph.style.cursor='zoom-in';ph.onclick=()=>openLightbox(src,p.name);}
-    });
-  },50);
+  setTimeout(()=>{document.querySelectorAll('#players-grid .player-photo').forEach((ph,i)=>{const p=list[i];if(!p)return;const src=getPhotoByIndex(p);if(src){ph.style.cursor='zoom-in';ph.onclick=()=>openLightbox(src,p.name);}});},50);
 }
 function filt(f,el){document.querySelectorAll('#filter-tabs .ftab').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderPlayers(f);}
 function resetPForm(){document.getElementById('pm-title').innerHTML='<i class="bi bi-person-plus me-2"></i>Add Player';document.getElementById('pm-id').value='';document.getElementById('pm-photo-preview').innerHTML='📷';document.getElementById('pm-photo-url').value='';['pm-name','pm-village','pm-contact'].forEach(id=>document.getElementById(id).value='');document.getElementById('pm-dob').value='';document.getElementById('pm-role').value='Batsman';document.getElementById('pm-batting').value='Right';document.getElementById('pm-tshirt').value='L';document.getElementById('pm-price').value='500';document.getElementById('pm-m').value='0';document.getElementById('pm-r').value='0';document.getElementById('pm-w').value='0';document.getElementById('pm-sr').value='0';pmPhotoData='';}
 let pmPhotoData='';
 function handlePMPhoto(e){const f=e.target.files[0];if(!f)return;resizeAndRead_wh(f,200,260,data=>{pmPhotoData=data;document.getElementById('pm-photo-preview').innerHTML=`<img src="${data}" style="width:100%;height:100%;object-fit:cover;border-radius:7px">`;});}
 function previewURL(url){if(!url)return;pmPhotoData=url;document.getElementById('pm-photo-preview').innerHTML=`<img src="${url}" onerror="this.parentElement.innerHTML='📷'" style="width:100%;height:100%;object-fit:cover;border-radius:7px">`;}
-function savePlayer(){
-  const id=document.getElementById('pm-id').value;const name=document.getElementById('pm-name').value.trim();if(!name)return toast('Player name required','error');
-  const price=safePrice(document.getElementById('pm-price').value);
-  const data={name,dob:document.getElementById('pm-dob').value,village:document.getElementById('pm-village').value,contact:document.getElementById('pm-contact').value,role:document.getElementById('pm-role').value,batting:document.getElementById('pm-batting').value,tshirt:document.getElementById('pm-tshirt').value,price,matches:parseInt(document.getElementById('pm-m').value)||0,runs:parseInt(document.getElementById('pm-r').value)||0,wickets:parseInt(document.getElementById('pm-w').value)||0,sr:parseFloat(document.getElementById('pm-sr').value)||0,photo:pmPhotoData||document.getElementById('pm-photo-url').value||''};
-  if(id){const p=players.find(x=>x.id==id);if(p)Object.assign(p,data);}
-  else{players.push({id:Date.now()+Math.random(),...data,status:'unsold',soldPrice:0,teamId:null,imgIndex:players.length+1});}
-  save();closeMd('md-player');renderPlayers();toast('Player saved ✓');pmPhotoData='';
-}
+function savePlayer(){const id=document.getElementById('pm-id').value;const name=document.getElementById('pm-name').value.trim();if(!name)return toast('Player name required','error');const price=safePrice(document.getElementById('pm-price').value);const data={name,dob:document.getElementById('pm-dob').value,village:document.getElementById('pm-village').value,contact:document.getElementById('pm-contact').value,role:document.getElementById('pm-role').value,batting:document.getElementById('pm-batting').value,tshirt:document.getElementById('pm-tshirt').value,price,matches:parseInt(document.getElementById('pm-m').value)||0,runs:parseInt(document.getElementById('pm-r').value)||0,wickets:parseInt(document.getElementById('pm-w').value)||0,sr:parseFloat(document.getElementById('pm-sr').value)||0,photo:pmPhotoData||document.getElementById('pm-photo-url').value||''};if(id){const p=players.find(x=>x.id==id);if(p)Object.assign(p,data);}else{players.push({id:Date.now()+Math.random(),...data,status:'unsold',soldPrice:0,teamId:null,imgIndex:players.length+1});}save();closeMd('md-player');renderPlayers();toast('Player saved ✓');pmPhotoData='';}
 function editPlayer(id){const p=players.find(x=>x.id===id);if(!p)return;document.getElementById('pm-title').innerHTML='<i class="bi bi-pencil me-2"></i>Edit Player';document.getElementById('pm-id').value=p.id;document.getElementById('pm-name').value=p.name;document.getElementById('pm-dob').value=p.dob||'';document.getElementById('pm-village').value=p.village||'';document.getElementById('pm-contact').value=p.contact||'';document.getElementById('pm-role').value=p.role||'Batsman';document.getElementById('pm-batting').value=p.batting||'Right';document.getElementById('pm-tshirt').value=p.tshirt||'L';document.getElementById('pm-price').value=safePrice(p.price);document.getElementById('pm-m').value=p.matches||0;document.getElementById('pm-r').value=p.runs||0;document.getElementById('pm-w').value=p.wickets||0;document.getElementById('pm-sr').value=p.sr||0;const ph=getPhotoByIndex(p);pmPhotoData=ph;document.getElementById('pm-photo-preview').innerHTML=ph?`<img src="${ph}" style="width:100%;height:100%;object-fit:cover;border-radius:7px">`:'📷';document.getElementById('pm-photo-url').value=p.photo&&p.photo.startsWith('http')?p.photo:'';openMd('md-player');}
 
-// ═══ EXCEL PLAYER IMPORT ═══
-function handleXls(e){
-  const file=e.target.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    const wb=XLSX.read(ev.target.result,{type:'binary'});const norm=s=>String(s||'').toLowerCase().replace(/[\s_\-().*/]/g,'');
-    const COL_MAP={name:['fullname','name','playername','player'],dob:['dateofbirth','dob','birthdate'],village:['village','city','town','place'],contact:['contactnumber','contact','phone','mobile'],role:['preferredroleinteam','preferredrole','role','position'],batting:['battinghandpreference','battinghand','batting','bat'],tshirt:['tshirtsize','tshirt','size','shirt'],photo:['passportsizephoto','photo','image','photourl','pic'],price:['baseprice','price','base','startingprice','auctionprice','amount']};
-    const findCol=(keys,field)=>{for(const a of (COL_MAP[field]||[]))for(const k of keys)if(norm(k)===norm(a))return k;return null;};
-    const statsMap={matches:['matches','matchesplayed','mat'],runs:['runs','totalruns','runscored'],wickets:['wickets','totalwickets','wkts'],sr:['strikerate','sr','strike']};
-    let imported=0;const chips=[];const mf={};
-    const pSheet=wb.Sheets['Players']||wb.Sheets[wb.SheetNames[0]];
-    if(pSheet){
-      const rows=XLSX.utils.sheet_to_json(pSheet,{raw:false,defval:''});
-      if(rows.length){
-        const keys=Object.keys(rows[0]);Object.keys(COL_MAP).forEach(f=>{const found=findCol(keys,f);mf[f]=found;chips.push({field:f,col:found,mapped:!!found});});
-        Object.keys(statsMap).forEach(f=>{if(!mf[f]){for(const a of statsMap[f])for(const k of keys)if(norm(k)===norm(a)){mf[f]=k;break;}}});
-        document.getElementById('col-map-chips').innerHTML=chips.map(c=>`<span class="col-chip ${c.mapped?'mapped':''}">${c.mapped?'✓ ':''} ${c.field}${c.mapped?' ← '+c.col:' (not found)'}</span>`).join('');
-        document.getElementById('xls-map-info').style.display='block';
-        rows.forEach(row=>{const g=f=>(mf[f]?String(row[mf[f]]||'').trim():'');const name=g('name');if(!name)return;const rawPrice=parseFloat(g('price').replace(/[^0-9.]/g,''));const price=(!isNaN(rawPrice)&&rawPrice>0)?rawPrice:DEFAULT_BASE_PRICE;players.push({id:Date.now()+Math.random(),name,dob:g('dob'),village:g('village'),contact:g('contact'),role:g('role')||'Batsman',batting:g('batting')||'Right',tshirt:g('tshirt')||'M',price,matches:parseInt(g('matches'))||0,runs:parseInt(g('runs'))||0,wickets:parseInt(g('wickets'))||0,sr:parseFloat(g('sr'))||0,photo:g('photo')||'',status:'unsold',soldPrice:0,teamId:null,imgIndex:players.length+1});imported++;});
-        setTimeout(()=>{document.getElementById('import-fill').style.width='100%';},100);
-      }
-    }
-    const tSheet=wb.Sheets['Teams'];if(tSheet){const rows=XLSX.utils.sheet_to_json(tSheet,{raw:false,defval:''});rows.forEach(row=>{const keys=Object.keys(row);const g=(...aliases)=>{for(const a of aliases)for(const k of keys)if(String(k||'').toLowerCase().replace(/\s/g,'')===a)return String(row[k]||'').trim();return'';};const name=g('teamname','name','team');if(!name)return;if(teams.find(t=>t.name.toLowerCase()===name.toLowerCase()))return;const budget=parseInt(g('budget','totalbudget'))||50000;teams.push({id:Date.now()+Math.random(),name,owner:g('ownername','owner','captain'),budget,remaining:budget,color:AUTO_COLORS[teams.length%AUTO_COLORS.length]});});}
-    save();autoAssignByIndex();renderPlayers();renderImgFolder();toast(`✅ Imported ${imported} players`);e.target.value='';
-  };reader.readAsBinaryString(file);
-}
+// EXCEL PLAYER IMPORT
+function handleXls(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const wb=XLSX.read(ev.target.result,{type:'binary'});const norm=s=>String(s||'').toLowerCase().replace(/[\s_\-().*/]/g,'');const COL_MAP={name:['fullname','name','playername','player'],dob:['dateofbirth','dob','birthdate'],village:['village','city','town','place'],contact:['contactnumber','contact','phone','mobile'],role:['preferredroleinteam','preferredrole','role','position'],batting:['battinghandpreference','battinghand','batting','bat'],tshirt:['tshirtsize','tshirt','size','shirt'],photo:['passportsizephoto','photo','image','photourl','pic'],price:['baseprice','price','base','startingprice','auctionprice','amount']};const findCol=(keys,field)=>{for(const a of(COL_MAP[field]||[]))for(const k of keys)if(norm(k)===norm(a))return k;return null;};const statsMap={matches:['matches','matchesplayed','mat'],runs:['runs','totalruns','runscored'],wickets:['wickets','totalwickets','wkts'],sr:['strikerate','sr','strike']};let imported=0;const chips=[];const mf={};const pSheet=wb.Sheets['Players']||wb.Sheets[wb.SheetNames[0]];if(pSheet){const rows=XLSX.utils.sheet_to_json(pSheet,{raw:false,defval:''});if(rows.length){const keys=Object.keys(rows[0]);Object.keys(COL_MAP).forEach(f=>{const found=findCol(keys,f);mf[f]=found;chips.push({field:f,col:found,mapped:!!found});});Object.keys(statsMap).forEach(f=>{if(!mf[f]){for(const a of statsMap[f])for(const k of keys)if(norm(k)===norm(a)){mf[f]=k;break;}}});document.getElementById('col-map-chips').innerHTML=chips.map(c=>`<span class="col-chip ${c.mapped?'mapped':''}">${c.mapped?'✓ ':''} ${c.field}${c.mapped?' ← '+c.col:' (not found)'}</span>`).join('');document.getElementById('xls-map-info').style.display='block';rows.forEach(row=>{const g=f=>(mf[f]?String(row[mf[f]]||'').trim():'');const name=g('name');if(!name)return;const rawPrice=parseFloat(g('price').replace(/[^0-9.]/g,''));const price=(!isNaN(rawPrice)&&rawPrice>0)?rawPrice:DEFAULT_BASE_PRICE;players.push({id:Date.now()+Math.random(),name,dob:g('dob'),village:g('village'),contact:g('contact'),role:g('role')||'Batsman',batting:g('batting')||'Right',tshirt:g('tshirt')||'M',price,matches:parseInt(g('matches'))||0,runs:parseInt(g('runs'))||0,wickets:parseInt(g('wickets'))||0,sr:parseFloat(g('sr'))||0,photo:g('photo')||'',status:'unsold',soldPrice:0,teamId:null,imgIndex:players.length+1});imported++;});setTimeout(()=>{document.getElementById('import-fill').style.width='100%';},100);}}const tSheet=wb.Sheets['Teams'];if(tSheet){const rows=XLSX.utils.sheet_to_json(tSheet,{raw:false,defval:''});rows.forEach(row=>{const keys=Object.keys(row);const g=(...aliases)=>{for(const a of aliases)for(const k of keys)if(String(k||'').toLowerCase().replace(/\s/g,'')===a)return String(row[k]||'').trim();return'';};const name=g('teamname','name','team');if(!name)return;if(teams.find(t=>t.name.toLowerCase()===name.toLowerCase()))return;const budget=parseInt(g('budget','totalbudget'))||50000;teams.push({id:Date.now()+Math.random(),name,owner:g('ownername','owner','captain'),budget,remaining:budget,color:AUTO_COLORS[teams.length%AUTO_COLORS.length]});});}save();autoAssignByIndex();renderPlayers();renderImgFolder();toast(`✅ Imported ${imported} players`);e.target.value='';};reader.readAsBinaryString(file);}
 
-// ═══ AUCTION ═══
+// AUCTION
 function toggleUnsoldPanel(){unsoldPanelOpen=!unsoldPanelOpen;document.getElementById('unsold-panel').style.display=unsoldPanelOpen?'block':'none';if(unsoldPanelOpen)renderUnsoldPanel();}
 function renderUnsoldPanel(){
   const unsold=players.filter(p=>p.status==='unsold');document.getElementById('unsold-count-badge').textContent=unsold.length;
@@ -1229,11 +1139,9 @@ function renderAuction(){
   sel.innerHTML='<option value="">— Choose Team —</option>';
   teams.forEach(t=>{const full=isTeamFull(t.id);const opt=document.createElement('option');opt.value=t.id;opt.textContent=`${full?'[FULL] ':''}${t.name}${t.owner?' ('+t.owner+')':''}  |  Left: ₹${t.remaining}  |  ${teamPlayerCount(t.id)}/${MAX_TEAM}`;if(full)opt.style.color='#C62828';if(String(t.id)===String(curTid))opt.selected=true;sel.appendChild(opt);});
   const selTid=sel.value;updateTeamFullWarn(selTid);
-
-  // Update team count in header
   const tcEl=document.getElementById('tracker-team-count');if(tcEl)tcEl.textContent=`${teams.length} teams`;
 
-  // TEAM TRACKER (scrollable panel)
+  // TEAM TRACKER
   const fs=trackerFontSize;
   const trackerPanel=document.getElementById('a-teams-panel');
   trackerPanel.innerHTML=teams.map(t=>{
@@ -1258,18 +1166,16 @@ function renderAuction(){
       <div class="col-4"><div class="tracker-stat-val" style="color:var(--red);font-size:${Math.round(fs*1.3)}px">₹${spent}</div><div class="tracker-stat-lbl" style="font-size:${Math.round(fs*0.75)}px">SPENT</div></div>
       <div class="col-4"><div class="tracker-stat-val" style="color:var(--g1);font-size:${Math.round(fs*1.3)}px">₹${t.remaining}</div><div class="tracker-stat-lbl" style="font-size:${Math.round(fs*0.75)}px">LEFT</div></div>
     </div>
-    ${tp.length?`<div>${tp.map(p=>`<div class="tracker-player-row" style="font-size:${fs}px"><span class="fw-bold">${p.name}</span><span class="tracker-player-price" style="color:${t.color||'var(--g1)'};font-size:${Math.round(fs*1.1)}px">₹${p.soldPrice}</span></div>`).join('')}</div>`:`<div class="small text-muted" style="font-style:italic;font-size:${Math.round(fs*0.9)}px">No players yet</div>`}
+    ${tp.length?`<div>${tp.map(p=>`<div class="tracker-player-row" style="font-size:${fs}px"><span class="fw-bold">${p.name}</span><div class="d-flex align-items-center gap-1"><span class="tracker-player-price" style="color:${t.color||'var(--g1)'};font-size:${Math.round(fs*1.1)}px">₹${p.soldPrice}</span><button onclick="openEditPrice(${p.id})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:10px;padding:1px 4px;border-radius:4px" title="Edit price"><i class="bi bi-pencil-fill"></i></button></div></div>`).join('')}</div>`:`<div class="small text-muted" style="font-style:italic;font-size:${Math.round(fs*0.9)}px">No players yet</div>`}
   </div>`;
   }).join('')||'<p class="small text-muted p-3">No teams yet</p>';
 
   const tSlider=document.getElementById('tracker-font-slider');if(tSlider)tSlider.value=trackerFontSize;
   const iSlider=document.getElementById('info-font-slider');if(iSlider)iSlider.value=infoFontSize;
 
-  // Recently sold
   const sold=players.filter(p=>p.status==='sold').slice(-8).reverse();
-  document.getElementById('a-sold').innerHTML=sold.map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<div class="si-row"><div><div class="fw-bold" style="font-size:12px">${p.name}</div><div class="d-flex align-items-center gap-1 small text-muted">${tm?teamColorBlock(tm,true,12):''}${tm?.name||'—'}</div></div><div class="si-price">₹${p.soldPrice}</div></div>`;}).join('')||'<p class="small text-muted">No sales yet</p>';
+  document.getElementById('a-sold').innerHTML=sold.map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<div class="si-row"><div><div class="fw-bold" style="font-size:12px">${p.name}</div><div class="d-flex align-items-center gap-1 small text-muted">${tm?teamColorBlock(tm,true,12):''}${tm?.name||'—'}</div></div><div class="d-flex align-items-center gap-1"><div class="si-price">₹${p.soldPrice}</div><button onclick="openEditPrice(${p.id})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:1px 4px;border-radius:4px" title="Edit"><i class="bi bi-pencil-fill"></i></button></div></div>`;}).join('')||'<p class="small text-muted">No sales yet</p>';
 
-  // Init scroll controls after render
   setTimeout(initTrackerScroll,150);
 
   const unsold=players.filter(p=>p.status==='unsold');const countEl=document.getElementById('a-unsold-count');
@@ -1285,23 +1191,20 @@ function renderAuction(){
     if(countEl)countEl.textContent=unsold.length+' unsold';
     document.getElementById('a-plist').innerHTML=unsold.map(p=>{const idx=players.indexOf(p);return`<div class="a-ptab ${idx===curAI?'active':''}" onclick="selAP(${idx})" title="${p.role} · ₹${p.price}">${p.name}</div>`;}).join('');
     const dpSel=document.getElementById('a-player-select');if(dpSel){dpSel.innerHTML='<option value="">— Select Player to Auction —</option>';unsold.forEach(p=>{const idx=players.indexOf(p);const opt=document.createElement('option');opt.value=idx;opt.textContent=`#${idx+1} ${p.name} (${p.role}) — ₹${p.price}`;if(idx===curAI)opt.selected=true;dpSel.appendChild(opt);});}
-    if(curAI===-1||(curAI>=0&&players[curAI]?.status!=='unsold')){curAI=players.indexOf(unsold[0]);save();updACenter();}else{updACenter();}
+    if(curAI===-1||(curAI>=0&&players[curAI]?.status!=='unsold')){curAI=players.indexOf(unsold[0]);save();updACenter();}else updACenter();
     if(unsoldPanelOpen)renderUnsoldPanel();
   }
 }
 
-function updateTeamFullWarn(tid){const warn=document.getElementById('team-full-warn');if(!warn)return;if(tid&&isTeamFull(parseInt(tid)||tid)){warn.style.display='flex';}else{warn.style.display='none';}}
+function updateTeamFullWarn(tid){const warn=document.getElementById('team-full-warn');if(!warn)return;if(tid&&isTeamFull(parseInt(tid)||tid))warn.style.display='flex';else warn.style.display='none';}
 function selAP(idx){if(!players[idx]||players[idx].status!=='unsold'){toast('This player is already sold','error');return;}curAI=idx;save();updACenter();renderAuction();if(unsoldPanelOpen)renderUnsoldPanel();}
 function updACenter(){
   const p=players[curAI];if(!p||p.status!=='unsold')return;
   document.getElementById('a-name').textContent=p.name;document.getElementById('a-role').textContent=`${p.role} · ${p.batting} Hand`;
-  const basePrice=safePrice(p.price);
-  document.getElementById('a-base').textContent=`₹${basePrice}`;
-  document.getElementById('a-amt').value=basePrice;
-  const ph=getPhotoByIndex(p);
-  const photoBox=document.getElementById('a-photo');
-  if(ph){photoBox.innerHTML=`<img src="${ph}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span>🏏</span>'"><div class="a-photo-zoom-hint">🔍 Click to zoom</div>`;}
-  else{photoBox.innerHTML=`<span>🏏</span><div class="a-photo-zoom-hint">🔍 Click to zoom</div>`;}
+  const basePrice=safePrice(p.price);document.getElementById('a-base').textContent=`₹${basePrice}`;document.getElementById('a-amt').value=basePrice;
+  const ph=getPhotoByIndex(p);const photoBox=document.getElementById('a-photo');
+  if(ph)photoBox.innerHTML=`<img src="${ph}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span>🏏</span>'"><div class="a-photo-zoom-hint">🔍 Click to zoom</div>`;
+  else photoBox.innerHTML=`<span>🏏</span><div class="a-photo-zoom-hint">🔍 Click to zoom</div>`;
   const fs=infoFontSize;
   const ir=(icon,label,val,c='')=>val?`<div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #f0f0f0"><span style="color:var(--muted);font-size:${fs}px">${icon} ${label}</span><span style="font-weight:700;font-size:${fs}px;${c?'color:'+c:''}">${val}</span></div>`:'';
   const pIdx=players.indexOf(p)+1;
@@ -1319,7 +1222,7 @@ function doSold(){
   const p=players[curAI];if(p.status!=='unsold')return toast('Player already processed','error');
   const tid=document.getElementById('a-team').value;if(!tid)return toast('Select a team','error');
   const t=teams.find(x=>String(x.id)===String(tid));if(!t)return;
-  if(isTeamFull(t.id))return toast(`⛔ ${t.name} is full! Max ${MAX_TEAM} players reached.`,'error');
+  if(isTeamFull(t.id))return toast(`⛔ ${t.name} is full!`,'error');
   const amt=parseFloat(document.getElementById('a-amt').value)||0;if(amt<0)return toast('Amount cannot be negative','error');
   if(amt>t.remaining)return toast(`⚠️ ${t.name} only has ₹${t.remaining} remaining!`,'error');
   document.getElementById('bc-player').textContent=p.name;document.getElementById('bc-team').textContent=t.name;document.getElementById('bc-team').style.color=t.color||'var(--blue)';document.getElementById('bc-amt').textContent=`₹${amt}`;
@@ -1341,44 +1244,170 @@ function refreshTeamsPanel(){updateTeamFullWarn(document.getElementById('a-team'
 function selAPFromDropdown(){const sel=document.getElementById('a-player-select');const idx=parseInt(sel.value);if(isNaN(idx))return;selAP(idx);}
 function loadSelectedPlayer(){const sel=document.getElementById('a-player-select');const idx=parseInt(sel.value);if(isNaN(idx)){toast('Select a player first','error');return;}selAP(idx);}
 
-// ═══ RESIZABLE PANELS ═══
+// RESIZABLE PANELS
 function makeResizablePanel(panelId,opts={}){
   const panel=document.getElementById(panelId);if(!panel)return;
   const heE=opts.eHandleId?document.getElementById(opts.eHandleId):null;
   const heS=opts.sHandleId?document.getElementById(opts.sHandleId):null;
   const heSE=opts.seHandleId?document.getElementById(opts.seHandleId):null;
   const heW=opts.wHandleId?document.getElementById(opts.wHandleId):null;
-  function makeResizer(handle,getDeltas){
-    if(!handle)return;let startX,startY,startW,startH;
-    const onStart=(cx,cy)=>{startX=cx;startY=cy;startW=panel.offsetWidth;startH=panel.offsetHeight;handle.classList.add('dragging');document.body.style.userSelect='none';document.body.style.cursor=handle.style.cursor||'se-resize';};
-    const onMove=(cx,cy)=>{const{dw,dh}=getDeltas(cx-startX,cy-startY);if(dw!==undefined){const nw=Math.max(opts.minW||180,startW+dw);panel.style.width=nw+'px';panel.style.minWidth='0';}if(dh!==undefined){const nh=Math.max(opts.minH||200,startH+dh);panel.style.height=nh+'px';panel.style.maxHeight=nh+'px';}setTimeout(initTrackerScroll,50);};
-    const onEnd=()=>{handle.classList.remove('dragging');document.body.style.userSelect='';document.body.style.cursor='';};
-    handle.addEventListener('mousedown',e=>{e.preventDefault();onStart(e.clientX,e.clientY);const mm=e2=>onMove(e2.clientX,e2.clientY);const mu=()=>{onEnd();document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};document.addEventListener('mousemove',mm);document.addEventListener('mouseup',mu);});
-    handle.addEventListener('touchstart',e=>{const t=e.touches[0];onStart(t.clientX,t.clientY);const tm=e2=>{e2.preventDefault();const t2=e2.touches[0];onMove(t2.clientX,t2.clientY);};const tu=()=>{onEnd();document.removeEventListener('touchmove',tm);document.removeEventListener('touchend',tu);};document.addEventListener('touchmove',tm,{passive:false});document.addEventListener('touchend',tu);},{passive:true});
-  }
-  makeResizer(heE,(dx,dy)=>({dw:dx}));
-  makeResizer(heW,(dx,dy)=>({dw:-dx}));
-  makeResizer(heS,(dx,dy)=>({dh:dy}));
-  makeResizer(heSE,(dx,dy)=>({dw:dx,dh:dy}));
+  function makeResizer(handle,getDeltas){if(!handle)return;let startX,startY,startW,startH;const onStart=(cx,cy)=>{startX=cx;startY=cy;startW=panel.offsetWidth;startH=panel.offsetHeight;handle.classList.add('dragging');document.body.style.userSelect='none';};const onMove=(cx,cy)=>{const{dw,dh}=getDeltas(cx-startX,cy-startY);if(dw!==undefined){const nw=Math.max(opts.minW||180,startW+dw);panel.style.width=nw+'px';panel.style.minWidth='0';}if(dh!==undefined){const nh=Math.max(opts.minH||200,startH+dh);panel.style.height=nh+'px';panel.style.maxHeight=nh+'px';}setTimeout(initTrackerScroll,50);};const onEnd=()=>{handle.classList.remove('dragging');document.body.style.userSelect='';};handle.addEventListener('mousedown',e=>{e.preventDefault();onStart(e.clientX,e.clientY);const mm=e2=>onMove(e2.clientX,e2.clientY);const mu=()=>{onEnd();document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};document.addEventListener('mousemove',mm);document.addEventListener('mouseup',mu);});handle.addEventListener('touchstart',e=>{const t=e.touches[0];onStart(t.clientX,t.clientY);const tm=e2=>{e2.preventDefault();const t2=e2.touches[0];onMove(t2.clientX,t2.clientY);};const tu=()=>{onEnd();document.removeEventListener('touchmove',tm);document.removeEventListener('touchend',tu);};document.addEventListener('touchmove',tm,{passive:false});document.addEventListener('touchend',tu);},{passive:true});}
+  makeResizer(heE,(dx,dy)=>({dw:dx}));makeResizer(heW,(dx,dy)=>({dw:-dx}));makeResizer(heS,(dx,dy)=>({dh:dy}));makeResizer(heSE,(dx,dy)=>({dw:dx,dh:dy}));
 }
 
-// ═══ EXPORT ═══
-function renderExport(){const sold=players.filter(p=>p.status==='sold');const highest=sold.length?sold.reduce((a,b)=>a.soldPrice>b.soldPrice?a:b):null;document.getElementById('ppt-preview').innerHTML=`<div class="row g-3"><div class="col-md-4"><div class="kpl-stat s-green"><div class="kpl-stat-v" style="color:var(--g1)">${sold.length}</div><div class="kpl-stat-l">Total Sold</div></div></div><div class="col-md-4"><div class="kpl-stat s-gold"><div class="kpl-stat-v" style="color:var(--gold);font-size:18px">${highest?.name||'—'}</div><div class="kpl-stat-l">Top Bid Player</div></div></div><div class="col-md-4"><div class="kpl-stat s-blue"><div class="kpl-stat-v" style="color:var(--blue)">₹${sold.reduce((a,b)=>a+(b.soldPrice||0),0).toLocaleString()}</div><div class="kpl-stat-l">Total Spent</div></div></div></div>`;}
+// ══════════════════════════════════
+// EXPORT & REPORTS
+// ══════════════════════════════════
+function renderExport(){
+  const sold=players.filter(p=>p.status==='sold');
+  const highest=sold.length?sold.reduce((a,b)=>a.soldPrice>b.soldPrice?a:b):null;
+  document.getElementById('ppt-preview').innerHTML=`<div class="row g-3"><div class="col-md-4"><div class="kpl-stat s-green"><div class="kpl-stat-v" style="color:var(--g1)">${sold.length}</div><div class="kpl-stat-l">Total Sold</div></div></div><div class="col-md-4"><div class="kpl-stat s-gold"><div class="kpl-stat-v" style="color:var(--gold);font-size:16px">${highest?.name||'—'}</div><div class="kpl-stat-l">Top Bid Player</div></div></div><div class="col-md-4"><div class="kpl-stat s-blue"><div class="kpl-stat-v" style="color:var(--blue)">₹${sold.reduce((a,b)=>a+(b.soldPrice||0),0).toLocaleString()}</div><div class="kpl-stat-l">Total Spent</div></div></div></div>`;
+
+  // Render sold players table
+  renderSoldTable();
+}
+
+function renderSoldTable(){
+  const sold=players.filter(p=>p.status==='sold');
+  const countEl=document.getElementById('sold-list-count');
+  if(countEl)countEl.textContent=`(${sold.length} players)`;
+  const wrap=document.getElementById('sold-players-table-wrap');if(!wrap)return;
+  if(!sold.length){wrap.innerHTML='<p class="text-muted small py-3 text-center">No players sold yet</p>';return;}
+  let sr=1;
+  const rows=sold.map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<tr>
+    <td style="font-weight:800;color:var(--muted)">${sr++}</td>
+    <td><div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900">${p.name}</div></td>
+    <td><span class="kpl-badge ${roleClass[p.role]||'b-bat'}">${p.role}</span></td>
+    <td style="font-size:12px;color:var(--muted)">${p.village||'—'}</td>
+    <td style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;color:var(--blue)">${p.contact||'—'}</td>
+    <td><div style="display:flex;align-items:center;gap:6px">${tm?teamColorBlock(tm,true,18):''}<span style="font-size:12px;font-weight:800;color:${tm?.color||'var(--g1)'}">${tm?.name||'—'}</span></div></td>
+    <td style="font-size:11px;color:var(--muted)">${tm?.owner||'—'}</td>
+    <td style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:var(--muted)">₹${p.price}</td>
+    <td>
+      <div style="display:flex;align-items:center;gap:5px">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:var(--g1)">₹${p.soldPrice}</span>
+        <button onclick="openEditPrice(${p.id})" class="pencil-edit-btn" title="Edit sold price"><i class="bi bi-pencil-fill"></i></button>
+      </div>
+    </td>
+    <td style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;color:${p.soldPrice>p.price?'var(--g1)':'var(--red)'}">
+      ${p.soldPrice>p.price?'▲ +₹'+(p.soldPrice-p.price):'₹'+p.price}
+    </td>
+  </tr>`;}).join('');
+  wrap.innerHTML=`<div class="sold-table-wrap"><table class="sold-table">
+    <thead><tr>
+      <th>#</th><th>Player Name</th><th>Role</th><th>Village</th><th>📞 Contact</th><th>Team</th><th>Owner</th><th>Base ₹</th><th>Sold ₹</th><th>Diff</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>
+  <div class="mt-2 text-end small text-muted">Total sold: <strong style="color:var(--g1)">₹${sold.reduce((a,b)=>a+(b.soldPrice||0),0).toLocaleString()}</strong></div>`;
+}
+
+// ══════════════════════════════════
+// EXCEL EXPORTS — ENHANCED
+// ══════════════════════════════════
 function dlTemplate(){const wb=XLSX.utils.book_new();const p=[['Full Name','Date of Birth (DD/MM/YYYY)','VILLAGE','Contact Number','Preferred Role in the Team','Batting Hand Preference','T-Shirt Size','Base Price (₹)','Matches','Runs','Wickets','Strike Rate','Image URL (optional)'],['Rahul Sharma','15/05/1995','Karamsad','9876543210','Batsman','Right','L','500','45','1200','0','138.5',''],['Amit Patel','22/03/1998','Tralsa','9812345678','Bowler','Right','M','500','38','180','62','110.2','']];const t=[['Team Name','Owner Name','Budget','Color (hex)'],['Mumbai Tigers','Rajesh Patel','50000','#E53935'],['Delhi Warriors','Suresh Shah','50000','#1E88E5']];XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(p),'Players');XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(t),'Teams');XLSX.writeFile(wb,'KPL_Template.xlsx');toast('Template downloaded ✓');}
-function dlAllPlayers(){const wb=XLSX.utils.book_new();const rows=[['ID','Full Name','DOB','Village','Contact','Role','Batting','T-Shirt','Base Price','Matches','Runs','Wickets','SR','Status','Sold Price','Team','Owner']];players.forEach(p=>{const t=teams.find(x=>x.id===p.teamId);rows.push([p.id,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.matches,p.runs,p.wickets,p.sr,p.status,p.soldPrice||0,t?t.name:'',t?t.owner||'':'']);});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'All Players');XLSX.writeFile(wb,'KPL_Players.xlsx');toast('Excel downloaded ✓');}
-function dlTeamsXls(){const wb=XLSX.utils.book_new();const rows=[['Team','Owner','Budget','Remaining','Spent','Players','Player Names']];teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);rows.push([t.name,t.owner||'',t.budget,t.remaining,t.budget-t.remaining,tp.length,tp.map(p=>p.name).join(', ')]);});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'Teams');XLSX.writeFile(wb,'KPL_Teams.xlsx');toast('Teams Excel downloaded ✓');}
-function dlTeamwise(){const wb=XLSX.utils.book_new();const sum=[['KPL Auction 2026 Summary'],[''],['Team','Owner','Budget','Spent','Remaining','Players']];teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);sum.push([t.name,t.owner||'',t.budget,t.budget-t.remaining,t.remaining,tp.length]);});sum.push([''],['Total Sold',players.filter(p=>p.status==='sold').length],['Total Spent',players.filter(p=>p.status==='sold').reduce((a,b)=>a+(b.soldPrice||0),0)]);XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sum),'Summary');teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);const rows=[['Player','Role','Batting','Village','Base Price','Sold Price','Matches','Runs','Wickets','SR']];tp.forEach(p=>rows.push([p.name,p.role,p.batting,p.village||'',p.price,p.soldPrice||0,p.matches,p.runs,p.wickets,p.sr]));rows.push([''],['Budget:',t.budget,'Spent:',t.budget-t.remaining,'Remaining:',t.remaining]);XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),t.name.replace(/[^a-zA-Z0-9 ]/g,'').slice(0,31));});XLSX.writeFile(wb,'KPL_Teamwise.xlsx');toast('Team-wise Excel downloaded ✓');}
+
+function dlAllPlayers(){const wb=XLSX.utils.book_new();const rows=[['#','Full Name','DOB','Village','Contact','Role','Batting','T-Shirt','Base Price','Matches','Runs','Wickets','SR','Status','Sold Price','Team','Team Owner']];players.forEach((p,i)=>{const t=teams.find(x=>x.id===p.teamId);rows.push([i+1,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.matches,p.runs,p.wickets,p.sr,p.status,p.soldPrice||0,t?t.name:'',t?t.owner||'':'']);});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'All Players');XLSX.writeFile(wb,'KPL_Players.xlsx');toast('Excel downloaded ✓');}
+
+// NEW: Sold Players List with price + contact
+function dlSoldPlayersList(){
+  const wb=XLSX.utils.book_new();
+  const sold=players.filter(p=>p.status==='sold');
+  const header=[['#','Player Name','DOB','Village','Contact (Phone)','Role','Batting Hand','T-Shirt','Base Price (₹)','Sold Price (₹)','Price Difference','Team Name','Team Owner','Matches','Runs','Wickets','Strike Rate']];
+  const rows=sold.map((p,i)=>{const t=teams.find(x=>x.id===p.teamId);return[i+1,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.soldPrice||0,(p.soldPrice||0)-p.price,t?t.name:'',t?t.owner||'':'',p.matches,p.runs,p.wickets,p.sr];});
+  const summaryRows=[...header,...rows];
+  // Add totals row
+  summaryRows.push([]);
+  summaryRows.push(['','TOTAL','','','','','','','',sold.reduce((a,b)=>a+(b.soldPrice||0),0),'','','','','','','']);
+  summaryRows.push(['','Count: '+sold.length+' players sold']);
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summaryRows),'Sold Players');
+  // Also add unsold sheet
+  const unsold=players.filter(p=>p.status==='unsold');
+  if(unsold.length){
+    const uRows=[['#','Player Name','Village','Contact','Role','Base Price (₹)'],...unsold.map((p,i)=>[i+1,p.name,p.village||'',p.contact||'',p.role,p.price])];
+    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(uRows),'Unsold Players');
+  }
+  XLSX.writeFile(wb,'KPL_Sold_Players_'+new Date().toLocaleDateString('en-IN').replace(/\//g,'-')+'.xlsx');
+  toast('✅ Sold players list downloaded!');}
+
+function dlTeamsXls(){const wb=XLSX.utils.book_new();const rows=[['Team','Owner','Budget (₹)','Remaining (₹)','Spent (₹)','Players','Player Names']];teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);rows.push([t.name,t.owner||'',t.budget,t.remaining,t.budget-t.remaining,tp.length,tp.map(p=>p.name).join(', ')]);});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'Teams');XLSX.writeFile(wb,'KPL_Teams.xlsx');toast('Teams Excel downloaded ✓');}
+
+// ENHANCED Team-wise with Contact
+function dlTeamwise(){
+  const wb=XLSX.utils.book_new();
+  const sum=[['KPL Auction 2026 — Team-wise Report'],['Generated:',new Date().toLocaleString()],[''],['Team','Owner','Budget (₹)','Spent (₹)','Remaining (₹)','Players Count']];
+  teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);sum.push([t.name,t.owner||'',t.budget,t.budget-t.remaining,t.remaining,tp.length]);});
+  sum.push(['']);sum.push(['Total Sold',players.filter(p=>p.status==='sold').length]);sum.push(['Total Spent (₹)',players.filter(p=>p.status==='sold').reduce((a,b)=>a+(b.soldPrice||0),0)]);
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sum),'Summary');
+  teams.forEach(t=>{
+    const tp=players.filter(p=>p.teamId===t.id);
+    const rows=[
+      [`Team: ${t.name}`,'','','','','','','','',''],
+      [`Owner: ${t.owner||'—'}`,'','','','','','','','',''],
+      [''],
+      ['#','Player Name','DOB','Village','Contact (Phone)','Role','Batting','T-Shirt','Base Price (₹)','Sold Price (₹)','Matches','Runs','Wickets','SR']
+    ];
+    tp.forEach((p,i)=>rows.push([i+1,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.soldPrice||0,p.matches,p.runs,p.wickets,p.sr]));
+    rows.push(['']);rows.push(['','Budget:',t.budget,'Spent:',t.budget-t.remaining,'Remaining:',t.remaining,'Players:',tp.length]);
+    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),t.name.replace(/[^a-zA-Z0-9 ]/g,'').slice(0,31));
+  });
+  XLSX.writeFile(wb,'KPL_Teamwise_'+new Date().toLocaleDateString('en-IN').replace(/\//g,'-')+'.xlsx');
+  toast('Team-wise Excel downloaded ✓');}
+
+// ══════════════════════════════════
+// DATA BACKUP & RESTORE
+// ══════════════════════════════════
+function exportBackup(){
+  const backup={
+    version:2,
+    exportedAt:new Date().toISOString(),
+    exportedBy:currentUser.name||'Guest',
+    teams:JSON.parse(JSON.stringify(teams)),
+    players:JSON.parse(JSON.stringify(players)),
+    meta:{curAI,trackerFontSize,infoFontSize}
+  };
+  const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  const dt=new Date().toLocaleDateString('en-IN').replace(/\//g,'-');
+  a.download=`KPL_Backup_${dt}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('✅ Backup downloaded!');}
+
+function importBackup(e){
+  const file=e.target.files[0];if(!file)return;
+  if(!confirm(`Restore from "${file.name}"? This will REPLACE all current data. Continue?`)){e.target.value='';return;}
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const backup=JSON.parse(ev.target.result);
+      if(!backup.teams||!backup.players){toast('Invalid backup file','error');return;}
+      teams=backup.teams||[];
+      players=backup.players||[];
+      curAI=backup.meta?.curAI??-1;
+      trackerFontSize=backup.meta?.trackerFontSize||15;
+      infoFontSize=backup.meta?.infoFontSize||14;
+      save();
+      const tSlider=document.getElementById('tracker-font-slider');if(tSlider)tSlider.value=trackerFontSize;
+      const iSlider=document.getElementById('info-font-slider');if(iSlider)iSlider.value=infoFontSize;
+      renderPage(curPage());
+      toast(`✅ Backup restored! ${players.length} players, ${teams.length} teams loaded.`);
+    }catch(err){toast('Failed to read backup file','error');console.error(err);}
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+
+// BULK ACTIONS
 function resetAuction(){if(!confirm('Reset all auction? Budgets restored, all players set to Unsold.'))return;players.forEach(p=>{p.status='unsold';p.soldPrice=0;p.teamId=null;});teams.forEach(t=>{t.remaining=t.budget;});curAI=-1;save();renderPage(curPage());toast('Auction reset ✓');}
 function delAllPlayers(){if(!confirm('Delete ALL players?'))return;players=[];save();renderPage(curPage());toast('All players deleted');}
 function delAllTeams(){if(!confirm('Delete ALL teams?'))return;teams=[];dbClear('logos');logoStore={};players.forEach(p=>{p.teamId=null;p.status='unsold';p.soldPrice=0;});save();renderPage(curPage());toast('All teams deleted');}
 function delAll(){if(!confirm('Delete EVERYTHING?'))return;teams=[];players=[];dbClear('images');dbClear('logos');dbClear('bgs');imgStore={};logoStore={};heroBg='';loginBgData='';localStorage.clear();save();renderPage(curPage());toast('All data deleted');}
 
-// ══════════════
 // BOOT
-// ══════════════
-initApp().then(()=>{
-  console.log('KPL Auction 2026 ready — Tracker scroll controls active');
-});
+initApp().then(()=>console.log('KPL Auction 2026 — All features loaded ✓'));
 </script>
 </body>
 </html>
