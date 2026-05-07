@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +46,12 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 .user-avatar-nav{width:34px;height:34px;border-radius:50%;background:var(--light);border:2px solid var(--gold2);display:flex;align-items:center;justify-content:center;font-size:14px;overflow:hidden;cursor:pointer;flex-shrink:0}
 .user-avatar-nav img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+
+/* ── NAV USER EDIT ── */
+.nav-edit-btn{background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);border-radius:7px;padding:3px 9px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .18s}
+.nav-edit-btn:hover{background:rgba(255,255,255,.28);color:#fff}
+.nav-name-input{background:rgba(255,255,255,.15);border:1.5px solid var(--gold2);border-radius:7px;padding:3px 8px;font-size:12px;font-weight:800;color:#fff;font-family:'Nunito',sans-serif;width:120px;outline:none}
+.nav-name-input::placeholder{color:rgba(255,255,255,.5)}
 
 /* PAGES */
 .kpl-page{display:none;padding:20px;max-width:1400px;margin:0 auto}
@@ -297,6 +304,13 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
 .backup-drop-zone:hover{border-color:var(--g2);background:#E8F5E9}
 .backup-drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 
+/* ── TEAM TRANSFER MODAL ── */
+.team-transfer-option{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;border:2px solid var(--border);cursor:pointer;transition:all .18s;margin-bottom:8px;background:#fff}
+.team-transfer-option:hover{border-color:var(--g1);background:var(--accent);transform:translateY(-1px);box-shadow:0 4px 12px rgba(27,107,58,.1)}
+.team-transfer-option.selected-transfer{border-color:var(--g1);background:var(--accent);box-shadow:0 0 0 3px rgba(27,107,58,.12)}
+.team-transfer-option.disabled-transfer{opacity:.45;cursor:not-allowed;pointer-events:none}
+.transfer-team-badge{min-width:18px;height:18px;border-radius:4px;font-size:9px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;color:#fff;padding:0 5px}
+
 /* Auction grid */
 #auction-main-grid{display:grid;grid-template-columns:260px 1fr 300px;gap:12px}
 @media(max-width:900px){#auction-main-grid{grid-template-columns:1fr}}
@@ -358,9 +372,25 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
     </div>
     <div id="nav-user" class="d-flex align-items-center gap-2 pe-3" style="display:none!important">
       <div id="nav-avatar" class="user-avatar-nav">👤</div>
-      <div>
-        <div style="color:#fff;font-size:12px;font-weight:800" id="nav-name"></div>
-        <div style="color:var(--gold2);font-size:10px" id="nav-role-badge"></div>
+      <!-- ── EDITABLE NAME/ROLE in NAV ── -->
+      <div id="nav-user-display" class="d-flex align-items-center gap-1">
+        <div>
+          <div style="color:#fff;font-size:12px;font-weight:800" id="nav-name"></div>
+          <div style="color:var(--gold2);font-size:10px" id="nav-role-badge"></div>
+        </div>
+        <button class="nav-edit-btn ms-1" onclick="startNavEdit()" title="Edit your name & role"><i class="bi bi-pencil-fill"></i></button>
+      </div>
+      <!-- Edit mode (hidden by default) -->
+      <div id="nav-user-edit" style="display:none" class="d-flex align-items-center gap-1 flex-wrap">
+        <input type="text" id="nav-edit-name" class="nav-name-input" placeholder="Your name..." maxlength="30">
+        <select id="nav-edit-role" style="background:rgba(255,255,255,.15);border:1.5px solid var(--gold2);border-radius:7px;padding:3px 6px;font-size:11px;font-weight:800;color:#fff;font-family:'Nunito',sans-serif;outline:none;cursor:pointer">
+          <option style="color:#000" value="Auctioneer">Auctioneer</option>
+          <option style="color:#000" value="Team Owner">Team Owner</option>
+          <option style="color:#000" value="Observer">Observer</option>
+          <option style="color:#000" value="Admin">Admin</option>
+        </select>
+        <button class="nav-edit-btn" onclick="saveNavEdit()" style="background:rgba(46,139,87,.5);border-color:var(--gold2)" title="Save"><i class="bi bi-check-lg"></i></button>
+        <button class="nav-edit-btn" onclick="cancelNavEdit()" title="Cancel"><i class="bi bi-x-lg"></i></button>
       </div>
       <button onclick="doLogout()" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;border-radius:8px;padding:5px 12px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif"><i class="bi bi-box-arrow-right me-1"></i>Logout</button>
     </div>
@@ -453,7 +483,6 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
     </div>
   </div>
 
-  <!-- LIVE SEARCH BAR — shows ALL players with status -->
   <div class="mb-3" style="position:relative;z-index:200">
     <div class="auction-search-wrap">
       <i class="bi bi-search auction-search-icon"></i>
@@ -466,7 +495,6 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   <div id="unsold-panel" style="display:none" class="mb-3"><div class="kpl-card"><div class="kpl-card-header" style="background:linear-gradient(135deg,#C62828,#E53935)"><i class="bi bi-x-circle-fill"></i> UNSOLD PLAYERS <span id="unsold-count-badge" class="ms-2 fw-bold" style="font-size:22px">0</span><button class="btn btn-sm btn-light ms-auto" onclick="toggleUnsoldPanel()">✕ Close</button></div><div class="p-3"><small class="text-muted">Click any player to load into auction</small><div class="row g-2 mt-1" id="unsold-full-grid"></div></div></div></div>
 
   <div id="auction-main-grid">
-    <!-- LEFT: Player Info -->
     <div class="kpl-card p-0 resizable-panel" id="panel-playerinfo" style="overflow:hidden;min-width:200px;min-height:300px">
       <div style="padding:12px 14px 10px;border-bottom:1px solid var(--border);user-select:none">
         <div class="text-uppercase fw-bold mb-1" style="font-size:10px;color:var(--muted);letter-spacing:.6px">📋 Player Info</div>
@@ -483,7 +511,6 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
       <div class="resize-handle-se" id="rh-pi-se"></div>
     </div>
 
-    <!-- CENTER: Auction Control -->
     <div class="auction-center">
       <div class="a-photo-box" id="a-photo" onclick="openAuctionPhotoLightbox()">
         <span>🏏</span>
@@ -533,7 +560,6 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
       </div>
     </div>
 
-    <!-- RIGHT: Team Spend Tracker -->
     <div class="kpl-card p-0 resizable-panel" id="panel-tracker" style="overflow:hidden;min-width:220px;min-height:300px">
       <div class="panel-header" style="padding:12px 14px 10px;border-bottom:1px solid var(--border);user-select:none;flex-shrink:0">
         <div class="d-flex justify-content-between align-items-center mb-1">
@@ -629,7 +655,6 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
     </div>
   </div>
 
-  <!-- SOLD PLAYERS LIST -->
   <div class="kpl-card mb-4">
     <div class="kpl-card-header" style="background:linear-gradient(135deg,#2E7D32,#388E3C)">
       <i class="bi bi-trophy-fill"></i> Sold Players List
@@ -662,7 +687,9 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════ -->
 <!-- MODALS -->
+<!-- ══════════════════════════════════════════ -->
 <div class="kpl-modal" id="md-team" style="position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px">
   <div style="background:#fff;border-radius:18px;padding:24px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)">
     <h3 id="tm-title" style="font-family:'Barlow Condensed',sans-serif;font-size:24px;margin-bottom:18px;color:var(--g1)"><i class="bi bi-shield-plus me-2"></i>Add Team</h3>
@@ -729,7 +756,7 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
   </div>
 </div>
 
-<!-- EDIT SOLD PRICE MODAL -->
+<!-- ══ EDIT SOLD PRICE MODAL ══ -->
 <div class="kpl-modal" id="md-edit-price" style="position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:1050;display:none;align-items:center;justify-content:center;padding:16px">
   <div style="background:#fff;border-radius:18px;padding:28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)">
     <div style="font-size:38px;margin-bottom:6px">✏️</div>
@@ -748,6 +775,46 @@ h1,h2,h3,h4,h5{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px}
     <div class="d-flex gap-2">
       <button class="btn btn-kpl btn-kpl-green flex-fill" style="padding:12px;font-size:15px" onclick="execEditPrice()">✅ Save New Price</button>
       <button class="btn btn-kpl btn-kpl-outline flex-fill" onclick="closeMd('md-edit-price')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TEAM TRANSFER MODAL (NEW) ══ -->
+<div class="kpl-modal" id="md-team-transfer" style="position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);z-index:1060;display:none;align-items:center;justify-content:center;padding:16px">
+  <div style="background:#fff;border-radius:20px;padding:0;width:100%;max-width:480px;max-height:90vh;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.3)">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#E65100,#FF6D00);padding:20px 24px;color:#fff">
+      <div style="font-size:28px;margin-bottom:4px">🔄</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;letter-spacing:1px">Transfer Player</div>
+      <div style="font-size:13px;opacity:.85;margin-top:2px" id="tt-player-info">Player Name · ₹0</div>
+    </div>
+    <!-- Current team info -->
+    <div style="padding:14px 24px 10px;border-bottom:1px solid var(--border)">
+      <div style="font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Current Team</div>
+      <div id="tt-current-team" style="display:flex;align-items:center;gap:10px;background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:10px;padding:10px 14px">
+        <div id="tt-current-logo" style="width:32px;height:32px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0"></div>
+        <div>
+          <div id="tt-current-name" style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900"></div>
+          <div id="tt-current-owner" style="font-size:11px;color:var(--muted)"></div>
+        </div>
+        <div id="tt-current-budget" style="margin-left:auto;text-align:right;font-size:11px;color:var(--muted)"></div>
+      </div>
+    </div>
+    <!-- New amount input -->
+    <div style="padding:12px 24px 0">
+      <div style="font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">New Sold Price for New Team (₹)</div>
+      <input type="number" id="tt-new-amt" class="form-control text-center" style="font-size:22px;font-weight:900;font-family:'Barlow Condensed',sans-serif;border:2px solid var(--gold2)" min="0" placeholder="Enter amount...">
+      <div class="small text-muted mt-1" id="tt-amt-hint">Original sold price is pre-filled. Change if needed.</div>
+    </div>
+    <!-- Select new team -->
+    <div style="padding:10px 24px 14px">
+      <div style="font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Select New Team</div>
+      <div style="max-height:220px;overflow-y:auto;padding-right:2px" id="tt-teams-list"></div>
+    </div>
+    <!-- Footer -->
+    <div style="padding:14px 24px 20px;border-top:1px solid var(--border);display:flex;gap:10px">
+      <button class="btn btn-kpl btn-kpl-green flex-fill" style="padding:13px;font-size:16px;font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:.5px" onclick="execTeamTransfer()">🔄 TRANSFER NOW</button>
+      <button class="btn btn-kpl btn-kpl-outline" onclick="closeMd('md-team-transfer')" style="padding:13px 20px">Cancel</button>
     </div>
   </div>
 </div>
@@ -795,8 +862,9 @@ let currentUser={name:'',role:'',photo:''};
 let loginPhotoData='';
 let trackerFontSize=15,infoFontSize=14;
 let searchResultIdx=-1,searchResults=[];
-// For edit sold price modal
 let editPricePlayerId=null;
+// ── Team Transfer state ──
+let transferPlayerId=null,transferSelectedTeamId=null;
 
 function lsGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){console.warn('ls full',k);}}
@@ -853,14 +921,16 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElement
 function openAuctionPhotoLightbox(){if(curAI<0)return;const p=players[curAI];if(!p)return;const ph=getPhotoByIndex(p);if(ph)openLightbox(ph,p.name);else toast('No photo for this player','warn');}
 function openPhotoLightboxPM(){if(pmPhotoData&&pmPhotoData.length>5)openLightbox(pmPhotoData,'Player Photo');}
 
+// ══════════════════════════════════
 // LOGIN
+// ══════════════════════════════════
 function setLoginBg(e){const f=e.target.files[0];if(!f)return;resizeAndRead_wh(f,1400,900,async data=>{await saveLoginBg(data);applyLoginBg();document.getElementById('login-bg-clear-btn').style.display='block';document.getElementById('login-bg-hint').classList.add('hidden');toast('✅ Background set!');});e.target.value='';}
 function clearLoginBg(){loginBgData='';localStorage.removeItem('kpl4_loginbg');localStorage.removeItem('kpl4_loginbg_idb');dbDel('bgs','login');applyLoginBg();document.getElementById('login-bg-clear-btn').style.display='none';document.getElementById('login-bg-hint').classList.remove('hidden');}
 function applyLoginBg(){const el=document.getElementById('login-bg');if(loginBgData){el.style.backgroundImage=`url(${loginBgData})`;el.style.backgroundSize='cover';el.style.backgroundPosition='center';}else{el.style.backgroundImage='none';el.style.background='linear-gradient(135deg,#1B6B3A 0%,#2E8B57 55%,#1B6B3A 100%)';}}
 function handleLoginPhoto(e){const f=e.target.files[0];if(!f)return;resizeAndRead(f,100,data=>{loginPhotoData=data;const ring=document.getElementById('login-logo-ring');ring.innerHTML=`<img src="${data}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"><input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;border-radius:50%" onchange="handleLoginPhoto(event)">`;});e.target.value='';}
 function doLogin(){const name=document.getElementById('login-name').value.trim();const role=document.getElementById('login-role').value;if(!name){toast('Please enter your name','error');return;}currentUser={name,role,photo:loginPhotoData};finishLogin();}
 function skipLogin(){currentUser={name:'Guest',role:'Observer',photo:''};finishLogin();}
-function doLogout(){currentUser={name:'',role:'',photo:''};loginPhotoData='';document.getElementById('nav-user').setAttribute('style','display:none!important');document.getElementById('login-name').value='';document.getElementById('login-overlay').style.display='flex';applyLoginBg();toast('Logged out 👋');}
+function doLogout(){currentUser={name:'',role:'',photo:''};loginPhotoData='';document.getElementById('nav-user').setAttribute('style','display:none!important');document.getElementById('login-name').value='';document.getElementById('login-overlay').style.display='flex';cancelNavEdit();applyLoginBg();toast('Logged out 👋');}
 function finishLogin(){
   document.getElementById('login-overlay').style.display='none';
   const navUser=document.getElementById('nav-user');navUser.removeAttribute('style');navUser.style.display='flex';
@@ -875,6 +945,42 @@ function finishLogin(){
   renderDash();renderImgFolder();
   const page=localStorage.getItem('kpl4_last_page')||'dashboard';goPage(page);
 }
+
+// ══════════════════════════════════
+// NAV NAME EDIT (NEW FEATURE)
+// ══════════════════════════════════
+function startNavEdit(){
+  document.getElementById('nav-user-display').style.display='none';
+  const editEl=document.getElementById('nav-user-edit');
+  editEl.style.display='flex';
+  document.getElementById('nav-edit-name').value=currentUser.name;
+  const roleEl=document.getElementById('nav-edit-role');
+  roleEl.value=currentUser.role;
+  setTimeout(()=>document.getElementById('nav-edit-name').focus(),50);
+}
+function saveNavEdit(){
+  const newName=document.getElementById('nav-edit-name').value.trim();
+  const newRole=document.getElementById('nav-edit-role').value;
+  if(!newName){toast('Name cannot be empty','error');return;}
+  currentUser.name=newName;
+  currentUser.role=newRole;
+  document.getElementById('nav-name').textContent=newName;
+  document.getElementById('nav-role-badge').textContent=newRole;
+  // Update avatar initial if no photo
+  const navAv=document.getElementById('nav-avatar');
+  if(!currentUser.photo)navAv.textContent=newName.charAt(0).toUpperCase();
+  cancelNavEdit();
+  toast(`✅ Name updated to "${newName}"`);
+}
+function cancelNavEdit(){
+  document.getElementById('nav-user-edit').style.display='none';
+  document.getElementById('nav-user-display').style.display='flex';
+}
+// Save on Enter key in name input
+document.addEventListener('DOMContentLoaded',()=>{
+  const ni=document.getElementById('nav-edit-name');
+  if(ni)ni.addEventListener('keydown',e=>{if(e.key==='Enter')saveNavEdit();if(e.key==='Escape')cancelNavEdit();});
+});
 
 // IMAGE RESIZE
 function resizeAndRead(file,maxDim,cb){const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{URL.revokeObjectURL(url);let w=img.width,h=img.height;if(w>maxDim||h>maxDim){const s=Math.min(maxDim/w,maxDim/h);w=Math.round(w*s);h=Math.round(h*s);}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);cb(c.toDataURL('image/jpeg',.78));};img.onerror=()=>{const r=new FileReader();r.onload=ev=>cb(ev.target.result);r.readAsDataURL(file);};img.src=url;}
@@ -961,7 +1067,7 @@ function trackerScrollToDot(di,tot){const p=document.getElementById('a-teams-pan
 document.addEventListener('DOMContentLoaded',()=>{const fa=document.getElementById('tracker-float-arrow');if(fa)fa.onclick=()=>{if(fa.classList.contains('at-bottom'))trackerScrollTop();else trackerScrollDown();};});
 
 // ══════════════════════════════════
-// AUCTION LIVE SEARCH — ALL players (sold + unsold)
+// AUCTION LIVE SEARCH
 // ══════════════════════════════════
 function onAuctionSearch(input){
   const q=input.value.trim();
@@ -969,7 +1075,6 @@ function onAuctionSearch(input){
   clearBtn.style.display=q?'block':'none';
   if(!q){hideSearchResults();return;}
   const qLower=q.toLowerCase();const qNum=parseInt(q);
-  // Search ALL players (sold + unsold)
   searchResults=players.map((p,i)=>({p,i})).filter(({p,i})=>{
     const nameMatch=p.name.toLowerCase().includes(qLower);
     const numMatch=(!isNaN(qNum)&&(i+1)===qNum);
@@ -998,8 +1103,11 @@ function renderSearchResults(q){
       </div>
       <div class="sri-price">
         <div>₹${isSold?p.soldPrice:p.price}</div>
-        ${isSold?`<div style="font-size:9px;color:var(--muted);font-weight:700">${isSold?'SOLD':'BASE'}</div>`:''}
-        ${isSold?`<button class="btn btn-sm btn-kpl btn-kpl-gold mt-1" style="font-size:9px;padding:2px 7px" onclick="event.stopPropagation();openEditPrice(${p.id})">✏️ Edit</button>`:''}
+        ${isSold?`<div style="font-size:9px;color:var(--muted);font-weight:700">SOLD</div>`:''}
+        ${isSold?`<div style="display:flex;flex-direction:column;gap:3px;margin-top:3px">
+          <button class="btn btn-sm btn-kpl btn-kpl-gold" style="font-size:9px;padding:2px 7px" onclick="event.stopPropagation();openEditPrice(${p.id})">✏️ Price</button>
+          <button class="btn btn-sm btn-kpl btn-kpl-blue" style="font-size:9px;padding:2px 7px" onclick="event.stopPropagation();openTeamTransfer(${p.id})">🔄 Team</button>
+        </div>`:''}
       </div>
     </div>`;
   }).join('');
@@ -1009,9 +1117,8 @@ function highlightMatch(text,q){if(!q)return text;const idx=text.toLowerCase().i
 function pickSearchResult(ri){
   const item=searchResults[ri];if(!item)return;const{p,i}=item;
   if(p.status==='sold'){
-    // If sold, show info but don't try to load for auction — offer edit price
     clearAuctionSearch();
-    toast(`${p.name} is already SOLD for ₹${p.soldPrice}`,'warn');
+    toast(`${p.name} is already SOLD for ₹${p.soldPrice}. Use ✏️ to edit price or 🔄 to change team.`,'warn');
     return;
   }
   selAP(i);clearAuctionSearch();setTimeout(()=>document.getElementById('a-photo').scrollIntoView({behavior:'smooth',block:'center'}),100);toast(`▶ Loaded: ${p.name}`);
@@ -1024,7 +1131,7 @@ function clearAuctionSearch(){const input=document.getElementById('auction-searc
 document.addEventListener('click',e=>{if(!e.target.closest('.auction-search-wrap'))hideSearchResults();});
 
 // ══════════════════════════════════
-// EDIT SOLD PRICE (post-sale edit)
+// EDIT SOLD PRICE
 // ══════════════════════════════════
 function openEditPrice(pid){
   const p=players.find(x=>x.id===pid);if(!p||p.status!=='sold')return;
@@ -1034,11 +1141,8 @@ function openEditPrice(pid){
   document.getElementById('ep-current').textContent=`₹${p.soldPrice}`;
   document.getElementById('ep-team-name').textContent=tm?`Team: ${tm.name}${tm.owner?' · '+tm.owner:''}`:' ';
   document.getElementById('ep-new-price').value=p.soldPrice;
-  if(tm){
-    document.getElementById('ep-budget-info').textContent=`Team remaining budget: ₹${tm.remaining} (will be adjusted automatically)`;
-  }else{
-    document.getElementById('ep-budget-info').textContent='';
-  }
+  if(tm){document.getElementById('ep-budget-info').textContent=`Team remaining budget: ₹${tm.remaining} (will be adjusted automatically)`;}
+  else{document.getElementById('ep-budget-info').textContent='';}
   openMd('md-edit-price');
 }
 function execEditPrice(){
@@ -1048,18 +1152,109 @@ function execEditPrice(){
   const tm=teams.find(t=>t.id===p.teamId);
   const oldAmt=p.soldPrice||0;
   const diff=newAmt-oldAmt;
-  // Adjust team budget
-  if(tm){
-    // Refund old, charge new
-    tm.remaining=tm.remaining-diff;
-    if(tm.remaining<0)tm.remaining=0;
-  }
+  if(tm){tm.remaining=tm.remaining-diff;if(tm.remaining<0)tm.remaining=0;}
   p.soldPrice=newAmt;
   save();closeMd('md-edit-price');
   toast(`✅ ${p.name}'s sold price updated to ₹${newAmt}`);
-  // Re-render current page
   renderPage(curPage());
   if(document.getElementById('pg-auction').classList.contains('active'))renderAuction();
+}
+
+// ══════════════════════════════════
+// TEAM TRANSFER (NEW FEATURE)
+// ══════════════════════════════════
+function openTeamTransfer(pid){
+  const p=players.find(x=>x.id===pid);
+  if(!p||p.status!=='sold'){toast('Player must be sold to transfer','error');return;}
+  const oldTm=teams.find(t=>t.id===p.teamId);
+  transferPlayerId=pid;
+  transferSelectedTeamId=null;
+
+  // Fill header
+  document.getElementById('tt-player-info').textContent=`${p.name} · ${p.role} · ₹${p.soldPrice} sold`;
+
+  // Current team info
+  if(oldTm){
+    const logo=getTeamLogo(oldTm.id);
+    document.getElementById('tt-current-logo').innerHTML=logo?`<img src="${logo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:'🛡️';
+    document.getElementById('tt-current-logo').style.background=oldTm.color||'var(--border)';
+    document.getElementById('tt-current-name').textContent=oldTm.name;
+    document.getElementById('tt-current-name').style.color=oldTm.color||'var(--g1)';
+    document.getElementById('tt-current-owner').textContent=oldTm.owner?`👤 ${oldTm.owner}`:'';
+    document.getElementById('tt-current-budget').innerHTML=`Remaining: <strong>₹${oldTm.remaining}</strong><br>Players: ${teamPlayerCount(oldTm.id)}/${MAX_TEAM}`;
+  }
+
+  // Amount
+  document.getElementById('tt-new-amt').value=p.soldPrice;
+  document.getElementById('tt-amt-hint').textContent=`Original: ₹${p.soldPrice} — change if the new team pays different.`;
+
+  // Team list (exclude current team)
+  renderTransferTeamList(p.teamId,p.soldPrice);
+  openMd('md-team-transfer');
+}
+
+function renderTransferTeamList(excludeId,soldAmt){
+  const list=document.getElementById('tt-teams-list');
+  const otherTeams=teams.filter(t=>t.id!==excludeId);
+  if(!otherTeams.length){list.innerHTML='<p class="text-muted small text-center py-3">No other teams available</p>';return;}
+  list.innerHTML=otherTeams.map(t=>{
+    const cnt=teamPlayerCount(t.id);
+    const full=cnt>=MAX_TEAM;
+    const logo=getTeamLogo(t.id);
+    const isSelected=transferSelectedTeamId===t.id;
+    return`<div class="team-transfer-option ${isSelected?'selected-transfer':''} ${full?'disabled-transfer':''}" id="tto-${t.id}" onclick="selectTransferTeam(${t.id})">
+      <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;background:${t.color||'#1B6B3A'};border:2px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">
+        ${logo?`<img src="${logo}" style="width:100%;height:100%;object-fit:cover">`:'🛡️'}
+      </div>
+      <div class="flex-fill">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:${t.color||'var(--g1)'}">${t.name}</div>
+        <div style="font-size:11px;color:var(--muted)">${t.owner?'👤 '+t.owner+' · ':''}<span style="font-weight:800">${cnt}/${MAX_TEAM} players</span></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:12px;font-weight:800;color:var(--g1)">₹${t.remaining}<br><span style="font-size:10px;color:var(--muted);font-weight:700">remaining</span></div>
+        ${full?`<span class="kpl-badge b-full mt-1">FULL</span>`:''}
+        ${!full&&t.remaining<soldAmt?`<span style="font-size:9px;color:var(--red);font-weight:900;display:block">⚠️ Low budget</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function selectTransferTeam(tid){
+  transferSelectedTeamId=tid;
+  document.querySelectorAll('.team-transfer-option').forEach(el=>el.classList.remove('selected-transfer'));
+  const el=document.getElementById(`tto-${tid}`);
+  if(el)el.classList.add('selected-transfer');
+}
+
+function execTeamTransfer(){
+  if(!transferPlayerId)return;
+  if(!transferSelectedTeamId){toast('Please select a new team first','error');return;}
+  const p=players.find(x=>x.id===transferPlayerId);
+  if(!p||p.status!=='sold'){toast('Player not found','error');return;}
+  const newAmt=parseFloat(document.getElementById('tt-new-amt').value)||p.soldPrice;
+  const oldTm=teams.find(t=>t.id===p.teamId);
+  const newTm=teams.find(t=>t.id===transferSelectedTeamId);
+  if(!newTm){toast('New team not found','error');return;}
+  if(isTeamFull(newTm.id)){toast(`⛔ ${newTm.name} is FULL!`,'error');return;}
+
+  // Refund old team
+  if(oldTm){
+    oldTm.remaining=oldTm.remaining+(p.soldPrice||0);
+  }
+  // Charge new team
+  newTm.remaining=Math.max(0,newTm.remaining-newAmt);
+
+  // Update player
+  const oldTmName=oldTm?oldTm.name:'—';
+  p.teamId=newTm.id;
+  p.soldPrice=newAmt;
+
+  save();
+  closeMd('md-team-transfer');
+  toast(`✅ ${p.name} transferred from ${oldTmName} → ${newTm.name} for ₹${newAmt}`);
+  renderPage(curPage());
+  if(document.getElementById('pg-auction').classList.contains('active'))renderAuction();
+  transferPlayerId=null;transferSelectedTeamId=null;
 }
 
 // ══════════════════════════════════
@@ -1076,7 +1271,7 @@ function renderDash(){
   <div class="col-6 col-md-4 col-lg-2"><div class="kpl-stat s-blue"><div class="kpl-stat-v" style="color:var(--blue);font-size:24px">₹${totalSpent.toLocaleString()}</div><div class="kpl-stat-l">Total Spent</div></div></div>
   <div class="col-6 col-md-4 col-lg-2"><div class="kpl-stat s-gold"><div class="kpl-stat-v" style="color:var(--gold);font-size:16px">${highest?.name||'—'}</div><div class="kpl-stat-l">Top Bid</div></div></div>`;
   document.getElementById('d-teams').innerHTML=teams.map(t=>{const pct=Math.round(((t.budget-t.remaining)/t.budget)*100);const cnt=teamPlayerCount(t.id);return`<div class="mb-3"><div class="d-flex align-items-center gap-2 mb-1">${teamColorBlock(t,true,28)}<div class="flex-fill"><div class="d-flex justify-content-between align-items-center"><div><span class="fw-bold" style="font-size:13px;color:${t.color||'var(--g1)'}">${t.name}</span>${t.owner?`<span class="small text-muted ms-1">· ${t.owner}</span>`:''}<span class="kpl-badge ms-1" style="background:#E8F5E9;color:#2E7D32">${cnt}/${MAX_TEAM}</span></div><span class="small text-muted">₹${t.remaining} left</span></div></div></div><div class="budget-bar"><div class="budget-fill" style="width:${pct}%;background:${t.color||'var(--g1)'}"></div></div></div>`;}).join('')||'<p class="text-muted small">No teams yet</p>';
-  document.getElementById('d-sold').innerHTML=sold.slice(-6).reverse().map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<div class="si-row"><div><div class="fw-bold">${p.name}</div><div class="d-flex align-items-center gap-1 small text-muted">${tm?teamColorBlock(tm,true,14):''}${tm?.name||'—'}</div></div><div class="si-price">₹${p.soldPrice}</div></div>`;}).join('')||'<p class="text-muted small">No sales yet</p>';
+  document.getElementById('d-sold').innerHTML=sold.slice(-6).reverse().map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<div class="si-row"><div><div class="fw-bold">${p.name}</div><div class="d-flex align-items-center gap-1 small text-muted">${tm?teamColorBlock(tm,true,14):''}${tm?.name||'—'}</div></div><div class="d-flex align-items-center gap-1"><div class="si-price">₹${p.soldPrice}</div><button onclick="openTeamTransfer(${p.id})" title="Change team" style="background:none;border:1.5px solid rgba(21,101,192,.4);color:var(--blue);cursor:pointer;font-size:10px;padding:2px 6px;border-radius:6px;font-weight:800;font-family:'Nunito',sans-serif">🔄</button></div></div>`;}).join('')||'<p class="text-muted small">No sales yet</p>';
 }
 
 // TEAMS
@@ -1110,7 +1305,7 @@ function renderPlayers(f){
   document.getElementById('cnt-unsold').textContent=`(${players.filter(p=>p.status==='unsold').length})`;
   const ir=(icon,label,val,c='')=>val?`<div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #f0f0f0"><span class="small text-muted">${icon} ${label}</span><span class="small fw-bold" style="${c?'color:'+c:''}">${val}</span></div>`:'';
   document.getElementById('players-grid').innerHTML=list.map((p,li)=>{const tm=teams.find(t=>t.id===p.teamId);const ph=getPhotoByIndex(p);const idx=players.indexOf(p)+1;const hasImg=!!ph;const photoEl=ph?`<img src="${ph}" alt="${p.name}" onerror="this.parentElement.innerHTML='🏏'">`:'🏏';
-  return`<div class="col-md-6 col-lg-4 col-xl-3"><div class="player-card h-100"><div class="d-flex gap-2 align-items-start p-3 pb-2"><div class="player-photo" style="cursor:${hasImg?'zoom-in':'default'}">${photoEl}</div><div class="flex-fill" style="min-width:0"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div class="d-flex gap-1 flex-wrap mt-1"><span class="kpl-badge ${roleClass[p.role]||'b-bat'}">${p.role}</span><span class="kpl-badge" style="background:#F5F5F5;color:#616161">${p.batting}</span><span class="kpl-badge ${p.status==='sold'?'b-sold':'b-unsold'}">${p.status==='sold'?'✅ SOLD':'❌'}</span></div></div></div><div class="px-3 pb-1">${ir('📅','DOB',p.dob)}${ir('🏘','Village',p.village)}${ir('📞','Contact',p.contact)}${ir('💰','Base Price','₹'+p.price,'var(--gold)')}${p.status==='sold'?`<div class="sold-edit-row"><span class="small text-muted me-1">🔨 Sold:</span><span class="sold-price-display">₹${p.soldPrice}</span><button class="pencil-edit-btn ms-1" onclick="openEditPrice(${p.id})" title="Edit sold price"><i class="bi bi-pencil-fill"></i></button></div>`:''} ${p.status==='sold'&&tm?`<div class="d-flex justify-content-between align-items-center py-1"><span class="small text-muted">🏆 Team</span><span class="small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</span></div>`:''}</div><div class="d-flex border-top border-bottom text-center" style="border-color:var(--border)!important"><div class="flex-fill py-2"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800">${p.matches}</div><div class="small text-muted" style="font-size:9px">MAT</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--g1)">${p.runs}</div><div class="small text-muted" style="font-size:9px">RUNS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#E65100">${p.wickets}</div><div class="small text-muted" style="font-size:9px">WKTS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--blue)">${p.sr}</div><div class="small text-muted" style="font-size:9px">SR</div></div></div><div class="d-flex justify-content-between align-items-center px-3 py-2"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:${p.status==='sold'?'var(--g1)':'var(--gold)'}">₹${p.status==='sold'?p.soldPrice:p.price}</div></div>${tm?`<div class="text-end small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</div>`:''}</div><div class="d-flex gap-2 px-3 pb-3"><button class="btn btn-sm btn-kpl btn-kpl-outline flex-fill" onclick="editPlayer(${p.id})"><i class="bi bi-pencil me-1"></i>Edit</button><button class="btn btn-sm btn-kpl btn-kpl-gold" title="Assign photo" onclick="openImgSel(${p.id})"><i class="bi bi-image"></i></button><button class="btn btn-sm btn-kpl btn-kpl-red flex-fill" onclick="askDel('player',${p.id},\`${p.name}\`)"><i class="bi bi-trash3 me-1"></i>Del</button></div></div></div>`;
+  return`<div class="col-md-6 col-lg-4 col-xl-3"><div class="player-card h-100"><div class="d-flex gap-2 align-items-start p-3 pb-2"><div class="player-photo" style="cursor:${hasImg?'zoom-in':'default'}">${photoEl}</div><div class="flex-fill" style="min-width:0"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div class="d-flex gap-1 flex-wrap mt-1"><span class="kpl-badge ${roleClass[p.role]||'b-bat'}">${p.role}</span><span class="kpl-badge" style="background:#F5F5F5;color:#616161">${p.batting}</span><span class="kpl-badge ${p.status==='sold'?'b-sold':'b-unsold'}">${p.status==='sold'?'✅ SOLD':'❌'}</span></div></div></div><div class="px-3 pb-1">${ir('📅','DOB',p.dob)}${ir('🏘','Village',p.village)}${ir('📞','Contact',p.contact)}${ir('💰','Base Price','₹'+p.price,'var(--gold)')}${p.status==='sold'?`<div class="sold-edit-row"><span class="small text-muted me-1">🔨 Sold:</span><span class="sold-price-display">₹${p.soldPrice}</span><button class="pencil-edit-btn ms-1" onclick="openEditPrice(${p.id})" title="Edit sold price"><i class="bi bi-pencil-fill"></i></button></div>`:''} ${p.status==='sold'&&tm?`<div class="d-flex justify-content-between align-items-center py-1"><span class="small text-muted">🏆 Team</span><div class="d-flex align-items-center gap-1"><span class="small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</span><button onclick="openTeamTransfer(${p.id})" title="Change team" style="background:none;border:1.5px solid rgba(21,101,192,.35);color:var(--blue);cursor:pointer;font-size:9px;padding:1px 6px;border-radius:5px;font-weight:800;font-family:'Nunito',sans-serif">🔄 Change</button></div></div>`:''}</div><div class="d-flex border-top border-bottom text-center" style="border-color:var(--border)!important"><div class="flex-fill py-2"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800">${p.matches}</div><div class="small text-muted" style="font-size:9px">MAT</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--g1)">${p.runs}</div><div class="small text-muted" style="font-size:9px">RUNS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#E65100">${p.wickets}</div><div class="small text-muted" style="font-size:9px">WKTS</div></div><div class="flex-fill py-2 border-start" style="border-color:var(--border)!important"><div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--blue)">${p.sr}</div><div class="small text-muted" style="font-size:9px">SR</div></div></div><div class="d-flex justify-content-between align-items-center px-3 py-2"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:${p.status==='sold'?'var(--g1)':'var(--gold)'}">₹${p.status==='sold'?p.soldPrice:p.price}</div></div>${tm?`<div class="text-end small fw-bold" style="color:${tm.color||'var(--blue)'}">${tm.name}</div>`:''}</div><div class="d-flex gap-2 px-3 pb-3"><button class="btn btn-sm btn-kpl btn-kpl-outline flex-fill" onclick="editPlayer(${p.id})"><i class="bi bi-pencil me-1"></i>Edit</button><button class="btn btn-sm btn-kpl btn-kpl-gold" title="Assign photo" onclick="openImgSel(${p.id})"><i class="bi bi-image"></i></button><button class="btn btn-sm btn-kpl btn-kpl-red flex-fill" onclick="askDel('player',${p.id},\`${p.name}\`)"><i class="bi bi-trash3 me-1"></i>Del</button></div></div></div>`;
   }).join('')||`<div class="col-12 text-center py-5 text-muted">No players found.</div>`;
   setTimeout(()=>{document.querySelectorAll('#players-grid .player-photo').forEach((ph,i)=>{const p=list[i];if(!p)return;const src=getPhotoByIndex(p);if(src){ph.style.cursor='zoom-in';ph.onclick=()=>openLightbox(src,p.name);}});},50);
 }
@@ -1141,7 +1336,6 @@ function renderAuction(){
   const selTid=sel.value;updateTeamFullWarn(selTid);
   const tcEl=document.getElementById('tracker-team-count');if(tcEl)tcEl.textContent=`${teams.length} teams`;
 
-  // TEAM TRACKER
   const fs=trackerFontSize;
   const trackerPanel=document.getElementById('a-teams-panel');
   trackerPanel.innerHTML=teams.map(t=>{
@@ -1166,7 +1360,7 @@ function renderAuction(){
       <div class="col-4"><div class="tracker-stat-val" style="color:var(--red);font-size:${Math.round(fs*1.3)}px">₹${spent}</div><div class="tracker-stat-lbl" style="font-size:${Math.round(fs*0.75)}px">SPENT</div></div>
       <div class="col-4"><div class="tracker-stat-val" style="color:var(--g1);font-size:${Math.round(fs*1.3)}px">₹${t.remaining}</div><div class="tracker-stat-lbl" style="font-size:${Math.round(fs*0.75)}px">LEFT</div></div>
     </div>
-    ${tp.length?`<div>${tp.map(p=>`<div class="tracker-player-row" style="font-size:${fs}px"><span class="fw-bold">${p.name}</span><div class="d-flex align-items-center gap-1"><span class="tracker-player-price" style="color:${t.color||'var(--g1)'};font-size:${Math.round(fs*1.1)}px">₹${p.soldPrice}</span><button onclick="openEditPrice(${p.id})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:10px;padding:1px 4px;border-radius:4px" title="Edit price"><i class="bi bi-pencil-fill"></i></button></div></div>`).join('')}</div>`:`<div class="small text-muted" style="font-style:italic;font-size:${Math.round(fs*0.9)}px">No players yet</div>`}
+    ${tp.length?`<div>${tp.map(p=>`<div class="tracker-player-row" style="font-size:${fs}px"><span class="fw-bold">${p.name}</span><div class="d-flex align-items-center gap-1"><span class="tracker-player-price" style="color:${t.color||'var(--g1)'};font-size:${Math.round(fs*1.1)}px">₹${p.soldPrice}</span><button onclick="openEditPrice(${p.id})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:10px;padding:1px 4px;border-radius:4px" title="Edit price"><i class="bi bi-pencil-fill"></i></button><button onclick="openTeamTransfer(${p.id})" style="background:none;border:1px solid rgba(21,101,192,.3);color:var(--blue);cursor:pointer;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:800" title="Change team">🔄</button></div></div>`).join('')}</div>`:`<div class="small text-muted" style="font-style:italic;font-size:${Math.round(fs*0.9)}px">No players yet</div>`}
   </div>`;
   }).join('')||'<p class="small text-muted p-3">No teams yet</p>';
 
@@ -1174,7 +1368,7 @@ function renderAuction(){
   const iSlider=document.getElementById('info-font-slider');if(iSlider)iSlider.value=infoFontSize;
 
   const sold=players.filter(p=>p.status==='sold').slice(-8).reverse();
-  document.getElementById('a-sold').innerHTML=sold.map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<div class="si-row"><div><div class="fw-bold" style="font-size:12px">${p.name}</div><div class="d-flex align-items-center gap-1 small text-muted">${tm?teamColorBlock(tm,true,12):''}${tm?.name||'—'}</div></div><div class="d-flex align-items-center gap-1"><div class="si-price">₹${p.soldPrice}</div><button onclick="openEditPrice(${p.id})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:1px 4px;border-radius:4px" title="Edit"><i class="bi bi-pencil-fill"></i></button></div></div>`;}).join('')||'<p class="small text-muted">No sales yet</p>';
+  document.getElementById('a-sold').innerHTML=sold.map(p=>{const tm=teams.find(t=>t.id===p.teamId);return`<div class="si-row"><div><div class="fw-bold" style="font-size:12px">${p.name}</div><div class="d-flex align-items-center gap-1 small text-muted">${tm?teamColorBlock(tm,true,12):''}${tm?.name||'—'}</div></div><div class="d-flex align-items-center gap-1"><div class="si-price">₹${p.soldPrice}</div><button onclick="openEditPrice(${p.id})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:1px 4px;border-radius:4px" title="Edit"><i class="bi bi-pencil-fill"></i></button><button onclick="openTeamTransfer(${p.id})" style="background:none;border:1px solid rgba(21,101,192,.3);color:var(--blue);cursor:pointer;font-size:10px;padding:1px 5px;border-radius:4px;font-weight:800" title="Change team">🔄</button></div></div>`;}).join('')||'<p class="small text-muted">No sales yet</p>';
 
   setTimeout(initTrackerScroll,150);
 
@@ -1255,15 +1449,11 @@ function makeResizablePanel(panelId,opts={}){
   makeResizer(heE,(dx,dy)=>({dw:dx}));makeResizer(heW,(dx,dy)=>({dw:-dx}));makeResizer(heS,(dx,dy)=>({dh:dy}));makeResizer(heSE,(dx,dy)=>({dw:dx,dh:dy}));
 }
 
-// ══════════════════════════════════
-// EXPORT & REPORTS
-// ══════════════════════════════════
+// EXPORT
 function renderExport(){
   const sold=players.filter(p=>p.status==='sold');
   const highest=sold.length?sold.reduce((a,b)=>a.soldPrice>b.soldPrice?a:b):null;
   document.getElementById('ppt-preview').innerHTML=`<div class="row g-3"><div class="col-md-4"><div class="kpl-stat s-green"><div class="kpl-stat-v" style="color:var(--g1)">${sold.length}</div><div class="kpl-stat-l">Total Sold</div></div></div><div class="col-md-4"><div class="kpl-stat s-gold"><div class="kpl-stat-v" style="color:var(--gold);font-size:16px">${highest?.name||'—'}</div><div class="kpl-stat-l">Top Bid Player</div></div></div><div class="col-md-4"><div class="kpl-stat s-blue"><div class="kpl-stat-v" style="color:var(--blue)">₹${sold.reduce((a,b)=>a+(b.soldPrice||0),0).toLocaleString()}</div><div class="kpl-stat-l">Total Spent</div></div></div></div>`;
-
-  // Render sold players table
   renderSoldTable();
 }
 
@@ -1287,6 +1477,7 @@ function renderSoldTable(){
       <div style="display:flex;align-items:center;gap:5px">
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:var(--g1)">₹${p.soldPrice}</span>
         <button onclick="openEditPrice(${p.id})" class="pencil-edit-btn" title="Edit sold price"><i class="bi bi-pencil-fill"></i></button>
+        <button onclick="openTeamTransfer(${p.id})" title="Change team" style="background:none;border:1.5px solid rgba(21,101,192,.4);color:var(--blue);cursor:pointer;font-size:10px;padding:2px 7px;border-radius:6px;font-weight:800;font-family:'Nunito',sans-serif">🔄 Team</button>
       </div>
     </td>
     <td style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;color:${p.soldPrice>p.price?'var(--g1)':'var(--red)'}">
@@ -1302,103 +1493,16 @@ function renderSoldTable(){
   <div class="mt-2 text-end small text-muted">Total sold: <strong style="color:var(--g1)">₹${sold.reduce((a,b)=>a+(b.soldPrice||0),0).toLocaleString()}</strong></div>`;
 }
 
-// ══════════════════════════════════
-// EXCEL EXPORTS — ENHANCED
-// ══════════════════════════════════
+// EXCEL EXPORTS
 function dlTemplate(){const wb=XLSX.utils.book_new();const p=[['Full Name','Date of Birth (DD/MM/YYYY)','VILLAGE','Contact Number','Preferred Role in the Team','Batting Hand Preference','T-Shirt Size','Base Price (₹)','Matches','Runs','Wickets','Strike Rate','Image URL (optional)'],['Rahul Sharma','15/05/1995','Karamsad','9876543210','Batsman','Right','L','500','45','1200','0','138.5',''],['Amit Patel','22/03/1998','Tralsa','9812345678','Bowler','Right','M','500','38','180','62','110.2','']];const t=[['Team Name','Owner Name','Budget','Color (hex)'],['Mumbai Tigers','Rajesh Patel','50000','#E53935'],['Delhi Warriors','Suresh Shah','50000','#1E88E5']];XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(p),'Players');XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(t),'Teams');XLSX.writeFile(wb,'KPL_Template.xlsx');toast('Template downloaded ✓');}
-
 function dlAllPlayers(){const wb=XLSX.utils.book_new();const rows=[['#','Full Name','DOB','Village','Contact','Role','Batting','T-Shirt','Base Price','Matches','Runs','Wickets','SR','Status','Sold Price','Team','Team Owner']];players.forEach((p,i)=>{const t=teams.find(x=>x.id===p.teamId);rows.push([i+1,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.matches,p.runs,p.wickets,p.sr,p.status,p.soldPrice||0,t?t.name:'',t?t.owner||'':'']);});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'All Players');XLSX.writeFile(wb,'KPL_Players.xlsx');toast('Excel downloaded ✓');}
-
-// NEW: Sold Players List with price + contact
-function dlSoldPlayersList(){
-  const wb=XLSX.utils.book_new();
-  const sold=players.filter(p=>p.status==='sold');
-  const header=[['#','Player Name','DOB','Village','Contact (Phone)','Role','Batting Hand','T-Shirt','Base Price (₹)','Sold Price (₹)','Price Difference','Team Name','Team Owner','Matches','Runs','Wickets','Strike Rate']];
-  const rows=sold.map((p,i)=>{const t=teams.find(x=>x.id===p.teamId);return[i+1,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.soldPrice||0,(p.soldPrice||0)-p.price,t?t.name:'',t?t.owner||'':'',p.matches,p.runs,p.wickets,p.sr];});
-  const summaryRows=[...header,...rows];
-  // Add totals row
-  summaryRows.push([]);
-  summaryRows.push(['','TOTAL','','','','','','','',sold.reduce((a,b)=>a+(b.soldPrice||0),0),'','','','','','','']);
-  summaryRows.push(['','Count: '+sold.length+' players sold']);
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summaryRows),'Sold Players');
-  // Also add unsold sheet
-  const unsold=players.filter(p=>p.status==='unsold');
-  if(unsold.length){
-    const uRows=[['#','Player Name','Village','Contact','Role','Base Price (₹)'],...unsold.map((p,i)=>[i+1,p.name,p.village||'',p.contact||'',p.role,p.price])];
-    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(uRows),'Unsold Players');
-  }
-  XLSX.writeFile(wb,'KPL_Sold_Players_'+new Date().toLocaleDateString('en-IN').replace(/\//g,'-')+'.xlsx');
-  toast('✅ Sold players list downloaded!');}
-
+function dlSoldPlayersList(){const wb=XLSX.utils.book_new();const sold=players.filter(p=>p.status==='sold');const header=[['#','Player Name','DOB','Village','Contact (Phone)','Role','Batting Hand','T-Shirt','Base Price (₹)','Sold Price (₹)','Price Difference','Team Name','Team Owner','Matches','Runs','Wickets','Strike Rate']];const rows=sold.map((p,i)=>{const t=teams.find(x=>x.id===p.teamId);return[i+1,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.soldPrice||0,(p.soldPrice||0)-p.price,t?t.name:'',t?t.owner||'':'',p.matches,p.runs,p.wickets,p.sr];});const summaryRows=[...header,...rows];summaryRows.push([]);summaryRows.push(['','TOTAL','','','','','','','',sold.reduce((a,b)=>a+(b.soldPrice||0),0),'','','','','','','']);summaryRows.push(['','Count: '+sold.length+' players sold']);XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summaryRows),'Sold Players');const unsold=players.filter(p=>p.status==='unsold');if(unsold.length){const uRows=[['#','Player Name','Village','Contact','Role','Base Price (₹)'],...unsold.map((p,i)=>[i+1,p.name,p.village||'',p.contact||'',p.role,p.price])];XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(uRows),'Unsold Players');}XLSX.writeFile(wb,'KPL_Sold_Players_'+new Date().toLocaleDateString('en-IN').replace(/\//g,'-')+'.xlsx');toast('✅ Sold players list downloaded!');}
 function dlTeamsXls(){const wb=XLSX.utils.book_new();const rows=[['Team','Owner','Budget (₹)','Remaining (₹)','Spent (₹)','Players','Player Names']];teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);rows.push([t.name,t.owner||'',t.budget,t.remaining,t.budget-t.remaining,tp.length,tp.map(p=>p.name).join(', ')]);});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'Teams');XLSX.writeFile(wb,'KPL_Teams.xlsx');toast('Teams Excel downloaded ✓');}
+function dlTeamwise(){const wb=XLSX.utils.book_new();const sum=[['KPL Auction 2026 — Team-wise Report'],['Generated:',new Date().toLocaleString()],[''],['Team','Owner','Budget (₹)','Spent (₹)','Remaining (₹)','Players Count']];teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);sum.push([t.name,t.owner||'',t.budget,t.budget-t.remaining,t.remaining,tp.length]);});sum.push(['']);sum.push(['Total Sold',players.filter(p=>p.status==='sold').length]);sum.push(['Total Spent (₹)',players.filter(p=>p.status==='sold').reduce((a,b)=>a+(b.soldPrice||0),0)]);XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sum),'Summary');teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);const rows=[[`Team: ${t.name}`,'','','','','','','','',''],[ `Owner: ${t.owner||'—'}`,'','','','','','','','',''],[''],['#','Player Name','DOB','Village','Contact (Phone)','Role','Batting','T-Shirt','Base Price (₹)','Sold Price (₹)','Matches','Runs','Wickets','SR']];tp.forEach((p,i)=>rows.push([i+1,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.soldPrice||0,p.matches,p.runs,p.wickets,p.sr]));rows.push(['']);rows.push(['','Budget:',t.budget,'Spent:',t.budget-t.remaining,'Remaining:',t.remaining,'Players:',tp.length]);XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),t.name.replace(/[^a-zA-Z0-9 ]/g,'').slice(0,31));});XLSX.writeFile(wb,'KPL_Teamwise_'+new Date().toLocaleDateString('en-IN').replace(/\//g,'-')+'.xlsx');toast('Team-wise Excel downloaded ✓');}
 
-// ENHANCED Team-wise with Contact
-function dlTeamwise(){
-  const wb=XLSX.utils.book_new();
-  const sum=[['KPL Auction 2026 — Team-wise Report'],['Generated:',new Date().toLocaleString()],[''],['Team','Owner','Budget (₹)','Spent (₹)','Remaining (₹)','Players Count']];
-  teams.forEach(t=>{const tp=players.filter(p=>p.teamId===t.id);sum.push([t.name,t.owner||'',t.budget,t.budget-t.remaining,t.remaining,tp.length]);});
-  sum.push(['']);sum.push(['Total Sold',players.filter(p=>p.status==='sold').length]);sum.push(['Total Spent (₹)',players.filter(p=>p.status==='sold').reduce((a,b)=>a+(b.soldPrice||0),0)]);
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sum),'Summary');
-  teams.forEach(t=>{
-    const tp=players.filter(p=>p.teamId===t.id);
-    const rows=[
-      [`Team: ${t.name}`,'','','','','','','','',''],
-      [`Owner: ${t.owner||'—'}`,'','','','','','','','',''],
-      [''],
-      ['#','Player Name','DOB','Village','Contact (Phone)','Role','Batting','T-Shirt','Base Price (₹)','Sold Price (₹)','Matches','Runs','Wickets','SR']
-    ];
-    tp.forEach((p,i)=>rows.push([i+1,p.name,p.dob||'',p.village||'',p.contact||'',p.role,p.batting,p.tshirt,p.price,p.soldPrice||0,p.matches,p.runs,p.wickets,p.sr]));
-    rows.push(['']);rows.push(['','Budget:',t.budget,'Spent:',t.budget-t.remaining,'Remaining:',t.remaining,'Players:',tp.length]);
-    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),t.name.replace(/[^a-zA-Z0-9 ]/g,'').slice(0,31));
-  });
-  XLSX.writeFile(wb,'KPL_Teamwise_'+new Date().toLocaleDateString('en-IN').replace(/\//g,'-')+'.xlsx');
-  toast('Team-wise Excel downloaded ✓');}
-
-// ══════════════════════════════════
-// DATA BACKUP & RESTORE
-// ══════════════════════════════════
-function exportBackup(){
-  const backup={
-    version:2,
-    exportedAt:new Date().toISOString(),
-    exportedBy:currentUser.name||'Guest',
-    teams:JSON.parse(JSON.stringify(teams)),
-    players:JSON.parse(JSON.stringify(players)),
-    meta:{curAI,trackerFontSize,infoFontSize}
-  };
-  const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;
-  const dt=new Date().toLocaleDateString('en-IN').replace(/\//g,'-');
-  a.download=`KPL_Backup_${dt}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-  toast('✅ Backup downloaded!');}
-
-function importBackup(e){
-  const file=e.target.files[0];if(!file)return;
-  if(!confirm(`Restore from "${file.name}"? This will REPLACE all current data. Continue?`)){e.target.value='';return;}
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    try{
-      const backup=JSON.parse(ev.target.result);
-      if(!backup.teams||!backup.players){toast('Invalid backup file','error');return;}
-      teams=backup.teams||[];
-      players=backup.players||[];
-      curAI=backup.meta?.curAI??-1;
-      trackerFontSize=backup.meta?.trackerFontSize||15;
-      infoFontSize=backup.meta?.infoFontSize||14;
-      save();
-      const tSlider=document.getElementById('tracker-font-slider');if(tSlider)tSlider.value=trackerFontSize;
-      const iSlider=document.getElementById('info-font-slider');if(iSlider)iSlider.value=infoFontSize;
-      renderPage(curPage());
-      toast(`✅ Backup restored! ${players.length} players, ${teams.length} teams loaded.`);
-    }catch(err){toast('Failed to read backup file','error');console.error(err);}
-  };
-  reader.readAsText(file);
-  e.target.value='';
-}
+// BACKUP
+function exportBackup(){const backup={version:2,exportedAt:new Date().toISOString(),exportedBy:currentUser.name||'Guest',teams:JSON.parse(JSON.stringify(teams)),players:JSON.parse(JSON.stringify(players)),meta:{curAI,trackerFontSize,infoFontSize}};const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;const dt=new Date().toLocaleDateString('en-IN').replace(/\//g,'-');a.download=`KPL_Backup_${dt}.json`;a.click();URL.revokeObjectURL(url);toast('✅ Backup downloaded!');}
+function importBackup(e){const file=e.target.files[0];if(!file)return;if(!confirm(`Restore from "${file.name}"? This will REPLACE all current data. Continue?`)){e.target.value='';return;}const reader=new FileReader();reader.onload=ev=>{try{const backup=JSON.parse(ev.target.result);if(!backup.teams||!backup.players){toast('Invalid backup file','error');return;}teams=backup.teams||[];players=backup.players||[];curAI=backup.meta?.curAI??-1;trackerFontSize=backup.meta?.trackerFontSize||15;infoFontSize=backup.meta?.infoFontSize||14;save();const tSlider=document.getElementById('tracker-font-slider');if(tSlider)tSlider.value=trackerFontSize;const iSlider=document.getElementById('info-font-slider');if(iSlider)iSlider.value=infoFontSize;renderPage(curPage());toast(`✅ Backup restored! ${players.length} players, ${teams.length} teams loaded.`);}catch(err){toast('Failed to read backup file','error');console.error(err);}};reader.readAsText(file);e.target.value='';}
 
 // BULK ACTIONS
 function resetAuction(){if(!confirm('Reset all auction? Budgets restored, all players set to Unsold.'))return;players.forEach(p=>{p.status='unsold';p.soldPrice=0;p.teamId=null;});teams.forEach(t=>{t.remaining=t.budget;});curAI=-1;save();renderPage(curPage());toast('Auction reset ✓');}
